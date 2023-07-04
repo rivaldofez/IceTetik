@@ -11,8 +11,6 @@ import com.icetetik.databinding.ActivityLauncherBinding
 class LauncherActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLauncherBinding
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLauncherBinding.inflate(layoutInflater)
