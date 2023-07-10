@@ -22,7 +22,7 @@
             android:layout_marginTop="16dp"
             android:background="@android:color/transparent"
             android:scaleType="centerCrop"
-            android:tint="@color/white"
+            app:tint="@color/white"
             android:src="@drawable/ic_close_24"/>
 
         <LinearLayout
@@ -30,36 +30,40 @@
             android:layout_width="match_parent"
             android:layout_height="400dp"
             android:layout_margin="16dp"
-            android:background="@color/secondaryBackgroundColor"
+            android:background="@color/cream_75"
             android:orientation="vertical"
             android:padding="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                >
 
                 <TextView
                     android:id="@+id/tv_month"
+                    style="@style/MainHeaderReverseTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="5"
                     android:text="FEBRUARI"
-                    android:textSize="24sp"
+                    android:textAllCaps="true"
+                    android:textSize="28sp"
                     android:textStyle="bold" />
 
-                <ImageButton
+                <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:scaleType="fitCenter"
                     android:background="@android:color/transparent"
                     android:src="@drawable/ic_previous_24"
                     android:textColor="@color/black" />
 
-                <ImageButton
+                <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:background="@android:color/transparent"
@@ -71,69 +75,72 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_marginBottom="2dp"
                 android:paddingVertical="4dp">
 
                 <TextView
+                    style="@style/HeaderCalendarTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Min"
                     android:textAlignment="center"
-                    android:textSize="12sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    style="@style/HeaderCalendarTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Sen"
                     android:textAlignment="center"
-                    android:textSize="12sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    style="@style/HeaderCalendarTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Sel"
                     android:textAlignment="center"
-                    android:textSize="12sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    style="@style/HeaderCalendarTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Rab"
                     android:textAlignment="center"
-                    android:textSize="12sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    style="@style/HeaderCalendarTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Kam"
                     android:textAlignment="center"
-                    android:textSize="12sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    style="@style/HeaderCalendarTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Jum"
                     android:textAlignment="center"
-                    android:textSize="12sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    style="@style/HeaderCalendarTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Sab"
                     android:textAlignment="center"
-                    android:textSize="12sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -150,25 +157,25 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/JournalButtonTextStyle"
                 android:id="@+id/btn_edit_mood"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/white"
-                android:textColor="@color/black"
+                android:background="@drawable/fr_button_white"
                 android:text="Edit Mood" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/JournalButtonTextStyle"
                 android:id="@+id/btn_add_note"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
+                android:background="@drawable/fr_button_white"
                 android:text="Tambah Catatan"
-                android:backgroundTint="@color/white"
-                android:textColor="@color/black"
                 android:layout_marginEnd="16dp"/>
 
         </LinearLayout>
@@ -183,14 +190,14 @@
             android:layout_marginHorizontal="16dp"
             android:padding="16dp"
             android:layout_marginTop="16dp"
-            android:background="@android:color/darker_gray"
+            android:background="@drawable/fr_container_mood"
             >
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/holo_blue_bright"
+                android:background="@drawable/fr_mood_card"
                 android:padding="8dp">
 
                 <ImageView
@@ -198,47 +205,83 @@
                     android:layout_height="100dp"
                     android:src="@drawable/img_smile"
                     android:scaleType="fitCenter"
+                    android:background="@drawable/fr_image_mood"
+                    android:layout_margin="8dp"
                     />
 
                 <TextView
+                    style="@style/MoodCardTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="You are Happy today"
-                    android:textStyle="bold"
                     android:layout_gravity="center"
-                    android:layout_marginStart="16dp"
-                    android:textSize="18sp"
+                    android:layout_marginStart="8dp"
                     />
 
 
             </LinearLayout>
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/holo_blue_light"
-                android:padding="8dp"
                 android:layout_marginTop="16dp"
-                >
+                android:background="@drawable/fr_mood_card"
+                android:padding="8dp">
 
                 <ImageView
+                    android:id="@+id/iv_mood_card"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/img_smile"
+                    android:layout_margin="8dp"
                     android:scaleType="fitCenter"
-                    />
+                    android:src="@drawable/img_pencil"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/tv_desc_mood_card"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="16dp"
+                    android:fontFamily="@font/league_spartan_regular"
+                    android:text="hari ini aku merasa senang karena aku lolos pendanaan untuk PKM-K, tinggal selangkah lagi untuk menuju PIMNAS bersama timku...."
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_read_more_card"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@id/iv_mood_card"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/tv_read_more_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="hari ini aku merasa senang karena aku lolos pendanaan untuk PKM-K, tinggal selangkah lagi untuk menuju PIMNAS bersama timku.... Baca lebih lanjut ➡"
                     android:layout_gravity="center"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="4dp"
+                    android:fontFamily="@font/league_spartan_bold"
+                    android:text="baca lebih lanjut "
                     android:textSize="13sp"
-                    />
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/iv_read_more_arrow"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_desc_mood_card" />
+
+                <ImageView
+                    android:id="@+id/iv_read_more_arrow"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_next_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_read_more_card"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_read_more_card"
+                    app:tint="@color/black" />
 
 
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
