@@ -4,5 +4,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="primaryBackgroundColor">#FF653EA1</color>
-    <color name="secondaryBackgroundColor">#FFF8D731</color>
+    <color name="cream_50">#FFF8D731</color>
+    <color name="cream_25">#FFfce7ad</color>
+    <color name="cream_75">#FFfdd559</color>
 </resources>

@@ -21,7 +21,7 @@ class LauncherActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this@LauncherActivity, AuthenticationActivity::class.java))
+            startActivity(Intent(this@LauncherActivity, JournalActivity::class.java))
             finish()
         }, SPLASH_TIME )
     }
