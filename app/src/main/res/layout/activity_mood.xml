@@ -49,44 +49,63 @@
         />
 
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/ly_card_info"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:padding="16dp"
+        android:layout_height="200dp"
         android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/fr_container_mood_activity"
-        app:layout_constraintTop_toBottomOf="@id/tv_mood"
+        android:padding="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/tv_mood">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:id="@+id/ly_relaxation"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@color/black"
-            app:layout_constraintWidth_percent="0.50"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            >
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:background="@drawable/fr_item_container_mood_activity">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_mascot"
+                android:layout_weight="1"
+                android:layout_marginVertical="8dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginStart="8dp"
+                />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="yuk relaksasi bareng min-tik"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:fontFamily="@font/league_spartan_bold"
+                android:textSize="18sp"
+                android:layout_marginVertical="8dp"
+                android:layout_marginEnd="8dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/ly_information"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@color/white"
-            app:layout_constraintWidth_percent="0.50"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ly_relaxation"
-            app:layout_constraintEnd_toEndOf="parent"
-            >
+            android:layout_weight="1"
+            android:layout_marginStart="16dp"
+            android:background="@color/black">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ly_action"
