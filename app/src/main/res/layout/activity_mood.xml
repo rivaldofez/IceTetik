@@ -99,7 +99,75 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_marginStart="16dp"
-            android:background="@color/black">
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:background="@drawable/fr_item_container_mood_activity"
+                android:layout_weight="1"
+                android:layout_marginBottom="8dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Informasi untuk kamu"
+                    android:textColor="@color/white"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/league_spartan_bold"
+                    android:layout_marginVertical="8dp"
+                    android:layout_marginStart="12dp"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_woman_mascot"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:background="@drawable/fr_item_container_mood_activity"
+                android:layout_weight="1"
+                >
+
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_circle_play"
+                    android:layout_weight="1"
+                    android:layout_marginVertical="8dp"
+                    android:layout_marginStart="12dp"
+
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="Video Pilihan"
+                    android:textColor="@color/white"
+                    android:gravity="center_vertical"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/league_spartan_bold"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginVertical="8dp"
+                    android:layout_marginEnd="8dp"
+                    />
+
+            </LinearLayout>
 
 
 
