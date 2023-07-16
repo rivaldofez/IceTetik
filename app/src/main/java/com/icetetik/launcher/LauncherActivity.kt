@@ -22,7 +22,7 @@ class LauncherActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this@LauncherActivity, MoodActivity::class.java))
+            startActivity(Intent(this@LauncherActivity, StatisticsActivity::class.java))
             finish()
         }, SPLASH_TIME )
     }
