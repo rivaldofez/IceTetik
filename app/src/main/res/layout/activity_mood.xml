@@ -121,6 +121,7 @@
                         android:layout_height="wrap_content"
                         android:text="Informasi untuk kamu"
                         android:textColor="@color/white"
+                        android:textSize="16sp"
                         android:layout_weight="1"
                         android:fontFamily="@font/league_spartan_bold"
                         android:layout_marginVertical="8dp"
@@ -132,6 +133,7 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/img_woman_mascot"
                         android:layout_weight="1"
+                        android:scaleType="fitEnd"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
@@ -155,6 +157,7 @@
                         android:layout_weight="1"
                         android:layout_marginVertical="8dp"
                         android:layout_marginStart="12dp"
+                        android:padding="8dp"
 
                         />
 

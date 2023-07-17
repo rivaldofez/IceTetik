@@ -27,13 +27,10 @@ class SignUpActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
-
-
         binding.btnSignup.setOnClickListener {
             val email = binding.edtEmail.text.toString()
             val pass = binding.edtPassword.text.toString()
-            val confirmPass = binding.edtRetypePassword.toString()
+            val confirmPass = binding.edtRetypePassword.text.toString()
 
             if (email.isNotEmpty() && pass.isNotEmpty() && confirmPass.isNotEmpty()){
                 if (pass == confirmPass){
