@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".questionnaire.QuestionnaireActivity"
+    android:background="@color/primaryBackgroundColor"
+    >
+
+    <LinearLayout
+        android:id="@+id/ll_questionnaire"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:background="@drawable/fr_container_questionnaire"
+        android:clipChildren="false"
+        android:orientation="vertical"
+        android:paddingHorizontal="30dp"
+        android:paddingTop="46dp"
+        android:paddingBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/league_spartan_regular"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="Saya merasa bibir saya sering kering"
+            android:textSize="16sp" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_option_1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginVertical="4dp"
+            android:background="@drawable/fr_button_option_questionnaire"
+            android:fontFamily="@font/kolka_regular"
+            android:gravity="center"
+            android:text="Tidak Pernah"
+            android:textAllCaps="false"
+            android:textColor="@color/primaryBackgroundColor"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_option_2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginVertical="4dp"
+            android:background="@drawable/fr_button_option_questionnaire"
+            android:fontFamily="@font/kolka_regular"
+            android:gravity="center"
+            android:text="Tidak Pernah"
+            android:textAllCaps="false"
+            android:textColor="@color/primaryBackgroundColor"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_option_3"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginVertical="4dp"
+            android:background="@drawable/fr_button_option_questionnaire"
+            android:fontFamily="@font/kolka_regular"
+            android:gravity="center"
+            android:text="Tidak Pernah"
+            android:textAllCaps="false"
+            android:textColor="@color/primaryBackgroundColor"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_option_4"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/fr_button_option_questionnaire"
+            android:fontFamily="@font/kolka_regular"
+            android:gravity="center"
+            android:text="Tidak Pernah"
+            android:textAllCaps="false"
+            android:textColor="@color/primaryBackgroundColor"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_dass42"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/fr_title_questionnaire"
+        android:fontFamily="@font/league_spartan_bold"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="8dp"
+        android:text="DASS-42"
+        android:textColor="@color/primaryBackgroundColor"
+        android:textSize="36sp"
+        android:layout_marginBottom="-36dp"
+        app:layout_constraintBottom_toTopOf="@+id/ll_questionnaire"
+        app:layout_constraintEnd_toEndOf="@+id/ll_questionnaire"
+        app:layout_constraintStart_toStartOf="@+id/ll_questionnaire" />
+
+    <ImageButton
+        android:id="@+id/btn_next"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_next_24"
+        android:layout_marginBottom="24dp"
+        app:tint="@color/cream_100"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ll_questionnaire"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
