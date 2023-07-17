@@ -16,6 +16,9 @@
             android:name=".settings.SettingsActivity"
             android:exported="false" />
         <activity
+            android:name=".MoodActivity"
+            android:exported="false" />
+        <activity
             android:name=".statistics.StatisticsActivity"
             android:exported="false" />
         <activity

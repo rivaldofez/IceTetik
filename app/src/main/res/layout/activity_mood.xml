@@ -1,136 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MoodActivity"
     android:background="@color/cream_50"
+    android:orientation="vertical"
     >
 
-    <TextView
-        android:id="@+id/tv_title_todaymood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mood Kamu Hari Ini:"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
-
-    <ImageView
-        android:id="@+id/iv_smile"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/img_smile"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_todaymood"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
-
-    <TextView
-        android:id="@+id/tv_mood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Senang"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_smile"
-        />
-
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ly_card_info"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:padding="16dp"
-        android:layout_margin="16dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_mood"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ly_relaxation"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:background="@color/black"
-            app:layout_constraintWidth_percent="0.50"
+        <TextView
+            android:id="@+id/tv_title_todaymood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mood Kamu Hari Ini:"
+            android:textSize="24sp"
+            android:fontFamily="@font/league_spartan_bold"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            >
+            app:layout_constraintEnd_toEndOf="parent"
+            />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/iv_smile"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/fr_image_mood_activity"
+            android:src="@drawable/img_smile"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_todaymood"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tv_mood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Senang"
+            style="@style/MainHeaderTextStyle"
+            android:fontFamily="@font/league_spartan_bold"
+            android:textAllCaps="true"
+            android:textSize="36dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_smile"
+            />
+
+
+        <LinearLayout
+            android:id="@+id/ly_card_info"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/fr_container_mood_activity"
+            android:padding="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_mood">
+
+            <LinearLayout
+                android:id="@+id/ly_relaxation"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:background="@drawable/fr_item_container_mood_activity">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_mascot"
+                    android:layout_weight="1"
+                    android:layout_marginVertical="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginStart="8dp"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="yuk relaksasi bareng min-tik"
+                    android:textColor="@color/white"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/league_spartan_bold"
+                    android:textSize="18sp"
+                    android:layout_marginVertical="8dp"
+                    android:layout_marginEnd="8dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ly_information"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginStart="16dp"
+                android:orientation="vertical"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/fr_item_container_mood_activity"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="8dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Informasi untuk kamu"
+                        android:textColor="@color/white"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/league_spartan_bold"
+                        android:layout_marginVertical="8dp"
+                        android:layout_marginStart="12dp"
+                        />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/img_woman_mascot"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/fr_item_container_mood_activity"
+                    android:layout_weight="1"
+                    >
+
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/img_circle_play"
+                        android:layout_weight="1"
+                        android:layout_marginVertical="8dp"
+                        android:layout_marginStart="12dp"
+
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:text="Video Pilihan"
+                        android:textColor="@color/white"
+                        android:gravity="center_vertical"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/league_spartan_bold"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginVertical="8dp"
+                        android:layout_marginEnd="8dp"
+                        />
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ly_information"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            app:layout_constraintWidth_percent="0.50"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ly_relaxation"
+            android:id="@+id/ly_action"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:padding="16dp"
+            android:background="@drawable/fr_container_mood_activity"
+            android:layout_margin="16dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ly_card_info"
+            app:layout_constraintBottom_toBottomOf="parent"
+
             >
+
+
+            <ImageView
+                android:id="@+id/iv_calendar"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/img_calendar_mood"
+                app:layout_constraintWidth_percent="0.25"
+                app:layout_constraintEnd_toStartOf="@+id/iv_statistics"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_statistics"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/img_statistic_mood"
+                app:layout_constraintWidth_percent="0.25"
+                app:layout_constraintEnd_toStartOf="@+id/iv_quiz"
+                app:layout_constraintStart_toEndOf="@+id/iv_calendar"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_quiz"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/img_notes_mood"
+                app:layout_constraintWidth_percent="0.25"
+                app:layout_constraintEnd_toStartOf="@+id/iv_settings"
+                app:layout_constraintStart_toEndOf="@+id/iv_statistics"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_settings"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/img_setting_mood"
+                app:layout_constraintWidth_percent="0.25"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_quiz"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ly_action"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:padding="16dp"
-        android:background="@color/white"
-        android:layout_margin="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/ly_card_info">
-        <ImageView
-            android:id="@+id/iv_calendar"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_calendar_24"
-            app:layout_constraintWidth_percent="0.25"
-            app:layout_constraintEnd_toStartOf="@+id/iv_statistics"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/iv_statistics"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_calendar_24"
-            app:layout_constraintWidth_percent="0.25"
-            app:layout_constraintEnd_toStartOf="@+id/iv_quiz"
-            app:layout_constraintStart_toEndOf="@+id/iv_calendar"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/iv_quiz"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_calendar_24"
-            app:layout_constraintWidth_percent="0.25"
-            app:layout_constraintEnd_toStartOf="@+id/iv_settings"
-            app:layout_constraintStart_toEndOf="@+id/iv_statistics"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/iv_settings"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_calendar_24"
-            app:layout_constraintWidth_percent="0.25"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_quiz"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-
-    
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

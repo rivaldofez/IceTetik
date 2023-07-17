@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import com.icetetik.MainActivity
+import com.icetetik.MoodActivity
 import com.icetetik.authentication.AuthenticationActivity
 import com.icetetik.databinding.ActivityLauncherBinding
 import com.icetetik.journal.JournalActivity
@@ -21,7 +22,7 @@ class LauncherActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this@LauncherActivity, JournalActivity::class.java))
+            startActivity(Intent(this@LauncherActivity, StatisticsActivity::class.java))
             finish()
         }, SPLASH_TIME )
     }
