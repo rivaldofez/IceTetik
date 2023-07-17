@@ -11,7 +11,6 @@ import com.icetetik.authentication.AuthenticationActivity
 import com.icetetik.authentication.LoginActivity
 import com.icetetik.databinding.ActivityLauncherBinding
 import com.icetetik.journal.JournalActivity
-import com.icetetik.questionnaire.QuestionnaireActivity
 import com.icetetik.settings.SettingsActivity
 import com.icetetik.statistics.StatisticsActivity
 
@@ -24,7 +23,7 @@ class LauncherActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this@LauncherActivity, QuestionnaireActivity::class.java))
+            startActivity(Intent(this@LauncherActivity, MoodActivity::class.java))
             finish()
         }, SPLASH_TIME )
     }
