@@ -42,8 +42,6 @@ class CalendarAdapter(val context: Context): RecyclerView.Adapter<CalendarAdapte
             if(position % 7 == 0){
                 binding.tvItemDay.setTypeface(null, Typeface.BOLD)
             }
-
-
             binding.tvItemDay.text = dayOfMonth
         }
     }
