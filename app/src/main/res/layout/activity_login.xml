@@ -32,6 +32,13 @@
         />
 
     <Button
+        android:id="@+id/btn_login_google"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login with Google"
+        />
+
+    <Button
         android:id="@+id/btn_to_signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
