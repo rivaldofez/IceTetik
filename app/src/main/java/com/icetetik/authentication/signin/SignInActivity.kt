@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -17,10 +18,15 @@ import com.icetetik.MoodActivity
 import com.icetetik.R
 import com.icetetik.authentication.signup.SignUpActivity
 import com.icetetik.databinding.ActivitySignInBinding
+import com.icetetik.util.UiState
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SignInActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivitySignInBinding
+    private val viewModel: SignInViewModel by viewModels()
+
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
 
@@ -49,14 +55,17 @@ class SignInActivity : AppCompatActivity() {
             val pass = binding.edtPassword.text.toString()
 
             if (email.isNotEmpty() && pass.isNotEmpty()){
-                    firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
-                        if (it.isSuccessful){
-                            val intent = Intent(this, MoodActivity::class.java)
-                            startActivity(intent)
-                        } else {
-                            Toast.makeText(this, "failed to login because ${it.exception.toString()}", Toast.LENGTH_SHORT).show()
-                        }
-                    }
+                viewModel.signIn(email = email, password = pass)
+
+
+//                    firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
+//                        if (it.isSuccessful){
+//                            val intent = Intent(this, MoodActivity::class.java)
+//                            startActivity(intent)
+//                        } else {
+//                            Toast.makeText(this, "failed to login because ${it.exception.toString()}", Toast.LENGTH_SHORT).show()
+//                        }
+//                    }
             } else {
                 Toast.makeText(this, "Empty fields not allowed", Toast.LENGTH_SHORT).show()
             }
@@ -64,6 +73,24 @@ class SignInActivity : AppCompatActivity() {
 
         binding.btnLoginGoogle.setOnClickListener {
             signInGoogle()
+        }
+
+        viewModel.signInUser.observe(this) { state ->
+            when (state) {
+                is UiState.Loading -> {
+                    Toast.makeText(this, "Loading", Toast.LENGTH_SHORT).show()
+                }
+
+                is UiState.Failure -> {
+                    Toast.makeText(this, state.error, Toast.LENGTH_SHORT).show()
+                }
+
+                is UiState.Success -> {
+                    Toast.makeText(this, state.data, Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MoodActivity::class.java)
+                    startActivity(intent)
+                }
+            }
         }
 
     }
