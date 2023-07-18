@@ -6,10 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import com.icetetik.R
-import com.icetetik.authentication.LoginActivity
+import com.icetetik.authentication.SignInActivity
 import com.icetetik.databinding.ActivitySignUpBinding
 import com.icetetik.data.model.User
 
@@ -29,7 +26,7 @@ class SignUpActivity : AppCompatActivity() {
         firestore = FirebaseFirestore.getInstance()
 
         binding.btnToLogin.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
         }
 
@@ -53,7 +50,7 @@ class SignUpActivity : AppCompatActivity() {
                                 .addOnCompleteListener {
                                     Toast.makeText(this, "Success added", Toast.LENGTH_SHORT).show()
                                 }
-                            val intent = Intent(this, LoginActivity::class.java)
+                            val intent = Intent(this, SignInActivity::class.java)
                             startActivity(intent)
                         } else {
                             Toast.makeText(this, "failed to create because ${it.exception.toString()}", Toast.LENGTH_SHORT).show()

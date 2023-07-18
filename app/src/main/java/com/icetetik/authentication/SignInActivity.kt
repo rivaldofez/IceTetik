@@ -16,18 +16,18 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.icetetik.MoodActivity
 import com.icetetik.R
 import com.icetetik.authentication.signup.SignUpActivity
-import com.icetetik.databinding.ActivityLoginBinding
+import com.icetetik.databinding.ActivitySignInBinding
 
-class LoginActivity : AppCompatActivity() {
+class SignInActivity : AppCompatActivity() {
 
-    private lateinit var binding:ActivityLoginBinding
+    private lateinit var binding:ActivitySignInBinding
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityLoginBinding.inflate(layoutInflater)
+        binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         firebaseAuth = FirebaseAuth.getInstance()
