@@ -14,13 +14,12 @@ class AuthRepository(
     val database: FirebaseFirestore
 ) {
 
-
-    fun signUpUser(user: User, result: (UiState<String>) -> Unit){
+    fun signUpUser(user: User, result: (UiState<String>) -> Unit) {
         auth.createUserWithEmailAndPassword(user.email, user.password)
             .addOnCompleteListener {
-                if (it.isSuccessful){
+                if (it.isSuccessful) {
                     saveUserInfo(user) { state ->
-                        when(state) {
+                        when (state) {
                             is UiState.Success -> {
                                 result.invoke(UiState.Success("User Successfully Registered!"))
                             }
@@ -48,7 +47,21 @@ class AuthRepository(
                     }
                 }
             }
+    }
 
+
+    fun signInUser(email: String, password: String, result: (UiState<String>) -> Unit){
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    result.invoke(UiState.Success("Login successfully!"))
+                } else {
+                    result.invoke(UiState.Failure("Authentication failed, Check email and password"))
+                }
+            }
+            .addOnFailureListener {
+                result.invoke(UiState.Failure("Authentication failed, Check email and password"))
+            }
     }
 
 
