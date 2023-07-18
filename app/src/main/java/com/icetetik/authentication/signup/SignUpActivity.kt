@@ -5,13 +5,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.icetetik.R
 import com.icetetik.authentication.LoginActivity
 import com.icetetik.databinding.ActivitySignUpBinding
+import com.icetetik.data.model.User
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var firestore: FirebaseFirestore
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,6 +26,7 @@ class SignUpActivity : AppCompatActivity() {
 
 
         firebaseAuth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
 
         binding.btnToLogin.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
@@ -36,6 +42,17 @@ class SignUpActivity : AppCompatActivity() {
                 if (pass == confirmPass){
                     firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
                         if (it.isSuccessful){
+
+                            val user = User(
+                                name = "Rivaldo Fernandes",
+                                email = email,
+                                password = pass,
+                                avatar = ""
+                            )
+                            firestore.collection("user").document(email).set(user)
+                                .addOnCompleteListener {
+                                    Toast.makeText(this, "Success added", Toast.LENGTH_SHORT).show()
+                                }
                             val intent = Intent(this, LoginActivity::class.java)
                             startActivity(intent)
                         } else {

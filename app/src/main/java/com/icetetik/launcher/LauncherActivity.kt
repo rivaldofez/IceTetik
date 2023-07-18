@@ -9,6 +9,7 @@ import com.icetetik.MainActivity
 import com.icetetik.MoodActivity
 import com.icetetik.authentication.AuthenticationActivity
 import com.icetetik.authentication.LoginActivity
+import com.icetetik.authentication.signup.SignUpActivity
 import com.icetetik.databinding.ActivityLauncherBinding
 import com.icetetik.journal.JournalActivity
 import com.icetetik.settings.SettingsActivity
@@ -23,7 +24,7 @@ class LauncherActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this@LauncherActivity, MoodActivity::class.java))
+            startActivity(Intent(this@LauncherActivity, SignUpActivity::class.java))
             finish()
         }, SPLASH_TIME )
     }
