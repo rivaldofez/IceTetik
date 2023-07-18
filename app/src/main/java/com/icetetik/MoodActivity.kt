@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.icetetik.databinding.ActivityMoodBinding
 import com.icetetik.journal.JournalActivity
+import com.icetetik.questionnaire.QuestionnaireActivity
 import com.icetetik.settings.SettingsActivity
 import com.icetetik.statistics.StatisticsActivity
 
@@ -30,7 +31,9 @@ class MoodActivity : AppCompatActivity() {
             }
 
             ivQuiz.setOnClickListener {
-
+                startActivity(
+                    Intent(this@MoodActivity, QuestionnaireActivity::class.java)
+                )
             }
 
             ivSettings.setOnClickListener {

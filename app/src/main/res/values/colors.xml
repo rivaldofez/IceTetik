@@ -4,7 +4,9 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="primaryBackgroundColor">#FF653EA1</color>
-    <color name="cream_50">#FFF8D731</color>
-    <color name="cream_25">#FFfce7ad</color>
-    <color name="cream_75">#FFfdd559</color>
+    <color name="cream_100">#FFfdd559</color>
+    <color name="cream_75">#FFF8D731</color>
+    <color name="cream_50">#FFfce7ad</color>
+    <color name="cream_25">#FFfef9e9</color>
+
 </resources>

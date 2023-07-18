@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MoodActivity"
-    android:background="@color/cream_50"
+    android:background="@color/cream_75"
     android:orientation="vertical"
     >
 
