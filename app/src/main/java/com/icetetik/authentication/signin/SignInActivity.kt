@@ -1,4 +1,4 @@
-package com.icetetik.authentication
+package com.icetetik.authentication.signin
 
 import android.app.Activity
 import android.content.Intent

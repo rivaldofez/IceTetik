@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.icetetik.authentication.SignInActivity
+import com.icetetik.authentication.signin.SignInActivity
 import com.icetetik.databinding.ActivitySignUpBinding
 import com.icetetik.data.model.User
 
