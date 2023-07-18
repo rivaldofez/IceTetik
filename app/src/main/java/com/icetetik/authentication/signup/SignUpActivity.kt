@@ -10,8 +10,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.icetetik.authentication.signin.SignInActivity
 import com.icetetik.databinding.ActivitySignUpBinding
 import com.icetetik.data.model.User
+import com.icetetik.util.DummyQuestion
+import com.icetetik.util.FireStoreCollection
+import com.icetetik.util.Question
 import com.icetetik.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Arrays
 
 @AndroidEntryPoint
 class SignUpActivity : AppCompatActivity() {
@@ -33,8 +37,34 @@ class SignUpActivity : AppCompatActivity() {
         firestore = FirebaseFirestore.getInstance()
 
         binding.btnToLogin.setOnClickListener {
-            val intent = Intent(this, SignInActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, SignInActivity::class.java)
+//            startActivity(intent)
+
+            val mapData = HashMap<String, List<Question>>()
+            mapData["question-data"] = DummyQuestion.generateQuestions()
+
+
+            firestore.collection("apps").document("questions")
+                .set(mapData)
+                .addOnCompleteListener {
+                    Toast.makeText(this, "Success", Toast.LENGTH_SHORT)
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Failed", Toast.LENGTH_SHORT)
+                }
+
+//            val document = database.collection(FireStoreCollection.USER).document(user.email)
+//            document.set(user)
+//                .addOnSuccessListener {
+//                    result.invoke(
+//                        UiState.Success("User has been save successfully")
+//                    )
+//                }
+//                .addOnFailureListener {
+//                    result.invoke(
+//                        UiState.Failure(it.localizedMessage)
+//                    )
+//                }
         }
 
         binding.btnSignup.setOnClickListener {

@@ -7,9 +7,7 @@ data class Question(
 )
 
 object DummyQuestion {
-    fun generateQuestions() : ArrayList<Question> {
-        val questions = ArrayList<Question>()
-
+    fun generateQuestions() : List<Question> {
         val a = listOf(
             Question(
                 id = 1,
@@ -177,17 +175,11 @@ object DummyQuestion {
                 id = 42,
                 text = "Sulit untuk meningkatkan inisiatif dalam melakukan sesuatu"
             ),
-
-
-
-
-
-
         )
 
 
 
-        return ArrayList()
+        return a
     }
 
 
