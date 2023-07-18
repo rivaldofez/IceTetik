@@ -75,7 +75,6 @@ class AuthRepository(
         }
     }
 
-
     fun saveUserInfo(user: User, result: (UiState<String>) -> Unit) {
         val document = database.collection(FireStoreCollection.USER).document(user.email)
         document.set(user)
