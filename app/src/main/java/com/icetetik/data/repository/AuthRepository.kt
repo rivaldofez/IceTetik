@@ -64,6 +64,17 @@ class AuthRepository(
             }
     }
 
+    fun getUserSession(result: (String?) -> Unit){
+        val currentUser = auth.currentUser
+        if (currentUser === null){
+            result.invoke(null)
+        } else {
+            result.invoke(
+                currentUser.email
+            )
+        }
+    }
+
 
     fun saveUserInfo(user: User, result: (UiState<String>) -> Unit) {
         val document = database.collection(FireStoreCollection.USER).document(user.email)
