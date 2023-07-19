@@ -12,6 +12,7 @@ import com.icetetik.authentication.signin.SignInActivity
 import com.icetetik.data.model.Option
 import com.icetetik.data.model.Question
 import com.icetetik.databinding.ActivitySignUpBinding
+import com.icetetik.util.DummyQuestion
 import com.icetetik.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,26 +39,26 @@ class SignUpActivity : AppCompatActivity() {
 //            val intent = Intent(this, SignInActivity::class.java)
 //            startActivity(intent)
 //
-            firestore.collection("apps")
-                .document("questions")
-                .get()
-                .addOnSuccessListener { snapshot ->
-                    val mapData = snapshot.data
-                    val question = mapData?.get("question-datas") as List<Question>?
-                    val option = mapData?.get("options-data") as List<Option>
-
-                    Log.d("Teston", question.toString())
-                    Log.d("Teston", option.toString())
-
-                }
+//            firestore.collection("apps")
+//                .document("questions")
+//                .get()
+//                .addOnSuccessListener { snapshot ->
+//                    val mapData = snapshot.data
+//                    val question = mapData?.get("question-datas") as List<Question>?
+//                    val option = mapData?.get("options-data") as List<Option>
+//
+//                    Log.d("Teston", question.toString())
+//                    Log.d("Teston", option.toString())
+//
+//                }
 
 
 //            val mapData = HashMap<String, Any>()
-//            mapData["question-data"] = DummyQuestion.generateQuestions()
+////            mapData["question-data"] = DummyQuestion.generateQuestions()
 //            mapData["options-data"] = DummyQuestion.generateOptions()
 //
 //
-//            firestore.collection("apps").document("questions")
+//            firestore.collection("apps").document("options")
 //                .set(mapData)
 //                .addOnCompleteListener {
 //                    Toast.makeText(this, "Success", Toast.LENGTH_SHORT)

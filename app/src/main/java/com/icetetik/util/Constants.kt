@@ -9,8 +9,10 @@ object FireStoreCollection{
 
 object FireStoreDocument {
     val QUESTIONS = "questions"
+    val OPTIONS = "options"
 }
 
 object FirestoreDocumentField {
     val QUESTION_DATA = "question-data"
+    val OPTION_DATA = "option-data"
 }

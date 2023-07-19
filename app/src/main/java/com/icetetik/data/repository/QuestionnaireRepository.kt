@@ -13,7 +13,7 @@ class QuestionnaireRepository(
     val database: FirebaseFirestore
 ) {
 
-    fun getQuestionsOptions(result: (UiState<List<Question>>) -> Unit){
+    fun getQuestions(result: (UiState<List<Question>>) -> Unit){
         database.collection(FireStoreCollection.APPS)
             .document(FireStoreDocument.QUESTIONS)
             .get()
@@ -34,6 +34,26 @@ class QuestionnaireRepository(
             }
     }
 
+    fun getOptions(result: (UiState<List<Option>>) -> Unit){
+        database.collection(FireStoreCollection.APPS)
+            .document(FireStoreDocument.OPTIONS)
+            .get()
+            .addOnSuccessListener { snapshot ->
+                val options = snapshot.data?.get(FirestoreDocumentField.OPTION_DATA) as List<Option>?
+                if (options == null){
+                    UiState.Failure("data empty")
+                } else {
+                    UiState.Success(options)
+                }
+            }
+            .addOnFailureListener {
+                result.invoke(
+                    UiState.Failure(
+                        it.localizedMessage
+                    )
+                )
+            }
+    }
 }
 
 //firestore.collection("apps")
