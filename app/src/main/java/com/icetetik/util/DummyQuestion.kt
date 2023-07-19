@@ -6,7 +6,37 @@ data class Question(
     val text: String
 )
 
+data class Option(
+    val id: Int,
+    val text: String
+)
+
 object DummyQuestion {
+
+    fun generateOptions(): List<Option> {
+        val a = listOf(
+            Option(
+                id = 1,
+                text = "Tidak Pernah"
+            ),
+            Option(
+                id = 2,
+                text = "Kadang-kadang"
+            ),
+            Option(
+                id = 3,
+                text = "Lumayan Sering"
+            ),
+            Option(
+                id = 4,
+                text = "Sering sekali"
+            ),
+
+        )
+
+        return a
+    }
+
     fun generateQuestions() : List<Question> {
         val a = listOf(
             Question(
