@@ -5,6 +5,7 @@ import com.icetetik.data.model.Question
 object FireStoreCollection{
     val USER = "user"
     val APPS = "apps"
+    val MOODS = "moods"
 }
 
 object FireStoreDocument {
