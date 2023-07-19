@@ -37,34 +37,23 @@ class SignUpActivity : AppCompatActivity() {
         firestore = FirebaseFirestore.getInstance()
 
         binding.btnToLogin.setOnClickListener {
-//            val intent = Intent(this, SignInActivity::class.java)
-//            startActivity(intent)
+            val intent = Intent(this, SignInActivity::class.java)
+            startActivity(intent)
 
-            val mapData = HashMap<String, List<Question>>()
-            mapData["question-data"] = DummyQuestion.generateQuestions()
-
-
-            firestore.collection("apps").document("questions")
-                .set(mapData)
-                .addOnCompleteListener {
-                    Toast.makeText(this, "Success", Toast.LENGTH_SHORT)
-                }
-                .addOnFailureListener {
-                    Toast.makeText(this, "Failed", Toast.LENGTH_SHORT)
-                }
-
-//            val document = database.collection(FireStoreCollection.USER).document(user.email)
-//            document.set(user)
-//                .addOnSuccessListener {
-//                    result.invoke(
-//                        UiState.Success("User has been save successfully")
-//                    )
+//            val mapData = HashMap<String, Any>()
+//            mapData["question-data"] = DummyQuestion.generateQuestions()
+//            mapData["options-data"] = DummyQuestion.generateOptions()
+//
+//
+//            firestore.collection("apps").document("questions")
+//                .set(mapData)
+//                .addOnCompleteListener {
+//                    Toast.makeText(this, "Success", Toast.LENGTH_SHORT)
 //                }
 //                .addOnFailureListener {
-//                    result.invoke(
-//                        UiState.Failure(it.localizedMessage)
-//                    )
+//                    Toast.makeText(this, "Failed", Toast.LENGTH_SHORT)
 //                }
+
         }
 
         binding.btnSignup.setOnClickListener {
