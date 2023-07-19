@@ -3,19 +3,17 @@ package com.icetetik.authentication.signup
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.icetetik.authentication.signin.SignInActivity
+import com.icetetik.data.model.Option
+import com.icetetik.data.model.Question
 import com.icetetik.databinding.ActivitySignUpBinding
-import com.icetetik.data.model.User
-import com.icetetik.util.DummyQuestion
-import com.icetetik.util.FireStoreCollection
-import com.icetetik.util.Question
 import com.icetetik.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.Arrays
 
 @AndroidEntryPoint
 class SignUpActivity : AppCompatActivity() {
@@ -37,8 +35,22 @@ class SignUpActivity : AppCompatActivity() {
         firestore = FirebaseFirestore.getInstance()
 
         binding.btnToLogin.setOnClickListener {
-            val intent = Intent(this, SignInActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, SignInActivity::class.java)
+//            startActivity(intent)
+//
+            firestore.collection("apps")
+                .document("questions")
+                .get()
+                .addOnSuccessListener { snapshot ->
+                    val mapData = snapshot.data
+                    val question = mapData?.get("question-datas") as List<Question>?
+                    val option = mapData?.get("options-data") as List<Option>
+
+                    Log.d("Teston", question.toString())
+                    Log.d("Teston", option.toString())
+
+                }
+
 
 //            val mapData = HashMap<String, Any>()
 //            mapData["question-data"] = DummyQuestion.generateQuestions()
