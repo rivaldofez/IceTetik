@@ -1,9 +1,12 @@
 package com.icetetik.data.repository
 
+import android.graphics.Path.Op
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.icetetik.data.model.Option
+import com.icetetik.data.model.OptionResponse
 import com.icetetik.data.model.Question
+import com.icetetik.data.model.QuestionResponse
 import com.icetetik.util.FireStoreCollection
 import com.icetetik.util.FireStoreDocument
 import com.icetetik.util.FirestoreDocumentField
@@ -18,11 +21,12 @@ class QuestionnaireRepository(
             .document(FireStoreDocument.QUESTIONS)
             .get()
             .addOnSuccessListener { snapshot ->
-                val questions = snapshot.data?.get(FirestoreDocumentField.QUESTION_DATA) as List<Question>?
-                if (questions == null){
-                    UiState.Failure("data empty")
+                val dataResult = snapshot.toObject(QuestionResponse::class.java)
+
+                if (dataResult == null){
+                    result.invoke(UiState.Failure("data empty"))
                 } else {
-                    UiState.Success(questions)
+                    result.invoke(UiState.Success(dataResult.questions))
                 }
             }
             .addOnFailureListener {
@@ -39,11 +43,12 @@ class QuestionnaireRepository(
             .document(FireStoreDocument.OPTIONS)
             .get()
             .addOnSuccessListener { snapshot ->
-                val options = snapshot.data?.get(FirestoreDocumentField.OPTION_DATA) as List<Option>?
-                if (options == null){
-                    UiState.Failure("data empty")
+                val dataResult = snapshot.toObject(OptionResponse::class.java)
+
+                if (dataResult == null){
+                    result.invoke(UiState.Failure("data empty"))
                 } else {
-                    UiState.Success(options)
+                    result.invoke(UiState.Success(dataResult.options))
                 }
             }
             .addOnFailureListener {

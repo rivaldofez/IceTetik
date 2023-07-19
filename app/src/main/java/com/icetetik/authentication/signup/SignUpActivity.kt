@@ -10,7 +10,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.icetetik.authentication.signin.SignInActivity
 import com.icetetik.data.model.Option
+import com.icetetik.data.model.OptionResponse
 import com.icetetik.data.model.Question
+import com.icetetik.data.model.QuestionResponse
 import com.icetetik.databinding.ActivitySignUpBinding
 import com.icetetik.util.DummyQuestion
 import com.icetetik.util.UiState
@@ -31,13 +33,40 @@ class SignUpActivity : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         firebaseAuth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
 
+
+//        val mapData = HashMap<String, Any>()
+////            mapData["question-data"] = DummyQuestion.generateQuestions()
+//        mapData["option-data"] = DummyQuestion.generateOptions()
+
+//        val optionData = OptionResponse(options = DummyQuestion.generateOptions())
+//
+//        firestore.collection("apps").document("options")
+//            .set(optionData)
+//            .addOnCompleteListener {
+//                Toast.makeText(this, "Success", Toast.LENGTH_SHORT)
+//            }
+//            .addOnFailureListener {
+//                Toast.makeText(this, "Failed", Toast.LENGTH_SHORT)
+//            }
+//
+//
+//        val questionData = QuestionResponse(questions = DummyQuestion.generateQuestions())
+//
+//        firestore.collection("apps").document("questions")
+//            .set(questionData)
+//            .addOnCompleteListener {
+//                Toast.makeText(this, "Success", Toast.LENGTH_SHORT)
+//            }
+//            .addOnFailureListener {
+//                Toast.makeText(this, "Failed", Toast.LENGTH_SHORT)
+//            }
+
         binding.btnToLogin.setOnClickListener {
-//            val intent = Intent(this, SignInActivity::class.java)
-//            startActivity(intent)
+            val intent = Intent(this, SignInActivity::class.java)
+            startActivity(intent)
 //
 //            firestore.collection("apps")
 //                .document("questions")
@@ -53,19 +82,7 @@ class SignUpActivity : AppCompatActivity() {
 //                }
 
 
-//            val mapData = HashMap<String, Any>()
-//            mapData["question-data"] = DummyQuestion.generateQuestions()
-////            mapData["options-data"] = DummyQuestion.generateOptions()
-//
-//
-//            firestore.collection("apps").document("questions")
-//                .set(mapData)
-//                .addOnCompleteListener {
-//                    Toast.makeText(this, "Success", Toast.LENGTH_SHORT)
-//                }
-//                .addOnFailureListener {
-//                    Toast.makeText(this, "Failed", Toast.LENGTH_SHORT)
-//                }
+
 
         }
 

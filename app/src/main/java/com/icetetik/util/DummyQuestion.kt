@@ -1,12 +1,7 @@
 package com.icetetik.util
 
+import com.icetetik.data.model.Option
 import com.icetetik.data.model.Question
-
-
-data class Option(
-    val id: Int,
-    val text: String
-)
 
 object DummyQuestion {
 
