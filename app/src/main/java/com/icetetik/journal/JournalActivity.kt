@@ -2,16 +2,22 @@ package com.icetetik.journal
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.icetetik.R
 import com.icetetik.databinding.ActivityJournalBinding
+import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 import java.util.Date
 
+@AndroidEntryPoint
 class JournalActivity : AppCompatActivity() {
     private lateinit var binding: ActivityJournalBinding
+    private val viewModel: JournalViewModel by viewModels()
+
+
     private var selectedDate: LocalDate = LocalDate.now()
     private val adapter = CalendarAdapter(this@JournalActivity)
 
@@ -26,6 +32,21 @@ class JournalActivity : AppCompatActivity() {
 
         binding.rvCalendar.layoutManager = layoutManager
         binding.rvCalendar.adapter = adapter
+
+
+        binding.apply {
+            btnNextMonth.setOnClickListener {
+                selectedDate = selectedDate.plusMonths(1)
+                setMonthView()
+            }
+
+            btnPrevMonth.setOnClickListener {
+                selectedDate = selectedDate.minusMonths(1)
+                setMonthView()
+            }
+        }
+
+
 
     }
 
