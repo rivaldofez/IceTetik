@@ -4,6 +4,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.icetetik.data.repository.AuthRepository
+import com.icetetik.data.repository.QuestionnaireRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,6 +22,14 @@ class RepositoryModule {
         auth: FirebaseAuth
     ): AuthRepository {
         return AuthRepository(auth, database)
+    }
+
+    @Provides
+    @Singleton
+    fun provideQuestionnaireRepository(
+        database: FirebaseFirestore,
+    ): QuestionnaireRepository {
+        return QuestionnaireRepository(database)
     }
 
 }

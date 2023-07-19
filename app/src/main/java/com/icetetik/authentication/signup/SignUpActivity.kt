@@ -54,11 +54,11 @@ class SignUpActivity : AppCompatActivity() {
 
 
 //            val mapData = HashMap<String, Any>()
-////            mapData["question-data"] = DummyQuestion.generateQuestions()
-//            mapData["options-data"] = DummyQuestion.generateOptions()
+//            mapData["question-data"] = DummyQuestion.generateQuestions()
+////            mapData["options-data"] = DummyQuestion.generateOptions()
 //
 //
-//            firestore.collection("apps").document("options")
+//            firestore.collection("apps").document("questions")
 //                .set(mapData)
 //                .addOnCompleteListener {
 //                    Toast.makeText(this, "Success", Toast.LENGTH_SHORT)
