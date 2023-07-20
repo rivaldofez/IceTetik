@@ -8,3 +8,8 @@ data class Mood(
     val note: String = "",
     val condition: String = ""
 )
+
+data class MoodItemView(
+    val condition: String,
+    val image: Int
+)
