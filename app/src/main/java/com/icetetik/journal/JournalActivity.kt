@@ -1,11 +1,17 @@
 package com.icetetik.journal
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import com.icetetik.MoodActivity
+import com.icetetik.authentication.signup.SignUpActivity
+import com.icetetik.data.model.Mood
 import com.icetetik.databinding.ActivityJournalBinding
+import com.icetetik.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
 import java.time.YearMonth
@@ -21,12 +27,23 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
     private var selectedDate: LocalDate = LocalDate.now()
     private val adapter = CalendarAdapter(this@JournalActivity, this)
 
+    private var userEmail: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityJournalBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setMonthView()
+
+        viewModel.getUserSession { email ->
+            if (email == null){
+
+            } else {
+                userEmail = email
+            }
+        }
+
 
         val layoutManager = GridLayoutManager(this@JournalActivity, 7)
 
@@ -47,7 +64,36 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
         }
 
 
+        binding.btnAddMoodDum.setOnClickListener {
+           if(userEmail.isEmpty()){
+               Toast.makeText( this, "Empty Email Session", Toast.LENGTH_SHORT).show()
+           } else {
 
+               val mood = Mood(posted = "${selectedDate.year}-${selectedDate.monthValue}-${selectedDate.dayOfMonth}\"", condition = "Happy", note = "Saya baru mendapat uang kaget")
+
+               viewModel.addMood(
+                   userEmail = userEmail,
+                   mood = mood,
+                   uploadDate = selectedDate
+               )
+           }
+        }
+
+        viewModel.addMood.observe(this) { state ->
+            when(state){
+                is UiState.Loading -> {
+                    Toast.makeText( this, "Loading", Toast.LENGTH_SHORT).show()
+                }
+
+                is UiState.Failure -> {
+                    Toast.makeText( this, "Error", Toast.LENGTH_SHORT).show()
+                }
+
+                is UiState.Success -> {
+                    Toast.makeText( this, "Success", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
     private fun setMonthView() {
