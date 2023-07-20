@@ -2,24 +2,23 @@ package com.icetetik.journal
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import com.icetetik.R
 import com.icetetik.databinding.ActivityJournalBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
-import java.util.Date
 
 @AndroidEntryPoint
-class JournalActivity : AppCompatActivity() {
+class JournalActivity : AppCompatActivity(), CalendarItemCallback {
     private lateinit var binding: ActivityJournalBinding
     private val viewModel: JournalViewModel by viewModels()
 
 
-    private var selectedDate: LocalDate = LocalDate.now()
-    private val adapter = CalendarAdapter(this@JournalActivity)
+    private var currentAdapterDate: LocalDate = LocalDate.now()
+    private val adapter = CalendarAdapter(this@JournalActivity, this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,12 +35,12 @@ class JournalActivity : AppCompatActivity() {
 
         binding.apply {
             btnNextMonth.setOnClickListener {
-                selectedDate = selectedDate.plusMonths(1)
+                currentAdapterDate = currentAdapterDate.plusMonths(1)
                 setMonthView()
             }
 
             btnPrevMonth.setOnClickListener {
-                selectedDate = selectedDate.minusMonths(1)
+                currentAdapterDate = currentAdapterDate.minusMonths(1)
                 setMonthView()
             }
         }
@@ -51,9 +50,9 @@ class JournalActivity : AppCompatActivity() {
     }
 
     private fun setMonthView() {
-        binding.tvMonth.text = monthYearFromDate(selectedDate)
-        val daysInMonth = generateDaysInMonthArray(selectedDate)
-        adapter.setData(daysInMonth)
+        binding.tvMonth.text = monthYearFromDate(currentAdapterDate)
+        val daysInMonth = generateDaysInMonthArray(currentAdapterDate)
+        adapter.setData(daysInMonth, currentAdapterDate)
     }
 
     private fun generateDaysInMonthArray(date: LocalDate): ArrayList<String> {
@@ -62,22 +61,30 @@ class JournalActivity : AppCompatActivity() {
         val yearMonth = YearMonth.from(date)
         val daysInMonth = yearMonth.lengthOfMonth()
 
-        val firstOfMonth = selectedDate.withDayOfMonth(1)
+        val firstOfMonth = currentAdapterDate.withDayOfMonth(1)
         val dayOfWeek = firstOfMonth.dayOfWeek.value
 
-        for(i in 1..42){
-            if( i <= dayOfWeek || i > daysInMonth + dayOfWeek){
-                daysInMonthArray.add("")
-            } else {
-                daysInMonthArray.add((i - dayOfWeek).toString())
-            }
-        }
+        val startWhitespaceElement = MutableList(dayOfWeek % 7) {""}
+        val calendarElement = ArrayList<String>()
+        (1..daysInMonth).mapTo(calendarElement) { it.toString() }
+
+        val endCount = (7 - ((startWhitespaceElement.size + calendarElement.size) % 7)) % 7
+        val endWhiteSpace = MutableList(endCount) {""}
+
+        daysInMonthArray.addAll(startWhitespaceElement)
+        daysInMonthArray.addAll(calendarElement)
+        daysInMonthArray.addAll(endWhiteSpace)
+
         return daysInMonthArray
     }
 
     private fun monthYearFromDate(date: LocalDate): String{
         val formatter = DateTimeFormatter.ofPattern("MMMM yyyy")
         return formatter.format(date)
+    }
+
+    override fun onItemCalendarClicked(date: String) {
+        Log.d("Teston", "date " + date)
     }
 
 }
