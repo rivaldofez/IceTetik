@@ -1,5 +1,7 @@
 package com.icetetik.journal
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -35,6 +37,9 @@ class MoodChooserActivity : AppCompatActivity(), MoodItemCallback {
     }
 
     override fun onItemMoodCallback(moodItemView: MoodItemView) {
-        Log.d("Teston", moodItemView.condition)
+        val intent = Intent()
+        intent.putExtra("test", moodItemView)
+        setResult(Activity.RESULT_OK, intent)
+        finish()
     }
 }

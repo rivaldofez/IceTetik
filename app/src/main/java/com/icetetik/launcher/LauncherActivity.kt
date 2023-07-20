@@ -24,13 +24,11 @@ class LauncherActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         Handler(Looper.getMainLooper()).postDelayed({
-
-
             viewModel.getUserSession { email ->
                 if (email == null){
                     startActivity(Intent(this@LauncherActivity, SignUpActivity::class.java))
                 } else {
-                    startActivity(Intent(this@LauncherActivity, MoodChooserActivity::class.java))
+                    startActivity(Intent(this@LauncherActivity, MoodActivity::class.java))
                     finish()
                 }
             }
