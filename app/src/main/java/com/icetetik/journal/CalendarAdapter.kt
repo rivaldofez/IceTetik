@@ -70,8 +70,10 @@ class CalendarAdapter(val context: Context, val callback: CalendarItemCallback):
 
             binding.tvItemDay.text = dayOfMonth
 
-            binding.root.setOnClickListener {
-                callback.onItemCalendarClicked(dayOfMonth)
+            if (dayOfMonth.isNotEmpty()){
+                binding.root.setOnClickListener {
+                    callback.onItemCalendarClicked(dayOfMonth)
+                }
             }
         }
     }
