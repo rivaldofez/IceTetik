@@ -42,6 +42,12 @@
             android:layout_height="wrap_content"
             android:text="Edit Mood"/>
 
+        <Button
+            android:id="@+id/btn_load_mood_dum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Mood"/>
+
 
 
         <ImageButton

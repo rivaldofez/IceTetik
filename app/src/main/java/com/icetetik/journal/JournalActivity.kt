@@ -79,6 +79,31 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
            }
         }
 
+        binding.btnLoadMoodDum.setOnClickListener {
+            if(userEmail.isEmpty()){
+                Toast.makeText( this, "Empty Email Session", Toast.LENGTH_SHORT).show()
+            } else {
+                viewModel.getMood(userEmail, selectedDate)
+            }
+        }
+
+        viewModel.mood.observe(this) { state ->
+            when(state){
+                is UiState.Loading -> {
+                    Toast.makeText( this, "Loading", Toast.LENGTH_SHORT).show()
+                }
+
+                is UiState.Failure -> {
+                    Toast.makeText( this, "Error", Toast.LENGTH_SHORT).show()
+                }
+
+                is UiState.Success -> {
+                    Toast.makeText( this, "Success", Toast.LENGTH_SHORT).show()
+                    Log.d("Teston", state.data.toString())
+                }
+            }
+        }
+
         viewModel.addMood.observe(this) { state ->
             when(state){
                 is UiState.Loading -> {
