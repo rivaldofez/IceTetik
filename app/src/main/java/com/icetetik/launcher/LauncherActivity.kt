@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.icetetik.MoodActivity
 import com.icetetik.authentication.signup.SignUpActivity
 import com.icetetik.databinding.ActivityLauncherBinding
+import com.icetetik.journal.MoodChooserActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,8 +24,6 @@ class LauncherActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         Handler(Looper.getMainLooper()).postDelayed({
-
-
             viewModel.getUserSession { email ->
                 if (email == null){
                     startActivity(Intent(this@LauncherActivity, SignUpActivity::class.java))

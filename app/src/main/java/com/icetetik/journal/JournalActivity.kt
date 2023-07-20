@@ -1,15 +1,19 @@
 package com.icetetik.journal
 
+import android.app.Activity
+import android.app.Instrumentation.ActivityResult
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.icetetik.MoodActivity
 import com.icetetik.authentication.signup.SignUpActivity
 import com.icetetik.data.model.Mood
+import com.icetetik.data.model.MoodItemView
 import com.icetetik.databinding.ActivityJournalBinding
 import com.icetetik.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +33,15 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
 
     private var userEmail: String = ""
 
+    private val getResultChosenMood = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ){
+        if(it.resultCode == Activity.RESULT_OK){
+            val moodItemView = it.data?.getParcelableExtra<MoodItemView>("test")
+            Log.d("Teston", moodItemView.toString())
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityJournalBinding.inflate(layoutInflater)
@@ -43,6 +56,7 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
                 userEmail = email
             }
         }
+
 
 
         val layoutManager = GridLayoutManager(this@JournalActivity, 7)
@@ -61,6 +75,12 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
                 currentAdapterDate = currentAdapterDate.minusMonths(1)
                 setMonthView()
             }
+        }
+
+        binding.btnEditMoodDum.setOnClickListener {
+            val intent = Intent(this@JournalActivity, MoodChooserActivity::class.java)
+            getResultChosenMood.launch(intent)
+            Log.d("Teston", "called")
         }
 
 
