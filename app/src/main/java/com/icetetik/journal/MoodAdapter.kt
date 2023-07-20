@@ -4,12 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Recycler
-import com.icetetik.R
 import com.icetetik.data.model.MoodItemView
 import com.icetetik.databinding.ItemMoodBinding
 
-class MoodAdapter(val context: Context): RecyclerView.Adapter<MoodAdapter.MoodViewHolder>() {
+class MoodAdapter(val context: Context, val callback: MoodItemCallback): RecyclerView.Adapter<MoodAdapter.MoodViewHolder>() {
     private val listMoodItemView: ArrayList<MoodItemView> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoodViewHolder {
@@ -35,6 +33,9 @@ class MoodAdapter(val context: Context): RecyclerView.Adapter<MoodAdapter.MoodVi
             binding.apply {
                 tvMood.text = moodItemView.condition
                 ivMood.setImageResource(moodItemView.image)
+                root.setOnClickListener {
+                    callback.onItemMoodCallback(moodItemView)
+                }
             }
         }
     }

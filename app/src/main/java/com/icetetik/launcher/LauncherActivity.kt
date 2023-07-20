@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.icetetik.MoodActivity
 import com.icetetik.authentication.signup.SignUpActivity
 import com.icetetik.databinding.ActivityLauncherBinding
+import com.icetetik.journal.MoodChooserActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,7 +30,7 @@ class LauncherActivity : AppCompatActivity() {
                 if (email == null){
                     startActivity(Intent(this@LauncherActivity, SignUpActivity::class.java))
                 } else {
-                    startActivity(Intent(this@LauncherActivity, MoodActivity::class.java))
+                    startActivity(Intent(this@LauncherActivity, MoodChooserActivity::class.java))
                     finish()
                 }
             }
