@@ -18,6 +18,7 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
 
 
     private var currentAdapterDate: LocalDate = LocalDate.now()
+    private var selectedDate: LocalDate = LocalDate.now()
     private val adapter = CalendarAdapter(this@JournalActivity, this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,7 +53,7 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
     private fun setMonthView() {
         binding.tvMonth.text = monthYearFromDate(currentAdapterDate)
         val daysInMonth = generateDaysInMonthArray(currentAdapterDate)
-        adapter.setData(daysInMonth, currentAdapterDate)
+        adapter.setData(daysInMonth, currentAdapterDate, selectedDate)
     }
 
     private fun generateDaysInMonthArray(date: LocalDate): ArrayList<String> {
@@ -85,6 +86,13 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
 
     override fun onItemCalendarClicked(date: String) {
         Log.d("Teston", "date " + date)
+        selectedDate = LocalDate.of(
+            currentAdapterDate.year,
+            currentAdapterDate.month,
+            date.toInt()
+        )
+
+        setMonthView()
     }
 
 }

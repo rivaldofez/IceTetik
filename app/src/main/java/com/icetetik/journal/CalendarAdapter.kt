@@ -13,6 +13,7 @@ class CalendarAdapter(val context: Context, val callback: CalendarItemCallback):
     private val daysOfMonth: ArrayList<String> = ArrayList()
     private var currentAdapterDate: LocalDate = LocalDate.now()
     private val currentDate = LocalDate.now()
+    private var selectedDate = LocalDate.now()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarViewHolder {
@@ -30,10 +31,11 @@ class CalendarAdapter(val context: Context, val callback: CalendarItemCallback):
         return (dpWidth / 7) // COLUMN_COUNT would be 4 in your case
     }
 
-    fun setData(data: List<String>, currentAdapterDate: LocalDate){
+    fun setData(data: List<String>, currentAdapterDate: LocalDate, selectedDate: LocalDate){
         daysOfMonth.clear()
         daysOfMonth.addAll(data)
         this.currentAdapterDate = currentAdapterDate
+        this.selectedDate = selectedDate
         notifyDataSetChanged()
     }
 
@@ -50,9 +52,17 @@ class CalendarAdapter(val context: Context, val callback: CalendarItemCallback):
             }
 
             if(
-                dayOfMonth == currentDate.dayOfWeek.value.toString() &&
+                dayOfMonth == currentDate.dayOfMonth.toString() &&
                         currentAdapterDate.year == currentDate.year &&
                         currentAdapterDate.month.value == currentDate.month.value
+            ){
+                binding.clItemDay.setBackgroundColor(context.getColor(R.color.cream_100))
+            }
+
+            if(
+                dayOfMonth == selectedDate.dayOfMonth.toString() &&
+                currentAdapterDate.year == selectedDate.year &&
+                currentAdapterDate.month.value == selectedDate.month.value
             ){
                 binding.clItemDay.setBackgroundColor(context.getColor(R.color.black))
             }
