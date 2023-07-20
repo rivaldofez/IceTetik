@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import com.google.firebase.auth.FirebaseAuth
 import com.icetetik.MoodActivity
 import com.icetetik.authentication.signup.SignUpActivity
+import com.icetetik.data.model.Mood
 import com.icetetik.databinding.ActivityLauncherBinding
 import com.icetetik.journal.MoodChooserActivity
 import com.icetetik.journal.MoodNoteWriterActivity
@@ -29,7 +30,7 @@ class LauncherActivity : AppCompatActivity() {
                 if (email == null){
                     startActivity(Intent(this@LauncherActivity, SignUpActivity::class.java))
                 } else {
-                    startActivity(Intent(this@LauncherActivity, MoodNoteWriterActivity::class.java))
+                    startActivity(Intent(this@LauncherActivity, MoodActivity::class.java))
                     finish()
                 }
             }

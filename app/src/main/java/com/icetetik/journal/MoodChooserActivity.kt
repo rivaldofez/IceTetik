@@ -34,6 +34,19 @@ class MoodChooserActivity : AppCompatActivity(), MoodItemCallback {
         binding.rvMood.adapter = adapter
         binding.rvMood.layoutManager = layoutManager
         adapter.setData(listMoodItemView)
+
+        setupToolbar()
+    }
+
+    private fun setupToolbar() {
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
+        binding.toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
     }
 
     override fun onItemMoodCallback(moodItemView: MoodItemView) {
