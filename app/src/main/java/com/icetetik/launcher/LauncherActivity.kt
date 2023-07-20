@@ -5,27 +5,34 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import com.icetetik.MainActivity
+import androidx.activity.viewModels
+import com.google.firebase.auth.FirebaseAuth
 import com.icetetik.MoodActivity
-import com.icetetik.authentication.AuthenticationActivity
-import com.icetetik.authentication.LoginActivity
 import com.icetetik.authentication.signup.SignUpActivity
 import com.icetetik.databinding.ActivityLauncherBinding
-import com.icetetik.journal.JournalActivity
-import com.icetetik.settings.SettingsActivity
-import com.icetetik.statistics.StatisticsActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LauncherActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLauncherBinding
+    private val viewModel: LauncherViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLauncherBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this@LauncherActivity, SignUpActivity::class.java))
-            finish()
+
+
+            viewModel.getUserSession { email ->
+                if (email == null){
+                    startActivity(Intent(this@LauncherActivity, SignUpActivity::class.java))
+                } else {
+                    startActivity(Intent(this@LauncherActivity, MoodActivity::class.java))
+                    finish()
+                }
+            }
         }, SPLASH_TIME )
     }
 

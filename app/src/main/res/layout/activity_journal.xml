@@ -14,6 +14,42 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <EditText
+            android:id="@+id/edt_mood"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mood"
+            android:textColor="@color/white"
+            />
+
+        <EditText
+            android:id="@+id/edt_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Catatan"
+            android:textColor="@color/white"
+            />
+
+        <Button
+            android:id="@+id/btn_add_mood_dum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Mood"/>
+
+        <Button
+            android:id="@+id/btn_edit_mood_dum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Mood"/>
+
+        <Button
+            android:id="@+id/btn_load_mood_dum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Mood"/>
+
+
+
         <ImageButton
             android:id="@+id/btn_close"
             android:layout_width="40dp"
@@ -52,6 +88,7 @@
                     android:textStyle="bold" />
 
                 <ImageView
+                    android:id="@+id/btn_prev_month"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
@@ -62,6 +99,7 @@
                     android:textColor="@color/black" />
 
                 <ImageView
+                    android:id="@+id/btn_next_month"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
