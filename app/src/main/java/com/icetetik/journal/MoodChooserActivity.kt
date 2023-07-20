@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.icetetik.R
 import com.icetetik.data.model.MoodItemView
 import com.icetetik.databinding.ActivityMoodChooserBinding
+import com.icetetik.util.KeyParcelable
 
 class MoodChooserActivity : AppCompatActivity(), MoodItemCallback {
     private lateinit var binding: ActivityMoodChooserBinding
@@ -51,7 +52,7 @@ class MoodChooserActivity : AppCompatActivity(), MoodItemCallback {
 
     override fun onItemMoodCallback(moodItemView: MoodItemView) {
         val intent = Intent()
-        intent.putExtra("test", moodItemView)
+        intent.putExtra(KeyParcelable.MOOD_CONDITION, moodItemView)
         setResult(Activity.RESULT_OK, intent)
         finish()
     }

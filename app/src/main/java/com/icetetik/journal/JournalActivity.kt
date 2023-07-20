@@ -15,6 +15,7 @@ import com.icetetik.authentication.signup.SignUpActivity
 import com.icetetik.data.model.Mood
 import com.icetetik.data.model.MoodItemView
 import com.icetetik.databinding.ActivityJournalBinding
+import com.icetetik.util.KeyParcelable
 import com.icetetik.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
@@ -35,10 +36,19 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
 
     private val getResultChosenMood = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
-    ){
-        if(it.resultCode == Activity.RESULT_OK){
-            val moodItemView = it.data?.getParcelableExtra<MoodItemView>("test")
+    ) {
+        if (it.resultCode == Activity.RESULT_OK) {
+            val moodItemView = it.data?.getParcelableExtra<MoodItemView>(KeyParcelable.MOOD_CONDITION)
             Log.d("Teston", moodItemView.toString())
+        }
+    }
+
+    private val getResultNoteMood = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) {
+        if (it.resultCode == Activity.RESULT_OK) {
+            val note = it.data?.getStringExtra(KeyParcelable.MOOD_NOTE)
+            Log.d("Teston", note.toString())
         }
     }
 
@@ -50,14 +60,12 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
         setMonthView()
 
         viewModel.getUserSession { email ->
-            if (email == null){
+            if (email == null) {
 
             } else {
                 userEmail = email
             }
         }
-
-
 
         val layoutManager = GridLayoutManager(this@JournalActivity, 7)
 
@@ -75,67 +83,77 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
                 currentAdapterDate = currentAdapterDate.minusMonths(1)
                 setMonthView()
             }
-        }
 
-        binding.btnEditMoodDum.setOnClickListener {
-            val intent = Intent(this@JournalActivity, MoodChooserActivity::class.java)
-            getResultChosenMood.launch(intent)
-            Log.d("Teston", "called")
-        }
+            btnAddMood.setOnClickListener {
+                val intent = Intent(this@JournalActivity, MoodChooserActivity::class.java)
+                getResultChosenMood.launch(intent)
+            }
 
-
-        binding.btnAddMoodDum.setOnClickListener {
-           if(userEmail.isEmpty()){
-               Toast.makeText( this, "Empty Email Session", Toast.LENGTH_SHORT).show()
-           } else {
-
-               val mood = Mood(posted = "${selectedDate.year}-${selectedDate.monthValue}-${selectedDate.dayOfMonth}\"", condition = "Happy", note = "Saya baru mendapat uang kaget")
-
-               viewModel.addMood(
-                   userEmail = userEmail,
-                   mood = mood,
-                   uploadDate = selectedDate
-               )
-           }
-        }
-
-        binding.btnLoadMoodDum.setOnClickListener {
-            if(userEmail.isEmpty()){
-                Toast.makeText( this, "Empty Email Session", Toast.LENGTH_SHORT).show()
-            } else {
-                viewModel.getMood(userEmail, selectedDate)
+            btnAddNote.setOnClickListener {
+                val intent = Intent(this@JournalActivity, MoodNoteWriterActivity::class.java)
+                getResultNoteMood.launch(intent)
             }
         }
 
+//        binding.btnEditMoodDum.setOnClickListener {
+//            val intent = Intent(this@JournalActivity, MoodChooserActivity::class.java)
+//            getResultChosenMood.launch(intent)
+//            Log.d("Teston", "called")
+//        }
+
+
+//        binding.btnAddMoodDum.setOnClickListener {
+//           if(userEmail.isEmpty()){
+//               Toast.makeText( this, "Empty Email Session", Toast.LENGTH_SHORT).show()
+//           } else {
+//
+//               val mood = Mood(posted = "${selectedDate.year}-${selectedDate.monthValue}-${selectedDate.dayOfMonth}\"", condition = "Happy", note = "Saya baru mendapat uang kaget")
+//
+//               viewModel.addMood(
+//                   userEmail = userEmail,
+//                   mood = mood,
+//                   uploadDate = selectedDate
+//               )
+//           }
+//        }
+
+//        binding.btnLoadMoodDum.setOnClickListener {
+//            if(userEmail.isEmpty()){
+//                Toast.makeText( this, "Empty Email Session", Toast.LENGTH_SHORT).show()
+//            } else {
+//                viewModel.getMood(userEmail, selectedDate)
+//            }
+//        }
+
         viewModel.mood.observe(this) { state ->
-            when(state){
+            when (state) {
                 is UiState.Loading -> {
-                    Toast.makeText( this, "Loading", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Loading", Toast.LENGTH_SHORT).show()
                 }
 
                 is UiState.Failure -> {
-                    Toast.makeText( this, "Error", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
                 }
 
                 is UiState.Success -> {
-                    Toast.makeText( this, "Success", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
                     Log.d("Teston", state.data.toString())
                 }
             }
         }
 
         viewModel.addMood.observe(this) { state ->
-            when(state){
+            when (state) {
                 is UiState.Loading -> {
-                    Toast.makeText( this, "Loading", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Loading", Toast.LENGTH_SHORT).show()
                 }
 
                 is UiState.Failure -> {
-                    Toast.makeText( this, "Error", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
                 }
 
                 is UiState.Success -> {
-                    Toast.makeText( this, "Success", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -156,12 +174,12 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
         val firstOfMonth = currentAdapterDate.withDayOfMonth(1)
         val dayOfWeek = firstOfMonth.dayOfWeek.value
 
-        val startWhitespaceElement = MutableList(dayOfWeek % 7) {""}
+        val startWhitespaceElement = MutableList(dayOfWeek % 7) { "" }
         val calendarElement = ArrayList<String>()
         (1..daysInMonth).mapTo(calendarElement) { it.toString() }
 
         val endCount = (7 - ((startWhitespaceElement.size + calendarElement.size) % 7)) % 7
-        val endWhiteSpace = MutableList(endCount) {""}
+        val endWhiteSpace = MutableList(endCount) { "" }
 
         daysInMonthArray.addAll(startWhitespaceElement)
         daysInMonthArray.addAll(calendarElement)
@@ -170,7 +188,7 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
         return daysInMonthArray
     }
 
-    private fun monthYearFromDate(date: LocalDate): String{
+    private fun monthYearFromDate(date: LocalDate): String {
         val formatter = DateTimeFormatter.ofPattern("MMMM yyyy")
         return formatter.format(date)
     }

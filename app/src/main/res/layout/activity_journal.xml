@@ -14,42 +14,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/edt_mood"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Mood"
-            android:textColor="@color/white"
-            />
-
-        <EditText
-            android:id="@+id/edt_note"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Catatan"
-            android:textColor="@color/white"
-            />
-
-        <Button
-            android:id="@+id/btn_add_mood_dum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add Mood"/>
-
-        <Button
-            android:id="@+id/btn_edit_mood_dum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Edit Mood"/>
-
-        <Button
-            android:id="@+id/btn_load_mood_dum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Load Mood"/>
-
-
-
         <ImageButton
             android:id="@+id/btn_close"
             android:layout_width="40dp"
@@ -197,13 +161,13 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 style="@style/JournalButtonTextStyle"
-                android:id="@+id/btn_edit_mood"
+                android:id="@+id/btn_add_mood"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
                 android:background="@drawable/fr_button_white"
-                android:text="Edit Mood" />
+                android:text="Tambah Mood" />
 
             <androidx.appcompat.widget.AppCompatButton
                 style="@style/JournalButtonTextStyle"
@@ -224,7 +188,7 @@
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_edit_mood"
+            app:layout_constraintTop_toBottomOf="@id/btn_add_mood"
             android:layout_marginHorizontal="16dp"
             android:padding="16dp"
             android:layout_marginTop="16dp"
