@@ -33,13 +33,17 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
     private val adapter = CalendarAdapter(this@JournalActivity, this)
 
     private var userEmail: String = ""
+    private var moodCondition: String = ""
+    private var moodNote: String = ""
 
     private val getResultChosenMood = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
         if (it.resultCode == Activity.RESULT_OK) {
-            val moodItemView = it.data?.getParcelableExtra<MoodItemView>(KeyParcelable.MOOD_CONDITION)
-            Log.d("Teston", moodItemView.toString())
+            val moodItemView =
+                it.data?.getParcelableExtra<MoodItemView>(KeyParcelable.MOOD_CONDITION)
+            moodCondition = moodItemView?.condition ?: ""
+            addMoodData()
         }
     }
 
@@ -47,8 +51,8 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
         ActivityResultContracts.StartActivityForResult()
     ) {
         if (it.resultCode == Activity.RESULT_OK) {
-            val note = it.data?.getStringExtra(KeyParcelable.MOOD_NOTE)
-            Log.d("Teston", note.toString())
+            moodNote = it.data?.getStringExtra(KeyParcelable.MOOD_NOTE) ?: ""
+            addMoodData()
         }
     }
 
@@ -102,21 +106,6 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
 //        }
 
 
-//        binding.btnAddMoodDum.setOnClickListener {
-//           if(userEmail.isEmpty()){
-//               Toast.makeText( this, "Empty Email Session", Toast.LENGTH_SHORT).show()
-//           } else {
-//
-//               val mood = Mood(posted = "${selectedDate.year}-${selectedDate.monthValue}-${selectedDate.dayOfMonth}\"", condition = "Happy", note = "Saya baru mendapat uang kaget")
-//
-//               viewModel.addMood(
-//                   userEmail = userEmail,
-//                   mood = mood,
-//                   uploadDate = selectedDate
-//               )
-//           }
-//        }
-
 //        binding.btnLoadMoodDum.setOnClickListener {
 //            if(userEmail.isEmpty()){
 //                Toast.makeText( this, "Empty Email Session", Toast.LENGTH_SHORT).show()
@@ -156,6 +145,25 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
                     Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+    }
+
+    private fun addMoodData() {
+        if (userEmail.isEmpty()) {
+            Toast.makeText(this, "Empty Email Session", Toast.LENGTH_SHORT).show()
+        } else {
+
+            val mood = Mood(
+                posted = "${selectedDate.year}-${selectedDate.monthValue}-${selectedDate.dayOfMonth}\"",
+                condition = moodCondition,
+                note = moodNote
+            )
+
+            viewModel.addMood(
+                userEmail = userEmail,
+                mood = mood,
+                uploadDate = selectedDate
+            )
         }
     }
 
