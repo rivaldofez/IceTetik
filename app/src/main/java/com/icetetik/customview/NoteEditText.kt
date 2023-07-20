@@ -36,7 +36,8 @@ class NoteEditText: AppCompatEditText {
         mRect = Rect()
         mPaint = Paint()
         mPaint.style = Paint.Style.FILL_AND_STROKE
-        mPaint.setColor(resources.getColor(R.color.black))
+        mPaint.setColor(resources.getColor(R.color.primaryBackgroundColor))
+        mPaint.strokeWidth = 4F
     }
 
     override fun onDraw(canvas: Canvas?) {
