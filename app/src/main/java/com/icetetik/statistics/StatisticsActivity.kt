@@ -13,6 +13,7 @@ import com.github.mikephil.charting.data.BarEntry
 import com.icetetik.R
 import com.icetetik.data.model.Mood
 import com.icetetik.databinding.ActivityStatisticsBinding
+import com.icetetik.util.Helper
 import com.icetetik.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
@@ -21,9 +22,9 @@ import java.time.LocalDate
 class StatisticsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityStatisticsBinding
     private val viewModel: StatisticsViewModel by viewModels()
-
-
     private var listMoodDataEntry: ArrayList<BarEntry> = ArrayList()
+
+    private var currentLocalDate: LocalDate = LocalDate.now()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +32,8 @@ class StatisticsActivity : AppCompatActivity() {
         binding = ActivityStatisticsBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+        setButtonAction()
+        setMonthView()
 
         viewModel.getUserSession { email ->
             if (email == null) {
@@ -62,6 +65,24 @@ class StatisticsActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun setButtonAction(){
+        binding.apply {
+            btnNextMonth.setOnClickListener {
+                currentLocalDate = currentLocalDate.plusMonths(1)
+                setMonthView()
+            }
+
+            btnPrevMonth.setOnClickListener {
+                currentLocalDate = currentLocalDate.minusMonths(1)
+                setMonthView()
+            }
+        }
+    }
+
+    private fun setMonthView(){
+        binding.tvMonth.text = Helper.monthYearFromDate(currentLocalDate)
     }
 
     private fun setDataMonthly(monthlyMood: List<Mood>) {
@@ -119,7 +140,7 @@ class StatisticsActivity : AppCompatActivity() {
 
 
         moodBarChart.getAxisLeft().typeface = ResourcesCompat.getFont(this, R.font.league_spartan_bold)
-        moodBarChart.getAxisLeft().textSize = 20f
+        moodBarChart.getAxisLeft().textSize = 16f
         moodBarChart.getAxisLeft().textColor = Color.WHITE
 
         moodBarChart.getAxisLeft().axisMinimum = 0F

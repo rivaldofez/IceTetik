@@ -134,7 +134,7 @@
        android:layout_marginBottom="20dp"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintBottom_toTopOf="@id/iv_previous"
+       app:layout_constraintBottom_toTopOf="@id/btn_prev_month"
        >
 
       <ImageView
@@ -203,7 +203,7 @@
 
 
    <ImageView
-       android:id="@+id/iv_previous"
+       android:id="@+id/btn_prev_month"
        android:layout_width="80dp"
        android:layout_height="80dp"
        android:src="@drawable/img_arrow_previous"
@@ -221,20 +221,20 @@
        android:fontFamily="@font/league_spartan_bold"
        android:textColor="@color/cream_100"
        android:textStyle="bold"
-       app:layout_constraintBottom_toBottomOf="@id/iv_previous"
-       app:layout_constraintEnd_toStartOf="@+id/iv_next"
-       app:layout_constraintStart_toEndOf="@+id/iv_previous"
-       app:layout_constraintTop_toTopOf="@id/iv_previous" />
+       app:layout_constraintBottom_toBottomOf="@id/btn_prev_month"
+       app:layout_constraintEnd_toStartOf="@+id/btn_next_month"
+       app:layout_constraintStart_toEndOf="@+id/btn_prev_month"
+       app:layout_constraintTop_toTopOf="@id/btn_prev_month" />
 
    <ImageView
-       android:id="@+id/iv_next"
+       android:id="@+id/btn_next_month"
        android:layout_width="80dp"
        android:layout_height="80dp"
        android:src="@drawable/img_arrow_next"
-       app:layout_constraintBottom_toBottomOf="@id/iv_previous"
+       app:layout_constraintBottom_toBottomOf="@id/btn_prev_month"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toEndOf="@+id/tv_month"
-       app:layout_constraintTop_toTopOf="@id/iv_previous" />
+       app:layout_constraintTop_toTopOf="@id/btn_prev_month" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,7 +17,7 @@ object Helper {
         }
     }
 
-    private fun monthYearFromDate(date: LocalDate): String {
+    fun monthYearFromDate(date: LocalDate): String {
         val formatter = DateTimeFormatter.ofPattern("MMMM yyyy")
         return formatter.format(date)
     }
