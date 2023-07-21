@@ -16,6 +16,7 @@ import com.icetetik.authentication.signup.SignUpActivity
 import com.icetetik.data.model.Mood
 import com.icetetik.data.model.MoodItemView
 import com.icetetik.databinding.ActivityJournalBinding
+import com.icetetik.util.Helper
 import com.icetetik.util.KeyParcelable
 import com.icetetik.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
@@ -93,6 +94,11 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
 
     private fun setButtonAction(){
         binding.apply {
+            btnClose.setOnClickListener {
+                onBackPressed()
+            }
+
+
             btnNextMonth.setOnClickListener {
                 currentAdapterDate = currentAdapterDate.plusMonths(1)
                 setMonthView()
@@ -118,23 +124,30 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
     private fun updateCard(){
         if(moodCondition.isEmpty() && moodNote.isEmpty()){
             binding.llParentCard.visibility = View.GONE
+            binding.btnAddMood.setText("Tambah Mood")
+            binding.btnAddNote.setText("Tambah Catatan")
         } else {
             binding.llParentCard.visibility = View.VISIBLE
 
             //check mood condition
             if(moodCondition.isEmpty()){
+                binding.btnAddMood.setText("Tambah Mood")
                 binding.llMoodConditionCard.visibility = View.GONE
             } else {
                 binding.llMoodConditionCard.visibility = View.VISIBLE
                 binding.tvMoodCondition.text = moodCondition
+                binding.ivMoodCondition.setImageResource(Helper.mapMoodConditionToDrawable(moodCondition))
+                binding.btnAddMood.setText("Edit Mood")
             }
 
             //check mood note
             if (moodNote.isEmpty()){
+                binding.btnAddNote.setText("Tambah Catatan")
                 binding.llMoodNoteCard.visibility = View.GONE
             } else {
                 binding.llMoodNoteCard.visibility = View.VISIBLE
                 binding.tvMoodNote.text = moodNote
+                binding.btnAddNote.setText("Edit Catatan")
             }
         }
     }
@@ -174,6 +187,7 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
 
                 is UiState.Success -> {
                     Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+                    updateCard()
                 }
             }
         }
