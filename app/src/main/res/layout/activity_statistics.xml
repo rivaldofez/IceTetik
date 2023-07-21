@@ -249,5 +249,16 @@
        app:layout_constraintStart_toEndOf="@+id/tv_month"
        app:layout_constraintTop_toTopOf="@id/btn_prev_month" />
 
+   <include
+       layout="@layout/sublayout_loading"
+       android:id="@+id/sbl_loading"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       tools:visibility="gone"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

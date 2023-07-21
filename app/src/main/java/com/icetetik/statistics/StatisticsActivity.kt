@@ -3,8 +3,6 @@ package com.icetetik.statistics
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
 import com.github.mikephil.charting.data.BarData
@@ -13,6 +11,7 @@ import com.github.mikephil.charting.data.BarEntry
 import com.icetetik.R
 import com.icetetik.data.model.MoodCondition
 import com.icetetik.databinding.ActivityStatisticsBinding
+import com.icetetik.util.Extension.animateChangeVisibility
 import com.icetetik.util.Helper
 import com.icetetik.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,17 +30,25 @@ class StatisticsActivity : AppCompatActivity() {
         binding = ActivityStatisticsBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
-        setButtonAction()
-
 
         viewModel.getUserSession { email ->
             if (email == null) {
+
             } else {
                 userEmail = email
                 setMonthView()
+                setButtonAction()
+                setObserver()
             }
         }
-        setObserver()
+    }
+
+    private fun showLoading(isLoading: Boolean){
+        binding.apply {
+            sblLoading.root.animateChangeVisibility(isLoading)
+            btnNextMonth.isEnabled = !isLoading
+            btnPrevMonth.isEnabled = !isLoading
+        }
     }
 
 
@@ -49,17 +56,16 @@ class StatisticsActivity : AppCompatActivity() {
         viewModel.monthlyMood.observe(this) { state ->
             when (state) {
                 is UiState.Loading -> {
-                    Toast.makeText(this, "Loading", Toast.LENGTH_SHORT).show()
+                    showLoading(isLoading = true)
                 }
 
                 is UiState.Failure -> {
-                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+                    showLoading(isLoading = false)
                 }
 
                 is UiState.Success -> {
-                    Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+                    showLoading(isLoading = false)
                     setupBarChart(state.data)
-
                 }
             }
         }
@@ -88,7 +94,7 @@ class StatisticsActivity : AppCompatActivity() {
         if (monthlyMoodStatistics.isEmpty()){
 
         } else {
-            var listMoodDataEntry: ArrayList<BarEntry> = ArrayList()
+            val listMoodDataEntry: ArrayList<BarEntry> = ArrayList()
             listMoodDataEntry.add(BarEntry(1f, (monthlyMoodStatistics[MoodCondition.HAPPY] ?: 0).toFloat()))
             listMoodDataEntry.add(BarEntry(2f, (monthlyMoodStatistics[MoodCondition.SAD] ?: 0).toFloat()))
             listMoodDataEntry.add(BarEntry(3f, (monthlyMoodStatistics[MoodCondition.ANGRY] ?: 0).toFloat()))
@@ -97,7 +103,7 @@ class StatisticsActivity : AppCompatActivity() {
             listMoodDataEntry.add(BarEntry(6f, (monthlyMoodStatistics[MoodCondition.DISGUSTING] ?: 0).toFloat()))
 
             val moodBarDataset = BarDataSet(listMoodDataEntry, "Mood")
-            moodBarDataset.setColor(getColor(R.color.cream_75))
+            moodBarDataset.color = getColor(R.color.cream_75)
             moodBarDataset.valueTextColor = Color.BLACK
             moodBarDataset.setDrawValues(false)
 
@@ -108,16 +114,16 @@ class StatisticsActivity : AppCompatActivity() {
             moodBarChart.legend.isEnabled = false //disable legend
 
             //        barChart.getAxisRight().setDrawGridLines(false);
-            moodBarChart.getAxisRight().isEnabled = false //disable right axis
+            moodBarChart.axisRight.isEnabled = false //disable right axis
             moodBarChart.xAxis.isEnabled = false
 //        barChart.getAxisLeft().setDrawGridLines(false);
-            moodBarChart.getXAxis().setDrawGridLines(false)
+            moodBarChart.xAxis.setDrawGridLines(false)
 
-            moodBarChart.getAxisLeft().setDrawLabels(true) //disable label on right
-            moodBarChart.getAxisLeft().typeface = ResourcesCompat.getFont(this, R.font.league_spartan_bold)
-            moodBarChart.getAxisLeft().textSize = 16f
-            moodBarChart.getAxisLeft().textColor = Color.WHITE
-            moodBarChart.getAxisLeft().axisMinimum = 0F
+            moodBarChart.axisLeft.setDrawLabels(true) //disable label on right
+            moodBarChart.axisLeft.typeface = ResourcesCompat.getFont(this, R.font.league_spartan_bold)
+            moodBarChart.axisLeft.textSize = 16f
+            moodBarChart.axisLeft.textColor = Color.WHITE
+            moodBarChart.axisLeft.axisMinimum = 0F
             moodBarChart.setScaleEnabled(false) //disable zoom
 
 
