@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.icetetik.data.model.Mood
+import com.icetetik.data.model.MoodCondition
 import com.icetetik.data.repository.AuthRepository
 import com.icetetik.data.repository.MoodRepository
 import com.icetetik.util.UiState
@@ -18,8 +19,8 @@ class StatisticsViewModel @Inject constructor(
 ): ViewModel() {
 
 
-    private val _monthlyMood = MutableLiveData<UiState<List<Mood>>>()
-    val monthlyMood: LiveData<UiState<List<Mood>>>
+    private val _monthlyMood = MutableLiveData<UiState<Map<MoodCondition, Int>>>()
+    val monthlyMood: LiveData<UiState<Map<MoodCondition, Int>>>
         get() = _monthlyMood
 
     fun getUserSession(result: (String?) -> Unit) {
@@ -28,7 +29,7 @@ class StatisticsViewModel @Inject constructor(
 
     fun fetchMonthlyMood(userEmail: String, baseDate: LocalDate){
         _monthlyMood.value = UiState.Loading
-        moodRepository.fetchMonthlyMood(userEmail = userEmail, baseDate = baseDate) {
+        moodRepository.fetchMoodStatisticsMonthly(userEmail = userEmail, baseDate = baseDate) {
             _monthlyMood.value = it
         }
     }

@@ -92,8 +92,8 @@ class MoodRepository(
 
         database.collection(FireStoreCollection.USER).document(userEmail)
             .collection(FireStoreCollection.MOODS)
-            .whereGreaterThanOrEqualTo("posted", start)
-            .whereLessThanOrEqualTo("posted", end)
+            .whereGreaterThanOrEqualTo(FirestoreDocumentField.POSTED, start)
+            .whereLessThanOrEqualTo(FirestoreDocumentField.POSTED, end)
             .get()
             .addOnSuccessListener { snapshot ->
                 if (snapshot.isEmpty) {
