@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
+import com.github.mikephil.charting.charts.Chart
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
@@ -12,6 +13,7 @@ import com.icetetik.R
 import com.icetetik.data.model.MoodCondition
 import com.icetetik.databinding.ActivityStatisticsBinding
 import com.icetetik.util.Extension.animateChangeVisibility
+import com.icetetik.util.Extension.toSp
 import com.icetetik.util.Helper
 import com.icetetik.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,11 +41,12 @@ class StatisticsActivity : AppCompatActivity() {
                 setMonthView()
                 setButtonAction()
                 setObserver()
+                setupStyleBarChart()
             }
         }
     }
 
-    private fun showLoading(isLoading: Boolean){
+    private fun showLoading(isLoading: Boolean) {
         binding.apply {
             sblLoading.root.animateChangeVisibility(isLoading)
             btnNextMonth.isEnabled = !isLoading
@@ -71,7 +74,7 @@ class StatisticsActivity : AppCompatActivity() {
         }
     }
 
-    private fun setButtonAction(){
+    private fun setButtonAction() {
         binding.apply {
             btnNextMonth.setOnClickListener {
                 currentLocalDate = currentLocalDate.plusMonths(1)
@@ -85,22 +88,83 @@ class StatisticsActivity : AppCompatActivity() {
         }
     }
 
-    private fun setMonthView(){
+    private fun setMonthView() {
         binding.tvMonth.text = Helper.monthYearFromDate(currentLocalDate)
         viewModel.fetchMonthlyMood(userEmail = userEmail, baseDate = currentLocalDate)
     }
 
-    private fun setupBarChart(monthlyMoodStatistics: Map<MoodCondition, Int>) {
-        if (monthlyMoodStatistics.isEmpty()){
+    private fun setupStyleBarChart() {
+        binding.bcEmotions.apply {
+            setNoDataText("Belum ada data di bulan ini")
+            setNoDataTextTypeface(
+                ResourcesCompat.getFont(
+                    this@StatisticsActivity,
+                    R.font.league_spartan_bold
+                )
+            )
+            setNoDataTextColor(Color.GRAY)
+            getPaint(Chart.PAINT_INFO).textSize = 18f.toSp(this@StatisticsActivity)
 
+            setFitBars(false)
+            description.text = "" //set null to description
+            legend.isEnabled = false //disable legend
+
+            axisRight.isEnabled = false //disable right axis
+            xAxis.isEnabled = false
+            xAxis.setDrawGridLines(false)
+
+            axisLeft.setDrawLabels(true) //disable label on right
+            axisLeft.typeface =
+                ResourcesCompat.getFont(this@StatisticsActivity, R.font.league_spartan_bold)
+            axisLeft.textSize = 16f
+            axisLeft.textColor = Color.WHITE
+            axisLeft.axisMinimum = 0F
+            setScaleEnabled(false) //disable zoom
+        }
+    }
+
+    private fun setupBarChart(monthlyMoodStatistics: Map<MoodCondition, Int>) {
+        if (monthlyMoodStatistics.isEmpty()) {
+            binding.bcEmotions.clear()
+            binding.bcEmotions.animate()
         } else {
             val listMoodDataEntry: ArrayList<BarEntry> = ArrayList()
-            listMoodDataEntry.add(BarEntry(1f, (monthlyMoodStatistics[MoodCondition.HAPPY] ?: 0).toFloat()))
-            listMoodDataEntry.add(BarEntry(2f, (monthlyMoodStatistics[MoodCondition.SAD] ?: 0).toFloat()))
-            listMoodDataEntry.add(BarEntry(3f, (monthlyMoodStatistics[MoodCondition.ANGRY] ?: 0).toFloat()))
-            listMoodDataEntry.add(BarEntry(4f, (monthlyMoodStatistics[MoodCondition.SHOCK] ?: 0).toFloat()))
-            listMoodDataEntry.add(BarEntry(5f, (monthlyMoodStatistics[MoodCondition.SCARED] ?: 0).toFloat()))
-            listMoodDataEntry.add(BarEntry(6f, (monthlyMoodStatistics[MoodCondition.DISGUSTING] ?: 0).toFloat()))
+            listMoodDataEntry.add(
+                BarEntry(
+                    1f,
+                    (monthlyMoodStatistics[MoodCondition.HAPPY] ?: 0).toFloat()
+                )
+            )
+            listMoodDataEntry.add(
+                BarEntry(
+                    2f,
+                    (monthlyMoodStatistics[MoodCondition.SAD] ?: 0).toFloat()
+                )
+            )
+            listMoodDataEntry.add(
+                BarEntry(
+                    3f,
+                    (monthlyMoodStatistics[MoodCondition.ANGRY] ?: 0).toFloat()
+                )
+            )
+            listMoodDataEntry.add(
+                BarEntry(
+                    4f,
+                    (monthlyMoodStatistics[MoodCondition.SHOCK] ?: 0).toFloat()
+                )
+            )
+            listMoodDataEntry.add(
+                BarEntry(
+                    5f,
+                    (monthlyMoodStatistics[MoodCondition.SCARED] ?: 0).toFloat()
+                )
+            )
+            listMoodDataEntry.add(
+                BarEntry(
+                    6f,
+                    (monthlyMoodStatistics[MoodCondition.DISGUSTING] ?: 0).toFloat()
+                )
+            )
 
             val moodBarDataset = BarDataSet(listMoodDataEntry, "Mood")
             moodBarDataset.color = getColor(R.color.cream_75)
@@ -109,28 +173,13 @@ class StatisticsActivity : AppCompatActivity() {
 
             val moodBarChart = binding.bcEmotions
             moodBarChart.refreshDrawableState()
-            moodBarChart.setFitBars(false)
-            moodBarChart.description.text = "" //set null to description
-            moodBarChart.legend.isEnabled = false //disable legend
-
-            //        barChart.getAxisRight().setDrawGridLines(false);
-            moodBarChart.axisRight.isEnabled = false //disable right axis
-            moodBarChart.xAxis.isEnabled = false
-//        barChart.getAxisLeft().setDrawGridLines(false);
-            moodBarChart.xAxis.setDrawGridLines(false)
-
-            moodBarChart.axisLeft.setDrawLabels(true) //disable label on right
-            moodBarChart.axisLeft.typeface = ResourcesCompat.getFont(this, R.font.league_spartan_bold)
-            moodBarChart.axisLeft.textSize = 16f
-            moodBarChart.axisLeft.textColor = Color.WHITE
-            moodBarChart.axisLeft.axisMinimum = 0F
-            moodBarChart.setScaleEnabled(false) //disable zoom
-
 
             val moodBarData = BarData(moodBarDataset)
             moodBarChart.notifyDataSetChanged()
             moodBarChart.data = moodBarData
             moodBarChart.invalidate()
+
+            moodBarChart.animateXY(500,500)
         }
     }
 }
