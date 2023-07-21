@@ -1,4 +1,4 @@
-package com.icetetik.journal
+package com.icetetik.journal.mood
 
 import android.content.Context
 import android.view.LayoutInflater

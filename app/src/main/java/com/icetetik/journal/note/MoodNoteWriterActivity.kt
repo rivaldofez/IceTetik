@@ -1,10 +1,9 @@
-package com.icetetik.journal
+package com.icetetik.journal.note
 
 import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.icetetik.R
 import com.icetetik.databinding.ActivityMoodNoteWriterBinding
 import com.icetetik.util.KeyParcelable
 

@@ -1,7 +1,6 @@
 package com.icetetik.journal
 
 import android.app.Activity
-import android.app.Instrumentation.ActivityResult
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,11 +11,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.Timestamp
-import com.icetetik.MoodActivity
-import com.icetetik.authentication.signup.SignUpActivity
 import com.icetetik.data.model.Mood
 import com.icetetik.data.model.MoodItemView
 import com.icetetik.databinding.ActivityJournalBinding
+import com.icetetik.journal.calendar.CalendarAdapter
+import com.icetetik.journal.calendar.CalendarItemCallback
+import com.icetetik.journal.mood.MoodChooserActivity
+import com.icetetik.journal.note.MoodNoteWriterActivity
 import com.icetetik.util.Helper
 import com.icetetik.util.KeyParcelable
 import com.icetetik.util.UiState
@@ -24,7 +25,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.ZoneOffset
-import java.time.format.DateTimeFormatter
 import java.util.Date
 
 @AndroidEntryPoint

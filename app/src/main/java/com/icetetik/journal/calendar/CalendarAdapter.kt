@@ -1,4 +1,4 @@
-package com.icetetik.journal
+package com.icetetik.journal.calendar
 
 import android.content.Context
 import android.graphics.Typeface
@@ -21,7 +21,6 @@ class CalendarAdapter(val context: Context, val callback: CalendarItemCallback) 
         val binding =
             ItemCalendarBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         val layoutparams = binding.root.layoutParams
-//        layoutparams.height = (parent.height * 0.07).toInt()
         layoutparams.height = parent.width / 7
         return CalendarViewHolder(binding)
     }

@@ -1,4 +1,4 @@
-package com.icetetik.journal
+package com.icetetik.journal.mood
 
 import com.icetetik.data.model.MoodItemView
 
