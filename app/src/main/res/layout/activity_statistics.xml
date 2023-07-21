@@ -17,7 +17,7 @@
        android:fontFamily="@font/league_spartan_bold"
        android:textColor="@color/cream_100"
        android:textAlignment="center"
-       android:textSize="28sp"
+       android:textSize="24sp"
        android:layout_margin="16dp"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +34,6 @@
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintBottom_toTopOf="@id/ll_text_emotions"
        app:layout_constraintTop_toBottomOf="@id/tv_title"/>
-
 
    <LinearLayout
        android:id="@+id/ll_text_emotions"
@@ -204,23 +203,34 @@
 
    <ImageView
        android:id="@+id/btn_prev_month"
-       android:layout_width="80dp"
-       android:layout_height="80dp"
-       android:src="@drawable/img_arrow_previous"
+       android:layout_width="50dp"
+       android:layout_height="50dp"
+       android:scaleType="fitCenter"
+       android:src="@drawable/ic_previous_24"
        android:layout_marginBottom="16dp"
+       app:tint="@color/cream_100"
+       android:layout_marginStart="32dp"
        app:layout_constraintBottom_toBottomOf="parent"
        app:layout_constraintEnd_toStartOf="@+id/tv_month"
        app:layout_constraintStart_toStartOf="parent" />
 
    <TextView
        android:id="@+id/tv_month"
-       android:layout_width="wrap_content"
+       android:layout_width="0dp"
        android:layout_height="wrap_content"
        android:text="Februari"
        android:textSize="36sp"
        android:fontFamily="@font/league_spartan_bold"
        android:textColor="@color/cream_100"
        android:textStyle="bold"
+       android:textAlignment="center"
+       android:maxLines="1"
+       android:gravity="center"
+       android:layout_marginHorizontal="16dp"
+       app:autoSizeMaxTextSize="36sp"
+       app:autoSizeMinTextSize="18sp"
+       app:autoSizeStepGranularity="1sp"
+       app:autoSizeTextType="uniform"
        app:layout_constraintBottom_toBottomOf="@id/btn_prev_month"
        app:layout_constraintEnd_toStartOf="@+id/btn_next_month"
        app:layout_constraintStart_toEndOf="@+id/btn_prev_month"
@@ -228,9 +238,12 @@
 
    <ImageView
        android:id="@+id/btn_next_month"
-       android:layout_width="80dp"
-       android:layout_height="80dp"
-       android:src="@drawable/img_arrow_next"
+       android:layout_width="50dp"
+       android:layout_height="50dp"
+       android:scaleType="fitCenter"
+       android:src="@drawable/ic_next_24"
+       app:tint="@color/cream_100"
+       android:layout_marginEnd="32dp"
        app:layout_constraintBottom_toBottomOf="@id/btn_prev_month"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toEndOf="@+id/tv_month"
