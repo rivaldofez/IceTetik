@@ -17,12 +17,12 @@ class MoodChooserActivity : AppCompatActivity(), MoodItemCallback {
 
 
     private val listMoodItemView = listOf(
-        MoodItemView(condition = "Happy", image = R.drawable.img_happy),
-        MoodItemView(condition = "Sad", image = R.drawable.img_sad),
-        MoodItemView(condition = "Angry", image = R.drawable.img_angry),
-        MoodItemView(condition = "Shock", image = R.drawable.img_shock),
-        MoodItemView(condition = "Scared", image = R.drawable.img_scared),
-        MoodItemView(condition = "Disgusting", image = R.drawable.img_disgusting)
+        MoodItemView(condition = "Senang", image = R.drawable.img_happy),
+        MoodItemView(condition = "Sedih", image = R.drawable.img_sad),
+        MoodItemView(condition = "Marah", image = R.drawable.img_angry),
+        MoodItemView(condition = "Terkejut", image = R.drawable.img_shock),
+        MoodItemView(condition = "Takut", image = R.drawable.img_scared),
+        MoodItemView(condition = "Jijik", image = R.drawable.img_disgusting)
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

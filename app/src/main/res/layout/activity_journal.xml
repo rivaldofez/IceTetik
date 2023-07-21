@@ -183,6 +183,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_parent_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -197,12 +198,14 @@
 
 
             <LinearLayout
+                android:id="@+id/ll_mood_condition_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/fr_mood_card"
                 android:padding="8dp">
 
                 <ImageView
+                    android:id="@+id/iv_mood_condition"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:src="@drawable/img_smile"
@@ -212,6 +215,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/tv_mood_condition"
                     style="@style/MoodCardTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -224,6 +228,7 @@
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ll_mood_note_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -242,7 +247,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tv_desc_mood_card"
+                    android:id="@+id/tv_mood_note"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -250,6 +255,7 @@
                     android:fontFamily="@font/league_spartan_regular"
                     android:text="hari ini aku merasa senang karena aku lolos pendanaan untuk PKM-K, tinggal selangkah lagi untuk menuju PIMNAS bersama timku...."
                     android:textSize="13sp"
+                    android:maxLines="3"
                     app:layout_constraintBottom_toTopOf="@+id/tv_read_more_card"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -269,7 +275,7 @@
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/iv_read_more_arrow"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_desc_mood_card" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_mood_note" />
 
                 <ImageView
                     android:id="@+id/iv_read_more_arrow"

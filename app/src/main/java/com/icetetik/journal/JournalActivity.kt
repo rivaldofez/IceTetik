@@ -6,6 +6,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -61,22 +62,36 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
         binding = ActivityJournalBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setMonthView()
-
         viewModel.getUserSession { email ->
             if (email == null) {
 
             } else {
                 userEmail = email
+                val layoutManager = GridLayoutManager(this@JournalActivity, 7)
+
+                binding.rvCalendar.layoutManager = layoutManager
+                binding.rvCalendar.adapter = adapter
+
+                setMonthView()
+                updateCard()
+                loadMoodData()
+
+                setButtonAction()
+
+                setObserver()
             }
         }
+    }
 
-        val layoutManager = GridLayoutManager(this@JournalActivity, 7)
+    private fun loadMoodData(){
+        if (userEmail.isEmpty()) {
+            Toast.makeText(this, "Empty Email Session", Toast.LENGTH_SHORT).show()
+        } else {
+            viewModel.getMood(userEmail, selectedDate)
+        }
+    }
 
-        binding.rvCalendar.layoutManager = layoutManager
-        binding.rvCalendar.adapter = adapter
-
-
+    private fun setButtonAction(){
         binding.apply {
             btnNextMonth.setOnClickListener {
                 currentAdapterDate = currentAdapterDate.plusMonths(1)
@@ -98,22 +113,33 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
                 getResultNoteMood.launch(intent)
             }
         }
+    }
 
-//        binding.btnEditMoodDum.setOnClickListener {
-//            val intent = Intent(this@JournalActivity, MoodChooserActivity::class.java)
-//            getResultChosenMood.launch(intent)
-//            Log.d("Teston", "called")
-//        }
+    private fun updateCard(){
+        if(moodCondition.isEmpty() && moodNote.isEmpty()){
+            binding.llParentCard.visibility = View.GONE
+        } else {
+            binding.llParentCard.visibility = View.VISIBLE
 
+            //check mood condition
+            if(moodCondition.isEmpty()){
+                binding.llMoodConditionCard.visibility = View.GONE
+            } else {
+                binding.llMoodConditionCard.visibility = View.VISIBLE
+                binding.tvMoodCondition.text = moodCondition
+            }
 
-//        binding.btnLoadMoodDum.setOnClickListener {
-//            if(userEmail.isEmpty()){
-//                Toast.makeText( this, "Empty Email Session", Toast.LENGTH_SHORT).show()
-//            } else {
-//                viewModel.getMood(userEmail, selectedDate)
-//            }
-//        }
+            //check mood note
+            if (moodNote.isEmpty()){
+                binding.llMoodNoteCard.visibility = View.GONE
+            } else {
+                binding.llMoodNoteCard.visibility = View.VISIBLE
+                binding.tvMoodNote.text = moodNote
+            }
+        }
+    }
 
+    private fun setObserver() {
         viewModel.mood.observe(this) { state ->
             when (state) {
                 is UiState.Loading -> {
@@ -122,11 +148,16 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
 
                 is UiState.Failure -> {
                     Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+                    moodNote = ""
+                    moodCondition = ""
+                    updateCard()
                 }
 
                 is UiState.Success -> {
                     Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
-                    Log.d("Teston", state.data.toString())
+                    moodNote = state.data.note
+                    moodCondition = state.data.condition
+                    updateCard()
                 }
             }
         }
@@ -208,7 +239,8 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
             currentAdapterDate.month,
             date.toInt()
         )
-
+        loadMoodData()
+        updateCard()
         setMonthView()
     }
 
