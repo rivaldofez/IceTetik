@@ -16,6 +16,7 @@ object FireStoreDocument {
 object FirestoreDocumentField {
     val QUESTION_DATA = "question-data"
     val OPTION_DATA = "option-data"
+    val CONDITION = "condition"
 }
 
 object KeyParcelable {
