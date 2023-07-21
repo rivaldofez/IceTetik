@@ -1,9 +1,12 @@
 package com.icetetik.journal
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.icetetik.R
 import com.icetetik.databinding.ActivityMoodNoteWriterBinding
+import com.icetetik.util.KeyParcelable
 
 class MoodNoteWriterActivity : AppCompatActivity() {
 
@@ -16,6 +19,20 @@ class MoodNoteWriterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupToolbar()
+
+        binding.btnSave.setOnClickListener {
+            val note = binding.edtNote.text
+            if (note.isNullOrEmpty()){
+
+            } else {
+                val intent = Intent()
+                intent.putExtra(KeyParcelable.MOOD_NOTE, note.toString())
+                setResult(Activity.RESULT_OK, intent)
+                finish()
+            }
+
+
+        }
 
     }
 

@@ -1,5 +1,7 @@
 package com.icetetik.data.repository
 
+import android.util.Log
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.icetetik.data.model.Mood
 import com.icetetik.data.model.OptionResponse
@@ -7,6 +9,9 @@ import com.icetetik.data.model.User
 import com.icetetik.util.FireStoreCollection
 import com.icetetik.util.UiState
 import java.time.LocalDate
+import java.time.ZoneOffset
+import java.time.temporal.TemporalAdjusters
+import java.util.Date
 
 class MoodRepository(
     val database: FirebaseFirestore
@@ -34,7 +39,7 @@ class MoodRepository(
     }
 
     fun loadMood(userEmail: String, uploadDate: LocalDate , result: (UiState<Mood>) -> Unit ){
-        val document = database.collection(FireStoreCollection.USER).document(userEmail)
+        database.collection(FireStoreCollection.USER).document(userEmail)
             .collection(FireStoreCollection.MOODS)
             .document(
                 "${uploadDate.year}-${uploadDate.monthValue}-${uploadDate.dayOfMonth}"
@@ -47,6 +52,43 @@ class MoodRepository(
                     result.invoke(UiState.Failure("data empty"))
                 } else {
                     result.invoke(UiState.Success(dataResult))
+                }
+            }
+            .addOnFailureListener {
+                result.invoke(
+                    UiState.Failure(
+                        it.localizedMessage
+                    )
+                )
+            }
+    }
+
+    fun fetchMonthlyMood(userEmail: String, baseDate: LocalDate, result: (UiState<List<Mood>>) -> Unit){
+//        val localDate = LocalDate.of(2023, 7, 1)
+
+        val start = Timestamp(
+            Date.from(baseDate.with(TemporalAdjusters.firstDayOfMonth()).atStartOfDay().toInstant(
+                ZoneOffset.UTC)))
+        val end = Timestamp(
+            Date.from(baseDate.with(TemporalAdjusters.lastDayOfMonth()).atStartOfDay().toInstant(
+                ZoneOffset.UTC)))
+
+        database.collection(FireStoreCollection.USER).document(userEmail)
+            .collection(FireStoreCollection.MOODS)
+            .whereGreaterThanOrEqualTo("posted", start)
+            .whereLessThanOrEqualTo("posted",end)
+            .get()
+            .addOnSuccessListener { snapshot ->
+                if (snapshot.isEmpty) {
+                    result.invoke(UiState.Success(emptyList()))
+                } else {
+                    val listMood = ArrayList<Mood>()
+
+                    for(document in snapshot.documents){
+                        document.toObject(Mood::class.java)?.let { listMood.add(it) }
+                    }
+
+                    result.invoke(UiState.Success(listMood))
                 }
             }
             .addOnFailureListener {

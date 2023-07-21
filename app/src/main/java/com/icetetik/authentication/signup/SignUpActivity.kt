@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.icetetik.authentication.signin.SignInActivity
@@ -15,8 +16,14 @@ import com.icetetik.data.model.Question
 import com.icetetik.data.model.QuestionResponse
 import com.icetetik.databinding.ActivitySignUpBinding
 import com.icetetik.util.DummyQuestion
+import com.icetetik.util.FireStoreCollection
 import com.icetetik.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
+import java.sql.Date
+import java.time.LocalDate
+import java.time.ZoneOffset
+import java.time.temporal.TemporalAdjuster
+import java.time.temporal.TemporalAdjusters.lastDayOfMonth
 
 @AndroidEntryPoint
 class SignUpActivity : AppCompatActivity() {
@@ -35,6 +42,12 @@ class SignUpActivity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
+
+
+
+
+
+
 
 
 //        val mapData = HashMap<String, Any>()
@@ -67,6 +80,29 @@ class SignUpActivity : AppCompatActivity() {
         binding.btnToLogin.setOnClickListener {
             val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
+
+//            val localDate = LocalDate.of(2023, 7, 1)
+//
+//            val start = Timestamp(
+//                java.util.Date.from(localDate.atStartOfDay().toInstant(
+//                    ZoneOffset.UTC)))
+//            val end = Timestamp(
+//                java.util.Date.from(localDate.with(lastDayOfMonth()).atStartOfDay().toInstant(
+//                    ZoneOffset.UTC)))
+//
+//            val queryData = firestore.collection(FireStoreCollection.USER).document("rivaldofez@gmail.com")
+//                .collection(FireStoreCollection.MOODS)
+//                .whereGreaterThanOrEqualTo("posted", start)
+//                .whereLessThanOrEqualTo("posted",end)
+//                .whereEqualTo("condition", "Senang")
+//
+//            queryData
+//                .get()
+//                .addOnSuccessListener { snapshot ->
+//                    for(document in snapshot.documents){
+//                        Log.d("Teston", document.data.toString())
+//                    }
+//                }
 //
 //            firestore.collection("apps")
 //                .document("questions")

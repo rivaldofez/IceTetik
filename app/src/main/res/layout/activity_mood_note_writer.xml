@@ -36,13 +36,13 @@
         android:layout_marginBottom="24dp"
         android:inputType="textMultiLine"
         android:lineSpacingMultiplier="2"
-        app:layout_constraintBottom_toTopOf="@+id/btn_signup"
+        app:layout_constraintBottom_toTopOf="@+id/btn_save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_signup"
+        android:id="@+id/btn_save"
         style="@style/AuthButtonTextStyle"
         android:layout_width="200dp"
         android:layout_height="50dp"
