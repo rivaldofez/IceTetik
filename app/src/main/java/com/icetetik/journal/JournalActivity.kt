@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.firebase.Timestamp
 import com.icetetik.MoodActivity
 import com.icetetik.authentication.signup.SignUpActivity
 import com.icetetik.data.model.Mood
@@ -22,7 +23,9 @@ import com.icetetik.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
 import java.time.YearMonth
+import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
+import java.util.Date
 
 @AndroidEntryPoint
 class JournalActivity : AppCompatActivity(), CalendarItemCallback {
@@ -97,7 +100,6 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
             btnClose.setOnClickListener {
                 onBackPressed()
             }
-
 
             btnNextMonth.setOnClickListener {
                 currentAdapterDate = currentAdapterDate.plusMonths(1)
@@ -198,8 +200,10 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
             Toast.makeText(this, "Empty Email Session", Toast.LENGTH_SHORT).show()
         } else {
 
+
             val mood = Mood(
-                posted = "${selectedDate.year}-${selectedDate.monthValue}-${selectedDate.dayOfMonth}\"",
+//                posted = "${selectedDate.year}-${selectedDate.monthValue}-${selectedDate.dayOfMonth}\"",
+                posted = Timestamp(Date.from(selectedDate.atStartOfDay().toInstant(ZoneOffset.UTC))),
                 condition = moodCondition,
                 note = moodNote
             )
