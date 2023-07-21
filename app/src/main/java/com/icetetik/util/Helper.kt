@@ -1,6 +1,8 @@
 package com.icetetik.util
 
 import com.icetetik.R
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 object Helper {
     fun mapMoodConditionToDrawable(moodCondition: String) : Int {
@@ -13,5 +15,10 @@ object Helper {
             "Jijik" -> R.drawable.img_disgusting
             else -> R.drawable.img_brush
         }
+    }
+
+    private fun monthYearFromDate(date: LocalDate): String {
+        val formatter = DateTimeFormatter.ofPattern("MMMM yyyy")
+        return formatter.format(date)
     }
 }
