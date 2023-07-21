@@ -217,7 +217,7 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
     }
 
     private fun setMonthView() {
-        binding.tvMonth.text = monthYearFromDate(currentAdapterDate)
+        binding.tvMonth.text = Helper.monthYearFromDate(currentAdapterDate)
         val daysInMonth = generateDaysInMonthArray(currentAdapterDate)
         adapter.setData(daysInMonth, currentAdapterDate, selectedDate)
     }
@@ -243,11 +243,6 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
         daysInMonthArray.addAll(endWhiteSpace)
 
         return daysInMonthArray
-    }
-
-    private fun monthYearFromDate(date: LocalDate): String {
-        val formatter = DateTimeFormatter.ofPattern("MMMM yyyy")
-        return formatter.format(date)
     }
 
     override fun onItemCalendarClicked(date: String) {

@@ -53,4 +53,13 @@
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/primaryBackgroundColor</item>
     </style>
+
+    <style name="ItemTextBarChartMood">
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">@font/league_spartan_bold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:rotation">-45</item>
+        <item name="android:textAlignment">viewEnd</item>
+        <item name="android:maxLines">1</item>
+    </style>
 </resources>
