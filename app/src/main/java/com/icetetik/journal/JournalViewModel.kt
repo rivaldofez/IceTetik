@@ -22,8 +22,8 @@ class JournalViewModel @Inject constructor(
         get() = _addMood
 
 
-    private val _mood = MutableLiveData<UiState<Mood>>()
-    val mood: LiveData<UiState<Mood>>
+    private val _mood = MutableLiveData<UiState<Mood?>>()
+    val mood: LiveData<UiState<Mood?>>
         get() = _mood
 
 

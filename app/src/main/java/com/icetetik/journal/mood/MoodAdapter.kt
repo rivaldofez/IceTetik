@@ -31,7 +31,7 @@ class MoodAdapter(val context: Context, val callback: MoodItemCallback): Recycle
     inner class MoodViewHolder(private val binding: ItemMoodBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(moodItemView: MoodItemView){
             binding.apply {
-                tvMood.text = moodItemView.condition
+                tvMood.text = moodItemView.condition.title
                 ivMood.setImageResource(moodItemView.image)
                 root.setOnClickListener {
                     callback.onItemMoodCallback(moodItemView)

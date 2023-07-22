@@ -15,6 +15,6 @@ data class Mood(
 
 @Parcelize
 data class MoodItemView(
-    val condition: String,
+    val condition: MoodCondition,
     val image: Int
 ): Parcelable
