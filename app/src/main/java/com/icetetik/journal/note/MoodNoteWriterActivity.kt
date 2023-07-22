@@ -17,6 +17,10 @@ class MoodNoteWriterActivity : AppCompatActivity() {
         binding = ActivityMoodNoteWriterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        binding.edtNote.setText(intent.getStringExtra(KeyParcelable.MOOD_NOTE))
+
+
         setupToolbar()
 
         binding.btnSave.setOnClickListener {

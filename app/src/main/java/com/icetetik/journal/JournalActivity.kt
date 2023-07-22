@@ -4,13 +4,11 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.Timestamp
+import com.icetetik.R
 import com.icetetik.data.model.Mood
 import com.icetetik.data.model.MoodItemView
 import com.icetetik.databinding.ActivityJournalBinding
@@ -118,6 +116,13 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
 
             btnAddNote.setOnClickListener {
                 val intent = Intent(this@JournalActivity, MoodNoteWriterActivity::class.java)
+                intent.putExtra(KeyParcelable.MOOD_NOTE, moodNote)
+                getResultNoteMood.launch(intent)
+            }
+
+            llMoodNoteCard.setOnClickListener {
+                val intent = Intent(this@JournalActivity, MoodNoteWriterActivity::class.java)
+                intent.putExtra(KeyParcelable.MOOD_NOTE, moodNote)
                 getResultNoteMood.launch(intent)
             }
         }
@@ -140,7 +145,7 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
                 binding.llMoodConditionCard.animateChangeVisibility(false)
             } else {
                 binding.llMoodConditionCard.animateChangeVisibility(true)
-                binding.tvMoodCondition.text = moodCondition
+                binding.tvMoodCondition.text = getString(R.string.plc_today_mood, moodCondition)
                 binding.ivMoodCondition.setImageResource(
                     Helper.mapMoodConditionToDrawable(
                         moodCondition
@@ -191,8 +196,6 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
                         moodCondition = result.condition
                         updateCard()
                     }
-
-
                 }
             }
         }
