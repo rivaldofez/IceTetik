@@ -35,7 +35,6 @@ class NameEditText: AppCompatEditText {
 
     private fun init(){
         inputType = InputType.TYPE_TEXT_VARIATION_PERSON_NAME
-        hint = "Fullname"
 
 
         addTextChangedListener(object : TextWatcher {

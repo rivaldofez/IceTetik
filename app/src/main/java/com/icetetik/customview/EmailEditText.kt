@@ -31,7 +31,6 @@ class EmailEditText: AppCompatEditText {
 
     private fun init() {
         inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
-        hint = "Email"
         setAutofillHints(AppCompatEditText.AUTOFILL_HINT_EMAIL_ADDRESS)
         addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}

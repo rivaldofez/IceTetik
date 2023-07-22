@@ -35,7 +35,6 @@ class PasswordEditText: AppCompatEditText {
 
     private fun init(){
         inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
-        hint = "Password"
 
 
         addTextChangedListener(object : TextWatcher {

@@ -77,50 +77,50 @@ class SignUpActivity : AppCompatActivity() {
 //                Toast.makeText(this, "Failed", Toast.LENGTH_SHORT)
 //            }
 
-        binding.btnToLogin.setOnClickListener {
-            val intent = Intent(this, SignInActivity::class.java)
-            startActivity(intent)
-
-//            val localDate = LocalDate.of(2023, 7, 1)
+//        binding.btnToLogin.setOnClickListener {
+//            val intent = Intent(this, SignInActivity::class.java)
+//            startActivity(intent)
 //
-//            val start = Timestamp(
-//                java.util.Date.from(localDate.atStartOfDay().toInstant(
-//                    ZoneOffset.UTC)))
-//            val end = Timestamp(
-//                java.util.Date.from(localDate.with(lastDayOfMonth()).atStartOfDay().toInstant(
-//                    ZoneOffset.UTC)))
+////            val localDate = LocalDate.of(2023, 7, 1)
+////
+////            val start = Timestamp(
+////                java.util.Date.from(localDate.atStartOfDay().toInstant(
+////                    ZoneOffset.UTC)))
+////            val end = Timestamp(
+////                java.util.Date.from(localDate.with(lastDayOfMonth()).atStartOfDay().toInstant(
+////                    ZoneOffset.UTC)))
+////
+////            val queryData = firestore.collection(FireStoreCollection.USER).document("rivaldofez@gmail.com")
+////                .collection(FireStoreCollection.MOODS)
+////                .whereGreaterThanOrEqualTo("posted", start)
+////                .whereLessThanOrEqualTo("posted",end)
+////                .whereEqualTo("condition", "Senang")
+////
+////            queryData
+////                .get()
+////                .addOnSuccessListener { snapshot ->
+////                    for(document in snapshot.documents){
+////                        Log.d("Teston", document.data.toString())
+////                    }
+////                }
+////
+////            firestore.collection("apps")
+////                .document("questions")
+////                .get()
+////                .addOnSuccessListener { snapshot ->
+////                    val mapData = snapshot.data
+////                    val question = mapData?.get("question-datas") as List<Question>?
+////                    val option = mapData?.get("options-data") as List<Option>
+////
+////                    Log.d("Teston", question.toString())
+////                    Log.d("Teston", option.toString())
+////
+////                }
 //
-//            val queryData = firestore.collection(FireStoreCollection.USER).document("rivaldofez@gmail.com")
-//                .collection(FireStoreCollection.MOODS)
-//                .whereGreaterThanOrEqualTo("posted", start)
-//                .whereLessThanOrEqualTo("posted",end)
-//                .whereEqualTo("condition", "Senang")
 //
-//            queryData
-//                .get()
-//                .addOnSuccessListener { snapshot ->
-//                    for(document in snapshot.documents){
-//                        Log.d("Teston", document.data.toString())
-//                    }
-//                }
 //
-//            firestore.collection("apps")
-//                .document("questions")
-//                .get()
-//                .addOnSuccessListener { snapshot ->
-//                    val mapData = snapshot.data
-//                    val question = mapData?.get("question-datas") as List<Question>?
-//                    val option = mapData?.get("options-data") as List<Option>
 //
-//                    Log.d("Teston", question.toString())
-//                    Log.d("Teston", option.toString())
-//
-//                }
-
-
-
-
-        }
+//        }
 
         binding.btnSignup.setOnClickListener {
             val email = binding.edtEmail.text.toString()

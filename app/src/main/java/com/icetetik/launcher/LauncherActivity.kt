@@ -7,6 +7,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.activity.viewModels
 import com.icetetik.MoodActivity
+import com.icetetik.authentication.AuthenticationActivity
 import com.icetetik.authentication.signup.SignUpActivity
 import com.icetetik.databinding.ActivityLauncherBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,7 +25,7 @@ class LauncherActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             viewModel.getUserSession { email ->
                 if (email == null){
-                    startActivity(Intent(this@LauncherActivity, SignUpActivity::class.java))
+                    startActivity(Intent(this@LauncherActivity, AuthenticationActivity::class.java))
                 } else {
                     startActivity(Intent(this@LauncherActivity, MoodActivity::class.java))
                     finish()
