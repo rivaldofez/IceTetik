@@ -45,12 +45,12 @@ class SignInActivity : AppCompatActivity() {
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
 
-        binding.btnToSignup.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
-        }
+//        binding.btnToSignup.setOnClickListener {
+//            val intent = Intent(this, SignUpActivity::class.java)
+//            startActivity(intent)
+//        }
 
-        binding.btnLogin.setOnClickListener {
+        binding.btnSignin.setOnClickListener {
             val email = binding.edtEmail.text.toString()
             val pass = binding.edtPassword.text.toString()
 
@@ -71,9 +71,9 @@ class SignInActivity : AppCompatActivity() {
             }
         }
 
-        binding.btnLoginGoogle.setOnClickListener {
-            signInGoogle()
-        }
+//        binding.btnLoginGoogle.setOnClickListener {
+//            signInGoogle()
+//        }
 
         viewModel.signInUser.observe(this) { state ->
             when (state) {
