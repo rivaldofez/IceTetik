@@ -1,22 +1,23 @@
 package com.icetetik.journal
 
 import android.app.Activity
-import android.app.Instrumentation.ActivityResult
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.Timestamp
-import com.icetetik.MoodActivity
-import com.icetetik.authentication.signup.SignUpActivity
+import com.icetetik.R
 import com.icetetik.data.model.Mood
 import com.icetetik.data.model.MoodItemView
 import com.icetetik.databinding.ActivityJournalBinding
+import com.icetetik.journal.calendar.CalendarAdapter
+import com.icetetik.journal.calendar.CalendarItemCallback
+import com.icetetik.journal.mood.MoodChooserActivity
+import com.icetetik.journal.note.MoodNoteWriterActivity
+import com.icetetik.util.Extension.animateChangeVisibility
+import com.icetetik.util.Extension.showSnackBar
 import com.icetetik.util.Helper
 import com.icetetik.util.KeyParcelable
 import com.icetetik.util.UiState
@@ -24,7 +25,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.ZoneOffset
-import java.time.format.DateTimeFormatter
 import java.util.Date
 
 @AndroidEntryPoint
@@ -47,7 +47,7 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
         if (it.resultCode == Activity.RESULT_OK) {
             val moodItemView =
                 it.data?.getParcelableExtra<MoodItemView>(KeyParcelable.MOOD_CONDITION)
-            moodCondition = moodItemView?.condition ?: ""
+            moodCondition = moodItemView?.condition?.title ?: ""
             addMoodData()
         }
     }
@@ -68,7 +68,7 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
 
         viewModel.getUserSession { email ->
             if (email == null) {
-
+                binding.showSnackBar("Session Expired")
             } else {
                 userEmail = email
                 val layoutManager = GridLayoutManager(this@JournalActivity, 7)
@@ -79,23 +79,21 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
                 setMonthView()
                 updateCard()
                 loadMoodData()
-
                 setButtonAction()
-
                 setObserver()
             }
         }
     }
 
-    private fun loadMoodData(){
+    private fun loadMoodData() {
         if (userEmail.isEmpty()) {
-            Toast.makeText(this, "Empty Email Session", Toast.LENGTH_SHORT).show()
+            binding.showSnackBar("Session Expired")
         } else {
             viewModel.getMood(userEmail, selectedDate)
         }
     }
 
-    private fun setButtonAction(){
+    private fun setButtonAction() {
         binding.apply {
             btnClose.setOnClickListener {
                 onBackPressed()
@@ -118,36 +116,50 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
 
             btnAddNote.setOnClickListener {
                 val intent = Intent(this@JournalActivity, MoodNoteWriterActivity::class.java)
+                intent.putExtra(KeyParcelable.MOOD_NOTE, moodNote)
+                getResultNoteMood.launch(intent)
+            }
+
+            llMoodNoteCard.setOnClickListener {
+                val intent = Intent(this@JournalActivity, MoodNoteWriterActivity::class.java)
+                intent.putExtra(KeyParcelable.MOOD_NOTE, moodNote)
                 getResultNoteMood.launch(intent)
             }
         }
     }
 
-    private fun updateCard(){
-        if(moodCondition.isEmpty() && moodNote.isEmpty()){
-            binding.llParentCard.visibility = View.GONE
-            binding.btnAddMood.setText("Tambah Mood")
-            binding.btnAddNote.setText("Tambah Catatan")
+    private fun updateCard() {
+        if (moodCondition.isEmpty() && moodNote.isEmpty()) {
+            binding.llParentCard.animateChangeVisibility(false)
+
+
+            binding.btnAddMood.text = "Tambah Mood"
+            binding.btnAddNote.text = "Tambah Catatan"
         } else {
-            binding.llParentCard.visibility = View.VISIBLE
+            binding.llParentCard.animateChangeVisibility(true)
 
             //check mood condition
-            if(moodCondition.isEmpty()){
-                binding.btnAddMood.setText("Tambah Mood")
-                binding.llMoodConditionCard.visibility = View.GONE
+            if (moodCondition.isEmpty()) {
+                binding.btnAddMood.text = "Tambah Mood"
+
+                binding.llMoodConditionCard.animateChangeVisibility(false)
             } else {
-                binding.llMoodConditionCard.visibility = View.VISIBLE
-                binding.tvMoodCondition.text = moodCondition
-                binding.ivMoodCondition.setImageResource(Helper.mapMoodConditionToDrawable(moodCondition))
-                binding.btnAddMood.setText("Edit Mood")
+                binding.llMoodConditionCard.animateChangeVisibility(true)
+                binding.tvMoodCondition.text = getString(R.string.plc_today_mood, moodCondition)
+                binding.ivMoodCondition.setImageResource(
+                    Helper.mapMoodConditionToDrawable(
+                        moodCondition
+                    )
+                )
+                binding.btnAddMood.text = "Edit Mood"
             }
 
             //check mood note
-            if (moodNote.isEmpty()){
+            if (moodNote.isEmpty()) {
                 binding.btnAddNote.setText("Tambah Catatan")
-                binding.llMoodNoteCard.visibility = View.GONE
+                binding.llMoodNoteCard.animateChangeVisibility(false)
             } else {
-                binding.llMoodNoteCard.visibility = View.VISIBLE
+                binding.llMoodNoteCard.animateChangeVisibility(true)
                 binding.tvMoodNote.text = moodNote
                 binding.btnAddNote.setText("Edit Catatan")
             }
@@ -158,21 +170,32 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
         viewModel.mood.observe(this) { state ->
             when (state) {
                 is UiState.Loading -> {
-                    Toast.makeText(this, "Loading", Toast.LENGTH_SHORT).show()
+                    showLoading(isLoading = true)
                 }
 
                 is UiState.Failure -> {
-                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+                    showLoading(isLoading = false)
+                    binding.showSnackBar("There's error occured while process your request")
                     moodNote = ""
                     moodCondition = ""
                     updateCard()
                 }
 
                 is UiState.Success -> {
-                    Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
-                    moodNote = state.data.note
-                    moodCondition = state.data.condition
-                    updateCard()
+                    showLoading(isLoading = false)
+
+                    val result = state.data
+                    if (result == null) {
+                        moodNote = ""
+                        moodCondition = ""
+                        updateCard()
+
+                        binding.showSnackBar("Mood atau Jurnal belum ditambahkan")
+                    } else {
+                        moodNote = result.note
+                        moodCondition = result.condition
+                        updateCard()
+                    }
                 }
             }
         }
@@ -180,15 +203,16 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
         viewModel.addMood.observe(this) { state ->
             when (state) {
                 is UiState.Loading -> {
-                    Toast.makeText(this, "Loading", Toast.LENGTH_SHORT).show()
+                    showLoading(isLoading = true)
                 }
 
                 is UiState.Failure -> {
-                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+                    showLoading(isLoading = false)
+                    binding.showSnackBar("There's error occured while process your request")
                 }
 
                 is UiState.Success -> {
-                    Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+                    showLoading(isLoading = false)
                     updateCard()
                 }
             }
@@ -197,13 +221,14 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
 
     private fun addMoodData() {
         if (userEmail.isEmpty()) {
-            Toast.makeText(this, "Empty Email Session", Toast.LENGTH_SHORT).show()
+            binding.showSnackBar("Session Expired")
         } else {
-
-
             val mood = Mood(
-//                posted = "${selectedDate.year}-${selectedDate.monthValue}-${selectedDate.dayOfMonth}\"",
-                posted = Timestamp(Date.from(selectedDate.atStartOfDay().toInstant(ZoneOffset.UTC))),
+                posted = Timestamp(
+                    Date.from(
+                        selectedDate.atStartOfDay().toInstant(ZoneOffset.UTC)
+                    )
+                ),
                 condition = moodCondition,
                 note = moodNote
             )
@@ -213,6 +238,17 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
                 mood = mood,
                 uploadDate = selectedDate
             )
+        }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.apply {
+            sblLoading.root.animateChangeVisibility(isLoading)
+            btnNextMonth.isEnabled = !isLoading
+            btnPrevMonth.isEnabled = !isLoading
+            rvCalendar.isEnabled = !isLoading
+            btnAddMood.isEnabled = !isLoading
+            btnAddNote.isEnabled = !isLoading
         }
     }
 
@@ -246,7 +282,6 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
     }
 
     override fun onItemCalendarClicked(date: String) {
-        Log.d("Teston", "date " + date)
         selectedDate = LocalDate.of(
             currentAdapterDate.year,
             currentAdapterDate.month,

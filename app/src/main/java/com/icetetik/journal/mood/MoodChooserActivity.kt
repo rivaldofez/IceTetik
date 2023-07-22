@@ -1,29 +1,22 @@
-package com.icetetik.journal
+package com.icetetik.journal.mood
 
 import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import com.icetetik.R
+import com.icetetik.data.model.MoodCondition
 import com.icetetik.data.model.MoodItemView
 import com.icetetik.databinding.ActivityMoodChooserBinding
 import com.icetetik.util.KeyParcelable
+import com.icetetik.util.MoodConstants
 
 class MoodChooserActivity : AppCompatActivity(), MoodItemCallback {
     private lateinit var binding: ActivityMoodChooserBinding
     private val adapter = MoodAdapter(this@MoodChooserActivity, this)
 
-
-    private val listMoodItemView = listOf(
-        MoodItemView(condition = "Senang", image = R.drawable.img_happy),
-        MoodItemView(condition = "Sedih", image = R.drawable.img_sad),
-        MoodItemView(condition = "Marah", image = R.drawable.img_angry),
-        MoodItemView(condition = "Terkejut", image = R.drawable.img_shock),
-        MoodItemView(condition = "Takut", image = R.drawable.img_scared),
-        MoodItemView(condition = "Jijik", image = R.drawable.img_disgusting)
-    )
+    private val listMoodItemView = MoodConstants.moodItemViews
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

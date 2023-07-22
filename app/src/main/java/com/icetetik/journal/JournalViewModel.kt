@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.icetetik.data.model.Mood
-import com.icetetik.data.model.Question
 import com.icetetik.data.repository.AuthRepository
 import com.icetetik.data.repository.MoodRepository
 import com.icetetik.util.UiState
@@ -14,8 +13,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class JournalViewModel @Inject constructor(
-    val moodRepository: MoodRepository,
-    val authRepository: AuthRepository
+    private val moodRepository: MoodRepository,
+    private val authRepository: AuthRepository
 ): ViewModel(){
 
     private val _addMood = MutableLiveData<UiState<String>>()
@@ -23,8 +22,8 @@ class JournalViewModel @Inject constructor(
         get() = _addMood
 
 
-    private val _mood = MutableLiveData<UiState<Mood>>()
-    val mood: LiveData<UiState<Mood>>
+    private val _mood = MutableLiveData<UiState<Mood?>>()
+    val mood: LiveData<UiState<Mood?>>
         get() = _mood
 
 

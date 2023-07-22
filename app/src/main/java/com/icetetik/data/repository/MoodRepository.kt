@@ -45,7 +45,7 @@ class MoodRepository(
             }
     }
 
-    fun loadMood(userEmail: String, uploadDate: LocalDate, result: (UiState<Mood>) -> Unit) {
+    fun loadMood(userEmail: String, uploadDate: LocalDate, result: (UiState<Mood?>) -> Unit) {
         database.collection(FireStoreCollection.USER).document(userEmail)
             .collection(FireStoreCollection.MOODS)
             .document(
@@ -56,7 +56,7 @@ class MoodRepository(
                 val dataResult = snapshot.toObject(Mood::class.java)
 
                 if (dataResult == null) {
-                    result.invoke(UiState.Failure("data empty"))
+                    result.invoke(UiState.Success(null))
                 } else {
                     result.invoke(UiState.Success(dataResult))
                 }

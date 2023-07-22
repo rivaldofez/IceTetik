@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">IceTetik</string>
     <string name="cd_logo_splash">Logo of Ice-Tetik</string>
+    <string name="plc_today_mood">You are %s today</string>
 </resources>

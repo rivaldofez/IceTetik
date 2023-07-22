@@ -6,13 +6,9 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.activity.viewModels
-import com.google.firebase.auth.FirebaseAuth
 import com.icetetik.MoodActivity
 import com.icetetik.authentication.signup.SignUpActivity
-import com.icetetik.data.model.Mood
 import com.icetetik.databinding.ActivityLauncherBinding
-import com.icetetik.journal.MoodChooserActivity
-import com.icetetik.journal.MoodNoteWriterActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -14,10 +14,10 @@
         android:theme="@style/Theme.IceTetik"
         tools:targetApi="31">
         <activity
-            android:name=".journal.MoodNoteWriterActivity"
+            android:name=".journal.note.MoodNoteWriterActivity"
             android:exported="false" />
         <activity
-            android:name=".journal.MoodChooserActivity"
+            android:name=".journal.mood.MoodChooserActivity"
             android:exported="false" />
         <activity
             android:name=".questionnaire.QuestionnaireActivity"
