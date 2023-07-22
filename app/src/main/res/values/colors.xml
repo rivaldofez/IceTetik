@@ -10,8 +10,8 @@
     <color name="cream_25">#FFfef9e9</color>
     <color name="gold_50">#f4d177 </color>
     <color name="red_75">#dd6f6f</color>
-
     <color name="drop_transparent_50">#80FFFFFF</color>
     <color name="green_50">#486E33</color>
+    <color name="gray_50">#D3D3D3</color>
 
 </resources>
