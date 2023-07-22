@@ -75,6 +75,27 @@ class AuthRepository(
         }
     }
 
+    fun getUserInfo(userEmail: String, result: (UiState<User?>) -> Unit){
+        val document = database.collection((FireStoreCollection.USER)).document(userEmail)
+            .get()
+            .addOnSuccessListener { snapshot ->
+                val dataResult = snapshot.toObject(User::class.java)
+                if (dataResult == null){
+                    result.invoke(UiState.Success(null))
+                } else {
+                    result.invoke(UiState.Success(dataResult))
+                }
+            }
+            .addOnFailureListener {
+                result.invoke(
+                    UiState.Failure(
+                        it.localizedMessage
+                    )
+                )
+            }
+
+    }
+
     fun saveUserInfo(user: User, result: (UiState<String>) -> Unit) {
         val document = database.collection(FireStoreCollection.USER).document(user.email)
         document.set(user)
