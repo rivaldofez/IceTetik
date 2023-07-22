@@ -4,18 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".authentication.signin.SignInActivity"
-    android:orientation="vertical"
     android:background="@color/primaryBackgroundColor"
+    android:orientation="vertical"
     android:padding="36dp"
-    >
+    tools:context=".authentication.signin.SignInActivity">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/cream_75"
-
-        >
+        android:background="@color/cream_75">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -80,21 +77,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="32dp"
                 android:background="@drawable/fr_button_primary"
                 android:paddingHorizontal="8dp"
                 android:text="Login"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edt_password" />
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
+    <include
+        android:id="@+id/sbl_loading"
+        layout="@layout/sublayout_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
