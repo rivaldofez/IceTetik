@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -16,8 +15,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.icetetik.MoodActivity
 import com.icetetik.R
-import com.icetetik.authentication.signup.SignUpActivity
 import com.icetetik.databinding.ActivitySignInBinding
+import com.icetetik.util.Extension.animateChangeVisibility
+import com.icetetik.util.Extension.showSnackBar
 import com.icetetik.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,6 +29,13 @@ class SignInActivity : AppCompatActivity() {
 
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
+
+    private val signInGoogleLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
+        if (result.resultCode == Activity.RESULT_OK){
+            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+            handleResultSignInGoogle(task)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,93 +50,101 @@ class SignInActivity : AppCompatActivity() {
             .build()
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
+        setButtonAction()
+        setObservers()
+    }
 
+    private fun setButtonAction(){
+        binding.apply {
+            btnSignin.setOnClickListener {
+                signInUser()
+            }
 
-        binding.btnToSignup.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.btnLogin.setOnClickListener {
-            val email = binding.edtEmail.text.toString()
-            val pass = binding.edtPassword.text.toString()
-
-            if (email.isNotEmpty() && pass.isNotEmpty()){
-                viewModel.signIn(email = email, password = pass)
-
-
-//                    firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
-//                        if (it.isSuccessful){
-//                            val intent = Intent(this, MoodActivity::class.java)
-//                            startActivity(intent)
-//                        } else {
-//                            Toast.makeText(this, "failed to login because ${it.exception.toString()}", Toast.LENGTH_SHORT).show()
-//                        }
-//                    }
-            } else {
-                Toast.makeText(this, "Empty fields not allowed", Toast.LENGTH_SHORT).show()
+            btnSigninGoogle.setOnClickListener {
+                signInUserWithGoogle()
             }
         }
+    }
 
-        binding.btnLoginGoogle.setOnClickListener {
-            signInGoogle()
-        }
-
+    private fun setObservers(){
         viewModel.signInUser.observe(this) { state ->
             when (state) {
                 is UiState.Loading -> {
-                    Toast.makeText(this, "Loading", Toast.LENGTH_SHORT).show()
+                    showLoading(isLoading = true)
                 }
 
                 is UiState.Failure -> {
-                    Toast.makeText(this, state.error, Toast.LENGTH_SHORT).show()
+                    showLoading(isLoading = false)
+                    binding.showSnackBar(state.error.toString())
                 }
 
                 is UiState.Success -> {
-                    Toast.makeText(this, state.data, Toast.LENGTH_SHORT).show()
+                    binding.showSnackBar("Login Succesfully")
                     val intent = Intent(this, MoodActivity::class.java)
                     startActivity(intent)
+                    finish()
                 }
             }
         }
-
     }
 
-    private fun signInGoogle(){
+    private fun signInUser(){
+        binding.apply {
+            var isAllFieldValid = true
 
-        val signInIntent = googleSignInClient.signInIntent
-        launcher.launch(signInIntent)
-    }
+            val email = edtEmail.text.toString().trim()
+            val password = edtPassword.text.toString()
 
+            if (email.isEmpty() || !edtEmail.error.isNullOrEmpty())
+                isAllFieldValid = false
 
-    private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
-        if (result.resultCode == Activity.RESULT_OK){
-            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-            handleResults(task)
+            if (password.isEmpty() || !edtPassword.error.isNullOrEmpty())
+                isAllFieldValid = false
+
+            if (isAllFieldValid){
+                viewModel.signIn(email = email, password = password)
+            } else {
+                showSnackBar("All field must be valid and filled, please try again")
+            }
         }
     }
 
-    private fun handleResults(task: Task<GoogleSignInAccount>) {
+    private fun signInUserWithGoogle(){
+        showLoading(isLoading = true)
+        val signInIntent = googleSignInClient.signInIntent
+        signInGoogleLauncher.launch(signInIntent)
+    }
+
+    private fun handleResultSignInGoogle(task: Task<GoogleSignInAccount>) {
         if (task.isSuccessful){
             val account: GoogleSignInAccount? = task.result
-            if (account != null ){
+            if (account == null ){
+                showLoading(isLoading = false)
+            } else {
                 //update UI Account
-                updateUIAccount(account)
+                val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+                firebaseAuth.signInWithCredential(credential).addOnCompleteListener {
+                    if (it.isSuccessful){
+                        val intent = Intent(this, MoodActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        binding.showSnackBar("Error occured while sign in your account, please try again")
+                    }
+                    showLoading(isLoading = false)
+                }
             }
         } else {
-            Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
+            showLoading(isLoading = false)
+            binding.showSnackBar("Error occured because system cannot retrieve user account data")
         }
     }
 
-    private fun updateUIAccount(account: GoogleSignInAccount) {
-        val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-        firebaseAuth.signInWithCredential(credential).addOnCompleteListener {
-            if (it.isSuccessful){
-                val intent = Intent(this, MoodActivity::class.java)
-                startActivity(intent)
-            } else {
-                Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
-            }
+    private fun showLoading(isLoading: Boolean){
+        binding.apply {
+            edtEmail.isEnabled = !isLoading
+            edtPassword.isEnabled = !isLoading
+            sblLoading.root.animateChangeVisibility(isLoading)
         }
     }
 }

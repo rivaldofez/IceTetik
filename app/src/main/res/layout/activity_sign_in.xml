@@ -1,50 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".authentication.signin.SignInActivity"
+    android:background="@color/primaryBackgroundColor"
     android:orientation="vertical"
-    >
+    android:padding="36dp"
+    tools:context=".authentication.signin.SignInActivity">
 
-    <EditText
-        android:id="@+id/edt_email"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        />
+        android:layout_height="match_parent"
+        android:background="@color/cream_75">
 
-    <EditText
-        android:id="@+id/edt_password"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottie_login_animation"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_margin="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/lottie_login" />
+
+            <TextView
+                android:id="@+id/tv_head_sign_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/league_spartan_bold"
+                android:text="Sign In User"
+                android:textSize="28sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lottie_login_animation" />
+
+            <com.icetetik.customview.EmailEditText
+                android:id="@+id/edt_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/black"
+                android:drawableStart="@drawable/ic_email_24"
+                android:drawableTint="@color/black"
+                android:drawablePadding="8dp"
+                android:hint="Email"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_head_sign_in" />
+
+            <com.icetetik.customview.PasswordEditText
+                android:id="@+id/edt_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/black"
+                android:drawableStart="@drawable/ic_password_24"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/black"
+                android:textSize="16sp"
+                android:hint="Password"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edt_email" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_signin"
+                style="@style/AuthButtonTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/fr_button_primary"
+                android:paddingHorizontal="8dp"
+                android:text="Sign In"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_password" />
+
+            <TextView
+                android:id="@+id/tv_or"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="or"
+                android:layout_margin="8dp"
+                android:fontFamily="@font/league_spartan_bold"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_signin"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_signin_google"
+                style="@style/AuthButtonTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="16dp"
+                android:background="@drawable/fr_button_white"
+                android:paddingHorizontal="8dp"
+                android:layout_marginTop="8dp"
+                android:drawableStart="@drawable/ic_google_24"
+                android:drawablePadding="-24dp"
+                android:text="Sign in with Google"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_or" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </ScrollView>
+
+    <include
+        android:id="@+id/sbl_loading"
+        layout="@layout/sublayout_loading"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="textPassword"
-        />
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone" />
 
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        />
-
-    <Button
-        android:id="@+id/btn_login_google"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login with Google"
-        />
-
-    <Button
-        android:id="@+id/btn_to_signup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Go To Sign Up"
-        />
-
-
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
