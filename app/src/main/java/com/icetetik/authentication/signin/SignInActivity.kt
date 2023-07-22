@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -16,7 +15,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.icetetik.MoodActivity
 import com.icetetik.R
-import com.icetetik.authentication.signup.SignUpActivity
 import com.icetetik.databinding.ActivitySignInBinding
 import com.icetetik.util.Extension.animateChangeVisibility
 import com.icetetik.util.Extension.showSnackBar
@@ -31,6 +29,13 @@ class SignInActivity : AppCompatActivity() {
 
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
+
+    private val signInGoogleLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
+        if (result.resultCode == Activity.RESULT_OK){
+            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+            handleResultSignInGoogle(task)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -117,8 +122,9 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun signInUserWithGoogle(){
+        showLoading(isLoading = true)
         val signInIntent = googleSignInClient.signInIntent
-        launcher.launch(signInIntent)
+        signInGoogleLauncher.launch(signInIntent)
     }
 
     private fun showLoading(isLoading: Boolean){
@@ -130,34 +136,30 @@ class SignInActivity : AppCompatActivity() {
     }
 
 
-    private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
-        if (result.resultCode == Activity.RESULT_OK){
-            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-            handleResults(task)
-        }
-    }
 
-    private fun handleResults(task: Task<GoogleSignInAccount>) {
+
+    private fun handleResultSignInGoogle(task: Task<GoogleSignInAccount>) {
         if (task.isSuccessful){
             val account: GoogleSignInAccount? = task.result
-            if (account != null ){
+            if (account == null ){
+                showLoading(isLoading = false)
+            } else {
                 //update UI Account
-                updateUIAccount(account)
+                val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+                firebaseAuth.signInWithCredential(credential).addOnCompleteListener {
+                    if (it.isSuccessful){
+                        val intent = Intent(this, MoodActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        binding.showSnackBar("Error occured while sign in your account, please try again")
+                    }
+                    showLoading(isLoading = false)
+                }
             }
         } else {
-            Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun updateUIAccount(account: GoogleSignInAccount) {
-        val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-        firebaseAuth.signInWithCredential(credential).addOnCompleteListener {
-            if (it.isSuccessful){
-                val intent = Intent(this, MoodActivity::class.java)
-                startActivity(intent)
-            } else {
-                Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
-            }
+            showLoading(isLoading = false)
+            binding.showSnackBar("Error occured because system cannot retrieve user account data")
         }
     }
 }
