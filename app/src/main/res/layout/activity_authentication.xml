@@ -101,8 +101,7 @@
                 android:background="@drawable/fr_button_white"
                 android:drawableStart="@drawable/ic_login_24"
                 android:paddingHorizontal="8dp"
-                android:text="Login"
-                android:textStyle="bold" />
+                android:text="Login" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_signup"
@@ -116,8 +115,7 @@
                 android:paddingHorizontal="8dp"
                 android:layout_marginTop="16dp"
                 android:text="Sign Up"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
+                android:textColor="@color/white" />
 
         </LinearLayout>
 

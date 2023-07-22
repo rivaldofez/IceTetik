@@ -49,7 +49,7 @@
                 android:layout_marginTop="16dp"
                 android:backgroundTint="@color/black"
                 android:drawableStart="@drawable/ic_email_24"
-                android:drawablePadding="8dp"
+                android:drawablePadding="16dp"
                 android:drawableTint="@color/black"
                 android:textSize="16sp"
                 android:hint="Email"
@@ -83,14 +83,48 @@
                 android:layout_marginTop="32dp"
                 android:background="@drawable/fr_button_primary"
                 android:paddingHorizontal="8dp"
-                android:text="Login"
+                android:text="Sign In"
+                android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edt_password" />
+
+            <TextView
+                android:id="@+id/tv_or"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="or"
+                android:layout_margin="8dp"
+                android:fontFamily="@font/league_spartan_bold"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_signin"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_signin_google"
+                style="@style/AuthButtonTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="16dp"
+                android:background="@drawable/fr_button_white"
+                android:paddingHorizontal="8dp"
+                android:layout_marginTop="8dp"
+                android:drawableStart="@drawable/ic_google_24"
+                android:text="Sign in with Google"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_or" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
     </ScrollView>
 
