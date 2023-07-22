@@ -52,18 +52,6 @@ class SignInActivity : AppCompatActivity() {
         googleSignInClient = GoogleSignIn.getClient(this, gso)
         setButtonAction()
         setObservers()
-
-
-//        binding.btnToSignup.setOnClickListener {
-//            val intent = Intent(this, SignUpActivity::class.java)
-//            startActivity(intent)
-//        }
-
-
-
-//        binding.btnLoginGoogle.setOnClickListener {
-//            signInGoogle()
-//        }
     }
 
     private fun setButtonAction(){
@@ -127,17 +115,6 @@ class SignInActivity : AppCompatActivity() {
         signInGoogleLauncher.launch(signInIntent)
     }
 
-    private fun showLoading(isLoading: Boolean){
-        binding.apply {
-            edtEmail.isEnabled = !isLoading
-            edtPassword.isEnabled = !isLoading
-            sblLoading.root.animateChangeVisibility(isLoading)
-        }
-    }
-
-
-
-
     private fun handleResultSignInGoogle(task: Task<GoogleSignInAccount>) {
         if (task.isSuccessful){
             val account: GoogleSignInAccount? = task.result
@@ -160,6 +137,14 @@ class SignInActivity : AppCompatActivity() {
         } else {
             showLoading(isLoading = false)
             binding.showSnackBar("Error occured because system cannot retrieve user account data")
+        }
+    }
+
+    private fun showLoading(isLoading: Boolean){
+        binding.apply {
+            edtEmail.isEnabled = !isLoading
+            edtPassword.isEnabled = !isLoading
+            sblLoading.root.animateChangeVisibility(isLoading)
         }
     }
 }
