@@ -64,9 +64,24 @@ class AuthRepository(
             }
     }
 
+    fun signOutUser(result: (UiState<String>) -> Unit){
+        auth.signOut()
+        val currentUser = auth.currentUser
+        if (currentUser == null){
+            result.invoke(UiState.Success("Successfully Sign Out"))
+        } else {
+            result.invoke(
+                UiState.Failure(
+                    "Cannot Sign Out, please try again."
+                )
+            )
+        }
+    }
+
+
     fun getUserSession(result: (String?) -> Unit){
         val currentUser = auth.currentUser
-        if (currentUser === null){
+        if (currentUser == null){
             result.invoke(null)
         } else {
             result.invoke(
