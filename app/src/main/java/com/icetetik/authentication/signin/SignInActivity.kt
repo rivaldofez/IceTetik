@@ -18,6 +18,8 @@ import com.icetetik.MoodActivity
 import com.icetetik.R
 import com.icetetik.authentication.signup.SignUpActivity
 import com.icetetik.databinding.ActivitySignInBinding
+import com.icetetik.util.Extension.animateChangeVisibility
+import com.icetetik.util.Extension.showSnackBar
 import com.icetetik.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -43,6 +45,8 @@ class SignInActivity : AppCompatActivity() {
             .build()
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
+        setButtonAction()
+        setObservers()
 
 
 //        binding.btnToSignup.setOnClickListener {
@@ -50,55 +54,79 @@ class SignInActivity : AppCompatActivity() {
 //            startActivity(intent)
 //        }
 
-        binding.btnSignin.setOnClickListener {
-            val email = binding.edtEmail.text.toString()
-            val pass = binding.edtPassword.text.toString()
 
-            if (email.isNotEmpty() && pass.isNotEmpty()){
-                viewModel.signIn(email = email, password = pass)
-
-
-//                    firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
-//                        if (it.isSuccessful){
-//                            val intent = Intent(this, MoodActivity::class.java)
-//                            startActivity(intent)
-//                        } else {
-//                            Toast.makeText(this, "failed to login because ${it.exception.toString()}", Toast.LENGTH_SHORT).show()
-//                        }
-//                    }
-            } else {
-                Toast.makeText(this, "Empty fields not allowed", Toast.LENGTH_SHORT).show()
-            }
-        }
 
 //        binding.btnLoginGoogle.setOnClickListener {
 //            signInGoogle()
 //        }
+    }
 
+    private fun setButtonAction(){
+        binding.apply {
+            btnSignin.setOnClickListener {
+                signInUser()
+            }
+
+            btnSigninGoogle.setOnClickListener {
+                signInUserWithGoogle()
+            }
+        }
+    }
+
+    private fun setObservers(){
         viewModel.signInUser.observe(this) { state ->
             when (state) {
                 is UiState.Loading -> {
-                    Toast.makeText(this, "Loading", Toast.LENGTH_SHORT).show()
+                    showLoading(isLoading = true)
                 }
 
                 is UiState.Failure -> {
-                    Toast.makeText(this, state.error, Toast.LENGTH_SHORT).show()
+                    showLoading(isLoading = false)
+                    binding.showSnackBar(state.error.toString())
                 }
 
                 is UiState.Success -> {
-                    Toast.makeText(this, state.data, Toast.LENGTH_SHORT).show()
+                    binding.showSnackBar("Login Succesfully")
                     val intent = Intent(this, MoodActivity::class.java)
                     startActivity(intent)
+                    finish()
                 }
             }
         }
-
     }
 
-    private fun signInGoogle(){
+    private fun signInUser(){
+        binding.apply {
+            var isAllFieldValid = true
 
+            val email = edtEmail.text.toString().trim()
+            val password = edtPassword.text.toString()
+
+            if (email.isEmpty() || !edtEmail.error.isNullOrEmpty())
+                isAllFieldValid = false
+
+            if (password.isEmpty() || !edtPassword.error.isNullOrEmpty())
+                isAllFieldValid = false
+
+            if (isAllFieldValid){
+                viewModel.signIn(email = email, password = password)
+            } else {
+                showSnackBar("All field must be valid and filled, please try again")
+            }
+        }
+    }
+
+    private fun signInUserWithGoogle(){
         val signInIntent = googleSignInClient.signInIntent
         launcher.launch(signInIntent)
+    }
+
+    private fun showLoading(isLoading: Boolean){
+        binding.apply {
+            edtEmail.isEnabled = !isLoading
+            edtPassword.isEnabled = !isLoading
+            sblLoading.root.animateChangeVisibility(isLoading)
+        }
     }
 
 

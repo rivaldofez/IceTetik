@@ -26,6 +26,7 @@ class LauncherActivity : AppCompatActivity() {
             viewModel.getUserSession { email ->
                 if (email == null){
                     startActivity(Intent(this@LauncherActivity, AuthenticationActivity::class.java))
+                    finish()
                 } else {
                     startActivity(Intent(this@LauncherActivity, MoodActivity::class.java))
                     finish()
