@@ -27,12 +27,6 @@ class NameEditText: AppCompatEditText {
         init()
     }
 
-
-    override fun onDraw(canvas: Canvas?) {
-        super.onDraw(canvas)
-        transformationMethod = PasswordTransformationMethod.getInstance()
-    }
-
     private fun init(){
         inputType = InputType.TYPE_TEXT_VARIATION_PERSON_NAME
 
@@ -41,7 +35,7 @@ class NameEditText: AppCompatEditText {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (!p0.isNullOrEmpty() && p0.length < 3 ){
+                if (!p0.isNullOrEmpty() && p0.length < 2 ){
                     error = "Fullname minimum 2 characters"
                 }
             }
