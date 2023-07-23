@@ -15,4 +15,10 @@
     <string name="cd_icon_recap_statistics">Icon Rekap</string>
     <string name="cd_icon_questionnaire">Icon Kuesioner</string>
     <string name="cd_icon_settings">Icon Pengaturan</string>
+    <string name="title_app_name">ICE-TETIK</string>
+    <string name="title_healing_app">HEALING APP</string>
+    <string name="title_your_healing_partner">Your healing partner.</string>
+    <string name="txt_sign_in">Sign In</string>
+    <string name="txt_sign_up">Sign Up</string>
+    <string name="cd_image_heart">Image Heart Ice-Tetik</string>
 </resources>

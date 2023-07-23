@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="ICE-TETIK"
+                android:text="@string/title_app_name"
                 android:textSize="22sp" />
 
             <TextView
@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="HEALING APP"
+                android:text="@string/title_healing_app"
                 android:textSize="28sp" />
 
         </LinearLayout>
@@ -67,7 +67,10 @@
                 android:layout_gravity="center"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/img_heart" />
+                android:src="@drawable/img_heart"
+                android:contentDescription="@string/cd_image_heart"
+
+                />
 
             <TextView
                 android:id="@+id/tv_title_yourhealing"
@@ -76,7 +79,7 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/league_spartan_bold"
                 android:layout_marginTop="16dp"
-                android:text="Your healing partner."
+                android:text="@string/title_your_healing_partner"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -101,7 +104,7 @@
                 android:background="@drawable/fr_button_white"
                 android:drawableStart="@drawable/ic_login_24"
                 android:paddingHorizontal="8dp"
-                android:text="Login" />
+                android:text="@string/txt_sign_in" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_signup"
@@ -114,7 +117,7 @@
                 android:drawableTint="@color/white"
                 android:paddingHorizontal="8dp"
                 android:layout_marginTop="16dp"
-                android:text="Sign Up"
+                android:text="@string/txt_sign_up"
                 android:textColor="@color/white" />
 
         </LinearLayout>
