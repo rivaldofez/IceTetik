@@ -21,4 +21,20 @@
     <string name="txt_sign_in">Sign In</string>
     <string name="txt_sign_up">Sign Up</string>
     <string name="cd_image_heart">Image Heart Ice-Tetik</string>
+    <string name="cd_icon_close">Icon tutup halaman</string>
+    <string name="icon_previous_month">Icon bulan sebelumnya</string>
+    <string name="icon_next_month">Icon bulan selanjutnya</string>
+    <string name="title_sunday">Min</string>
+    <string name="title_monday">Sen</string>
+    <string name="title_tuesday">Sel</string>
+    <string name="title_wednesday">Rab</string>
+    <string name="title_thursday">Kam</string>
+    <string name="title_friday">Jum</string>
+    <string name="title_saturday">Sab</string>
+    <string name="txt_add_mood">Tambah Mood</string>
+    <string name="txt_add_note">Tambah Catatan</string>
+    <string name="cd_image_mood_relevant_date">Image mood pada tanggal tersebut</string>
+    <string name="cd_image_note_with_relevant_date">Image note pada tanggal tersebut</string>
+    <string name="txt_read_more">baca lebih lanjut</string>
+    <string name="cd_icon_read_more">Icon read more</string>
 </resources>
