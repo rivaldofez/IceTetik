@@ -168,6 +168,7 @@ class SettingsActivity : AppCompatActivity() {
     private fun showLoading(isLoading: Boolean) {
         binding.apply {
             sblLoading.root.animateChangeVisibility(isLoading)
+            if (isLoading) sblLoading.lottieLoading.playAnimation() else sblLoading.lottieLoading.pauseAnimation()
         }
     }
 }

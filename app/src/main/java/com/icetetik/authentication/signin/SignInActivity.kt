@@ -231,6 +231,8 @@ class SignInActivity : AppCompatActivity() {
             edtEmail.isEnabled = !isLoading
             edtPassword.isEnabled = !isLoading
             sblLoading.root.animateChangeVisibility(isLoading)
+
+            if (isLoading) sblLoading.lottieLoading.playAnimation() else sblLoading.lottieLoading.pauseAnimation()
         }
     }
 
