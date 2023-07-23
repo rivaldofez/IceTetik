@@ -3,6 +3,7 @@ package com.icetetik.util
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.view.View
+import android.widget.Toast
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -23,5 +24,9 @@ object Extension {
 
     fun Float.toSp(context: Context): Float{
         return this* context.resources.displayMetrics.scaledDensity
+    }
+
+    fun Context.showShortToast(message: String){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }

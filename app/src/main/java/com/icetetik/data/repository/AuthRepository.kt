@@ -64,15 +64,51 @@ class AuthRepository(
             }
     }
 
+    fun signOutUser(result: (UiState<String>) -> Unit){
+        auth.signOut()
+        val currentUser = auth.currentUser
+        if (currentUser == null){
+            result.invoke(UiState.Success("Successfully Sign Out"))
+        } else {
+            result.invoke(
+                UiState.Failure(
+                    "Cannot Sign Out, please try again."
+                )
+            )
+        }
+    }
+
+
     fun getUserSession(result: (String?) -> Unit){
         val currentUser = auth.currentUser
-        if (currentUser === null){
+        if (currentUser == null){
             result.invoke(null)
         } else {
             result.invoke(
                 currentUser.email
             )
         }
+    }
+
+    fun getUserInfo(userEmail: String, result: (UiState<User?>) -> Unit){
+        val document = database.collection((FireStoreCollection.USER)).document(userEmail)
+            .get()
+            .addOnSuccessListener { snapshot ->
+                val dataResult = snapshot.toObject(User::class.java)
+                if (dataResult == null){
+                    result.invoke(UiState.Success(null))
+                } else {
+                    result.invoke(UiState.Success(dataResult))
+                }
+            }
+            .addOnFailureListener {
+                result.invoke(
+                    UiState.Failure(
+                        it.localizedMessage
+                    )
+                )
+            }
+
     }
 
     fun saveUserInfo(user: User, result: (UiState<String>) -> Unit) {

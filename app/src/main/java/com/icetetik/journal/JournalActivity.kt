@@ -249,6 +249,7 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
             rvCalendar.isEnabled = !isLoading
             btnAddMood.isEnabled = !isLoading
             btnAddNote.isEnabled = !isLoading
+            if (isLoading) sblLoading.lottieLoading.playAnimation() else sblLoading.lottieLoading.pauseAnimation()
         }
     }
 

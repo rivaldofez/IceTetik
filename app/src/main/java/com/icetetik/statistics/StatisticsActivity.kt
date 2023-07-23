@@ -51,6 +51,7 @@ class StatisticsActivity : AppCompatActivity() {
             sblLoading.root.animateChangeVisibility(isLoading)
             btnNextMonth.isEnabled = !isLoading
             btnPrevMonth.isEnabled = !isLoading
+            if (isLoading) sblLoading.lottieLoading.playAnimation() else sblLoading.lottieLoading.pauseAnimation()
         }
     }
 

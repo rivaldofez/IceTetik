@@ -109,6 +109,7 @@ class SignUpActivity : AppCompatActivity() {
             edtPassword.isEnabled = !isLoading
             edtRetypePassword.isEnabled = !isLoading
             sblLoading.root.animateChangeVisibility(isLoading)
+            if (isLoading) sblLoading.lottieLoading.playAnimation() else sblLoading.lottieLoading.pauseAnimation()
         }
     }
 }
