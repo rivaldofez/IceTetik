@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/primaryBackgroundColor"
     android:padding="36dp"
-    tools:context=".authentication.AuthenticationActivity">
+    tools:context=".page.authentication.AuthenticationActivity">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
