@@ -1,12 +1,11 @@
 package com.icetetik.data.repository
 
-import android.graphics.Path.Op
-import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.icetetik.data.model.Option
 import com.icetetik.data.model.OptionResponse
 import com.icetetik.data.model.Question
 import com.icetetik.data.model.QuestionResponse
+import com.icetetik.util.DummyQuestion
 import com.icetetik.util.FireStoreCollection
 import com.icetetik.util.FireStoreDocument
 import com.icetetik.util.FirestoreDocumentField
@@ -15,6 +14,51 @@ import com.icetetik.util.UiState
 class QuestionnaireRepository(
     val database: FirebaseFirestore
 ) {
+
+
+    fun setAppQuestions(result: (UiState<String>) -> Unit){
+        val listQuestion = ArrayList<Question>()
+        listQuestion.addAll(
+            DummyQuestion.generateQuestions()
+        )
+
+        database.collection(FireStoreCollection.APPS)
+            .document(FireStoreDocument.QUESTIONS)
+            .set(QuestionResponse(questions = listQuestion))
+            .addOnSuccessListener {
+                result.invoke(UiState.Success("Success set data question"))
+            }
+            .addOnFailureListener {
+                result.invoke(
+                    UiState.Failure(
+                        it.localizedMessage
+                    )
+                )
+            }
+    }
+
+    fun setAppQuestionOptions(result: (UiState<String>) -> Unit){
+        val listOption = ArrayList<Option>()
+        listOption.addAll(
+            DummyQuestion.generateOptions()
+        )
+
+        database.collection(FireStoreCollection.APPS)
+            .document(FireStoreDocument.OPTIONS)
+            .set(OptionResponse(options = listOption))
+            .addOnSuccessListener {
+                result.invoke(UiState.Success("Success set data option"))
+            }
+            .addOnFailureListener {
+                result.invoke(
+                    UiState.Failure(
+                        it.localizedMessage
+                    )
+                )
+            }
+    }
+
+
 
     fun getQuestions(result: (UiState<List<Question>>) -> Unit){
         database.collection(FireStoreCollection.APPS)

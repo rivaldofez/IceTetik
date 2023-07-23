@@ -31,6 +31,7 @@ class SignUpActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
 
+
         setupButtonAction()
         setItemListener()
         setObservers()
