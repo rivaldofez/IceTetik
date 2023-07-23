@@ -22,6 +22,7 @@ class MoodActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMoodBinding
     private var currentDate: LocalDate = LocalDate.now()
     private val viewModel: MoodViewModel by viewModels()
+    private var userEmail: String = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,17 +31,29 @@ class MoodActivity : AppCompatActivity() {
         binding = ActivityMoodBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setActionItem()
+        setObservers()
+        loadUserSession()
+
+
+    }
+
+    private fun loadUserSession(){
         viewModel.getUserSession { email ->
-            if (email == null){
-                binding.showSnackBar("Session Expired")
-            } else {
-                viewModel.getMood(email, currentDate)
-                setActionItem()
-                setObservers()
+            if (email != null){
+               userEmail = email
+                loadTodayMood()
             }
         }
+    }
 
 
+    private fun loadTodayMood(){
+        if (userEmail.isEmpty()) {
+            binding.showSnackBar("Session Expired")
+        } else {
+            viewModel.getMood(userEmail, currentDate)
+        }
     }
 
     private fun setObservers(){
@@ -112,5 +125,10 @@ class MoodActivity : AppCompatActivity() {
             sblLoading.root.animateChangeVisibility(isLoading)
             if (isLoading) sblLoading.lottieLoading.playAnimation() else sblLoading.lottieLoading.pauseAnimation()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadUserSession()
     }
 }
