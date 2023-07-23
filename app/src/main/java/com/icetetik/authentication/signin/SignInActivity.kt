@@ -1,18 +1,11 @@
 package com.icetetik.authentication.signin
 
 import android.app.Activity
-import android.app.Dialog
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.Window
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.core.widget.addTextChangedListener
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -24,18 +17,16 @@ import com.icetetik.MoodActivity
 import com.icetetik.R
 import com.icetetik.data.model.User
 import com.icetetik.databinding.ActivitySignInBinding
-import com.icetetik.databinding.SublayoutDialogConfirmationBinding
-import com.icetetik.databinding.SublayoutDialogSetPasswordBinding
 import com.icetetik.util.Extension.animateChangeVisibility
+import com.icetetik.util.Extension.showShortToast
 import com.icetetik.util.Extension.showSnackBar
 import com.icetetik.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.math.sign
 
 @AndroidEntryPoint
 class SignInActivity : AppCompatActivity() {
 
-    private lateinit var binding:ActivitySignInBinding
+    private lateinit var binding: ActivitySignInBinding
     private val viewModel: SignInViewModel by viewModels()
 
     private lateinit var firebaseAuth: FirebaseAuth
@@ -43,12 +34,13 @@ class SignInActivity : AppCompatActivity() {
     private var googleIdToken: String? = null
     private var googleUser: User? = null
 
-    private val signInGoogleLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
-        if (result.resultCode == Activity.RESULT_OK){
-            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-            handleResultSignInGoogle(task)
+    private val signInGoogleLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+                handleResultSignInGoogle(task)
+            }
         }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +59,7 @@ class SignInActivity : AppCompatActivity() {
         setObservers()
     }
 
-    private fun setButtonAction(){
+    private fun setButtonAction() {
         binding.apply {
             btnSignin.setOnClickListener {
                 signInUser()
@@ -79,7 +71,7 @@ class SignInActivity : AppCompatActivity() {
         }
     }
 
-    private fun setObservers(){
+    private fun setObservers() {
         viewModel.saveUserInfo.observe(this) { state ->
             when (state) {
                 is UiState.Loading -> {
@@ -88,11 +80,10 @@ class SignInActivity : AppCompatActivity() {
 
                 is UiState.Failure -> {
                     showLoading(isLoading = false)
-                    binding.showSnackBar(state.error.toString())
+                    binding.showSnackBar("Error occured because system cannot save account data")
                 }
 
                 is UiState.Success -> {
-                    binding.showSnackBar("Login Succesfully")
                     signInWithCredentialGoogle()
                 }
             }
@@ -111,7 +102,7 @@ class SignInActivity : AppCompatActivity() {
                 }
 
                 is UiState.Success -> {
-                    binding.showSnackBar("Login Succesfully")
+                    showShortToast("Login Successfully")
                     navigateToMainView()
                 }
             }
@@ -132,8 +123,7 @@ class SignInActivity : AppCompatActivity() {
 
                     val result = state.data
                     if (result == null) {
-                        //new user
-                        showSetPasswordDialog()
+                        saveUserInfo()
                     } else {
                         signInWithCredentialGoogle()
                     }
@@ -142,7 +132,8 @@ class SignInActivity : AppCompatActivity() {
         }
     }
 
-    private fun signInUser(){
+
+    private fun signInUser() {
         binding.apply {
             var isAllFieldValid = true
 
@@ -155,7 +146,7 @@ class SignInActivity : AppCompatActivity() {
             if (password.isEmpty() || !edtPassword.error.isNullOrEmpty())
                 isAllFieldValid = false
 
-            if (isAllFieldValid){
+            if (isAllFieldValid) {
                 viewModel.signIn(email = email, password = password)
             } else {
                 showSnackBar("All field must be valid and filled, please try again")
@@ -163,126 +154,79 @@ class SignInActivity : AppCompatActivity() {
         }
     }
 
-    private fun signInWithCredentialGoogle(){
-        //update UI Account
-                showLoading(isLoading = true)
-                val credential = GoogleAuthProvider.getCredential(googleIdToken, null)
-                firebaseAuth.signInWithCredential(credential).addOnCompleteListener {
-                    if (it.isSuccessful){
-                        navigateToMainView()
-                    } else {
-                        binding.showSnackBar("Error occured while sign in your account, please try again")
-                    }
-                    showLoading(isLoading = false)
-                }
+    private fun saveUserInfo() {
+        if (googleUser == null) {
+            binding.showSnackBar("Error occured because system cannot retrieve account data")
+        } else {
+            viewModel.saveUserInfo(googleUser!!)
+        }
     }
 
-    private fun signInUserWithGoogle(){
+    private fun signInWithCredentialGoogle() {
+        //update UI Account
+        showLoading(isLoading = true)
+        val credential = GoogleAuthProvider.getCredential(googleIdToken, null)
+        firebaseAuth.signInWithCredential(credential).addOnCompleteListener {
+            if (it.isSuccessful) {
+                showShortToast("Login Successfully")
+                navigateToMainView()
+            } else {
+                binding.showSnackBar("Error occured while sign in your account, please try again")
+            }
+            showLoading(isLoading = false)
+        }
+    }
+
+    private fun signInUserWithGoogle() {
         showLoading(isLoading = true)
         val signInIntent = googleSignInClient.signInIntent
         signInGoogleLauncher.launch(signInIntent)
     }
 
-    private fun navigateToMainView(){
+    private fun navigateToMainView() {
         val intent = Intent(this@SignInActivity, MoodActivity::class.java)
         startActivity(intent)
         finish()
     }
 
     private fun handleResultSignInGoogle(task: Task<GoogleSignInAccount>) {
-        if (task.isSuccessful){
+        if (task.isSuccessful) {
             val account: GoogleSignInAccount? = task.result
-            if (account == null ){
+            if (account == null) {
                 showLoading(isLoading = false)
+                binding.showSnackBar("Error occured because system cannot retrieve account data")
             } else {
                 val email = account.email
                 val name = account.displayName
                 googleIdToken = account.idToken
 
-                if(!email.isNullOrEmpty() && !name.isNullOrEmpty()){
+                if (!email.isNullOrEmpty() && !name.isNullOrEmpty()) {
                     googleUser = User(email = email, name = name)
                     loadUserInfo()
                 } else {
-                    //handle null user account
+                    binding.showSnackBar("Error occured because system cannot retrieve account data")
                 }
-
-//                //update UI Account
-//                val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-//                firebaseAuth.signInWithCredential(credential).addOnCompleteListener {
-//                    if (it.isSuccessful){
-//                        //success login
-//                    } else {
-//                        binding.showSnackBar("Error occured while sign in your account, please try again")
-//                    }
-//                    showLoading(isLoading = false)
-//                }
             }
         } else {
             showLoading(isLoading = false)
-            binding.showSnackBar("Error occured because system cannot retrieve user account data")
+            binding.showSnackBar("Error occured because system cannot retrieve account data")
         }
     }
 
-    private fun loadUserInfo(){
-        if (googleUser == null){
-
+    private fun loadUserInfo() {
+        if (googleUser == null) {
+            binding.showSnackBar("Error occured because system cannot retrieve account data")
         } else {
             val email = googleUser!!.email
-            if (email.isEmpty()){
+            if (email.isEmpty()) {
+                binding.showSnackBar("Error occured because system cannot retrieve account data")
             } else {
                 viewModel.getUserInfo(email)
             }
         }
     }
 
-    private fun showSetPasswordDialog(){
-        val dialogBinding = SublayoutDialogSetPasswordBinding.inflate(layoutInflater)
-
-        val dialog = Dialog(this@SignInActivity)
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setCancelable(false)
-        dialog.setContentView(dialogBinding.root)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-        dialogBinding.apply {
-            edtRetypePassword.addTextChangedListener {
-                if(it.toString() != edtPassword.text.toString()){
-                    edtRetypePassword.error = "Password not match"
-                }
-            }
-
-
-            btnYes.setOnClickListener {
-                var isAllFieldValid = true
-                val password = edtPassword.text.toString()
-                val retypePassword = edtRetypePassword.text.toString()
-
-                if (password.isEmpty() || !edtPassword.error.isNullOrEmpty())
-                    isAllFieldValid = false
-
-                if (retypePassword.isEmpty() || !edtRetypePassword.error.isNullOrEmpty())
-                    isAllFieldValid = false
-
-                if (isAllFieldValid){
-                    googleUser?.password = password
-                    if (googleUser == null){
-                        //handle null
-                    } else {
-                        viewModel.saveUserInfo(googleUser!!)
-                    }
-                } else {
-                    Toast.makeText(this@SignInActivity,"All field must be valid and filled, please try again" ,Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            btnNo.setOnClickListener {
-                dialog.dismiss()
-            }
-        }
-        dialog.show()
-    }
-
-    private fun showLoading(isLoading: Boolean){
+    private fun showLoading(isLoading: Boolean) {
         binding.apply {
             edtEmail.isEnabled = !isLoading
             edtPassword.isEnabled = !isLoading
