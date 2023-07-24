@@ -41,4 +41,9 @@
     <string name="hint_note_edit_text">Tulis Note Kamu..</string>
     <string name="title_add_note">Tambah Note</string>
     <string name="txt_save">Save</string>
+    <string name="title_sign_in_user">Sign In User</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="title_or">or</string>
+    <string name="txt_sign_in_with_google">Sign in with Google</string>
 </resources>
