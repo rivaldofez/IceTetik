@@ -38,4 +38,7 @@
     <string name="txt_read_more">baca lebih lanjut</string>
     <string name="cd_icon_read_more">Icon read more</string>
     <string name="title_choose_mood">Pilih Mood Kamu</string>
+    <string name="hint_note_edit_text">Tulis Note Kamu..</string>
+    <string name="title_add_note">Tambah Note</string>
+    <string name="txt_save">Save</string>
 </resources>
