@@ -63,4 +63,5 @@
     <string name="cd_icon_scared">Icon Takut</string>
     <string name="cd_icon_disgusting">Icon Jijik</string>
     <string name="cd_icon_mood_related">Icon mood terkait</string>
+    <string name="cd_icon_setting_item">Icon item setting</string>
 </resources>
