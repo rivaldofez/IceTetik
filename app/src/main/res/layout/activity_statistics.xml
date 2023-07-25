@@ -13,7 +13,7 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:layout_marginHorizontal="16dp"
-       android:text="Rekap Mood Kamu Bulan Ini"
+       android:text="@string/title_recap_mood_this_month"
        android:fontFamily="@font/league_spartan_bold"
        android:textColor="@color/cream_100"
        android:textAlignment="center"
@@ -50,7 +50,7 @@
           android:layout_width="0dp"
           android:layout_height="90dp"
           android:layout_weight="1"
-          android:text="Senang"
+          android:text="@string/title_happy"
           android:paddingVertical="16dp"
           app:autoSizeMaxTextSize="20sp"
           app:autoSizeMinTextSize="10sp"
@@ -64,7 +64,7 @@
           android:layout_width="0dp"
           android:layout_height="90dp"
           android:layout_weight="1"
-          android:text="Sedih"
+          android:text="@string/title_sad"
           android:paddingVertical="16dp"
           app:autoSizeMaxTextSize="20sp"
           app:autoSizeMinTextSize="10sp"
@@ -76,7 +76,7 @@
           android:layout_width="0dp"
           android:layout_height="90dp"
           android:layout_weight="1"
-          android:text="Marah"
+          android:text="@string/title_angry"
           android:paddingVertical="16dp"
           app:autoSizeMaxTextSize="20sp"
           app:autoSizeMinTextSize="10sp"
@@ -88,7 +88,7 @@
           android:layout_width="0dp"
           android:layout_height="90dp"
           android:layout_weight="1"
-          android:text="Terkejut"
+          android:text="@string/title_shock"
           android:paddingVertical="16dp"
           app:autoSizeMaxTextSize="20sp"
           app:autoSizeMinTextSize="10sp"
@@ -100,7 +100,7 @@
           android:layout_width="0dp"
           android:layout_height="90dp"
           android:layout_weight="1"
-          android:text="Takut"
+          android:text="@string/title_scared"
           android:paddingVertical="16dp"
           app:autoSizeMaxTextSize="20sp"
           app:autoSizeMinTextSize="10sp"
@@ -112,7 +112,7 @@
           android:layout_width="0dp"
           android:layout_height="90dp"
           android:layout_weight="1"
-          android:text="Jijik"
+          android:text="@string/title_disgusting"
           android:paddingVertical="16dp"
           app:autoSizeMaxTextSize="20sp"
           app:autoSizeMinTextSize="10sp"
@@ -145,6 +145,7 @@
           android:scaleType="centerInside"
           android:layout_weight="1"
           android:padding="4dp"
+          android:contentDescription="@string/cd_icon_happy"
           />
 
       <ImageView
@@ -155,6 +156,7 @@
           android:src="@drawable/img_sad"
           android:layout_weight="1"
           android:padding="4dp"
+          android:contentDescription="@string/cd_icon_sad"
           />
 
       <ImageView
@@ -165,6 +167,7 @@
           android:src="@drawable/img_angry"
           android:layout_weight="1"
           android:padding="4dp"
+          android:contentDescription="@string/cd_icon_angry"
           />
 
       <ImageView
@@ -175,6 +178,7 @@
           android:src="@drawable/img_shock"
           android:layout_weight="1"
           android:padding="4dp"
+          android:contentDescription="@string/cd_icon_shock"
           />
 
       <ImageView
@@ -185,6 +189,7 @@
           android:src="@drawable/img_scared"
           android:layout_weight="1"
           android:padding="4dp"
+          android:contentDescription="@string/cd_icon_scared"
           />
 
       <ImageView
@@ -195,6 +200,7 @@
           android:src="@drawable/img_disgusting"
           android:layout_weight="1"
           android:padding="4dp"
+          android:contentDescription="@string/cd_icon_disgusting"
           />
 
 
@@ -210,6 +216,7 @@
        android:layout_marginBottom="16dp"
        app:tint="@color/cream_100"
        android:layout_marginStart="32dp"
+       android:contentDescription="@string/icon_previous_month"
        app:layout_constraintBottom_toBottomOf="parent"
        app:layout_constraintEnd_toStartOf="@+id/tv_month"
        app:layout_constraintStart_toStartOf="parent" />
@@ -218,7 +225,6 @@
        android:id="@+id/tv_month"
        android:layout_width="0dp"
        android:layout_height="wrap_content"
-       android:text="Februari"
        android:textSize="36sp"
        android:fontFamily="@font/league_spartan_bold"
        android:textColor="@color/cream_100"
@@ -234,7 +240,8 @@
        app:layout_constraintBottom_toBottomOf="@id/btn_prev_month"
        app:layout_constraintEnd_toStartOf="@+id/btn_next_month"
        app:layout_constraintStart_toEndOf="@+id/btn_prev_month"
-       app:layout_constraintTop_toTopOf="@id/btn_prev_month" />
+       app:layout_constraintTop_toTopOf="@id/btn_prev_month"
+       tools:text="Februari"/>
 
    <ImageView
        android:id="@+id/btn_next_month"
@@ -244,6 +251,7 @@
        android:src="@drawable/ic_next_24"
        app:tint="@color/cream_100"
        android:layout_marginEnd="32dp"
+       android:contentDescription="@string/icon_next_month"
        app:layout_constraintBottom_toBottomOf="@id/btn_prev_month"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toEndOf="@+id/tv_month"

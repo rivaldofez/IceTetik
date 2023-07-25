@@ -49,4 +49,17 @@
     <string name="title_sign_up_user">Sign Up User</string>
     <string name="hint_fullname">Fullname</string>
     <string name="hint_retype_password">Re-type Password</string>
+    <string name="title_recap_mood_this_month">Rekap Mood Kamu Bulan Ini</string>
+    <string name="title_happy">Senang</string>
+    <string name="title_sad">Sedih</string>
+    <string name="title_angry">Marah</string>
+    <string name="title_shock">Terkejut</string>
+    <string name="title_scared">Takut</string>
+    <string name="title_disgusting">Jijik</string>
+    <string name="cd_icon_happy">Icon Senang</string>
+    <string name="cd_icon_sad">Icon Sedih</string>
+    <string name="cd_icon_angry">Icon Marah</string>
+    <string name="cd_icon_shock">Icon Terkejut</string>
+    <string name="cd_icon_scared">Icon Takut</string>
+    <string name="cd_icon_disgusting">Icon Jijik</string>
 </resources>
