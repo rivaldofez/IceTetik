@@ -1,14 +1,12 @@
 package com.icetetik.customview
 
 import android.content.Context
-import android.graphics.Canvas
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
-import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
-import android.util.Patterns
 import androidx.appcompat.widget.AppCompatEditText
+import com.icetetik.R
 
 class NameEditText: AppCompatEditText {
     constructor(context: Context) : super(context){
@@ -36,7 +34,7 @@ class NameEditText: AppCompatEditText {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if (!p0.isNullOrEmpty() && p0.length < 2 ){
-                    error = "Fullname minimum 2 characters"
+                    error = context.getString(R.string.txt_minimum_two_character_fullname)
                 }
             }
 

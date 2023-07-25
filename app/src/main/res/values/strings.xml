@@ -66,4 +66,7 @@
     <string name="cd_icon_setting_item">Icon item setting</string>
     <string name="txt_yes">Ya</string>
     <string name="txt_no">Tidak</string>
+    <string name="txt_email_invalid">Email tidak valid</string>
+    <string name="txt_minimum_two_character_fullname">Nama lengkap minimal 2 karakter</string>
+    <string name="txt_password_minimum_eight_character">Kata sandi minimum 8 karakter</string>
 </resources>

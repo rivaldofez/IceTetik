@@ -42,7 +42,7 @@ class PasswordEditText: AppCompatEditText {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if (!p0.isNullOrEmpty() && p0.length < 8 ){
-                    error = "Password minimum 8 characters"
+                    error = context.getString(R.string.txt_password_minimum_eight_character)
                 }
             }
 
