@@ -64,4 +64,6 @@
     <string name="cd_icon_disgusting">Icon Jijik</string>
     <string name="cd_icon_mood_related">Icon mood terkait</string>
     <string name="cd_icon_setting_item">Icon item setting</string>
+    <string name="txt_yes">Ya</string>
+    <string name="txt_no">Tidak</string>
 </resources>
