@@ -46,4 +46,7 @@
     <string name="hint_password">Password</string>
     <string name="title_or">or</string>
     <string name="txt_sign_in_with_google">Sign in with Google</string>
+    <string name="title_sign_up_user">Sign Up User</string>
+    <string name="hint_fullname">Fullname</string>
+    <string name="hint_retype_password">Re-type Password</string>
 </resources>
