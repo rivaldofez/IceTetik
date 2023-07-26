@@ -4,7 +4,9 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.icetetik.R
 import com.icetetik.databinding.ActivityMoodNoteWriterBinding
+import com.icetetik.util.Extension.showSnackBar
 import com.icetetik.util.KeyParcelable
 
 class MoodNoteWriterActivity : AppCompatActivity() {
@@ -26,7 +28,7 @@ class MoodNoteWriterActivity : AppCompatActivity() {
         binding.btnSave.setOnClickListener {
             val note = binding.edtNote.text
             if (note.isNullOrEmpty()){
-
+                binding.showSnackBar(getString(R.string.error_note_cannot_be_empty))
             } else {
                 val intent = Intent()
                 intent.putExtra(KeyParcelable.MOOD_NOTE, note.toString())

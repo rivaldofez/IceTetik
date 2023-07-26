@@ -76,4 +76,5 @@
     <string name="error_cannot_sign_in">Error occured while sign in your account, please try again</string>
     <string name="msg_sign_up_success">Sign Up Successfully</string>
     <string name="error_password_not_same">Password not match</string>
+    <string name="error_note_cannot_be_empty">Note tidak boleh kosong</string>
 </resources>
