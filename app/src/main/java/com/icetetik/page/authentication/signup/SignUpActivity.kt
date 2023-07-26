@@ -3,13 +3,10 @@ package com.icetetik.page.authentication.signup
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.icetetik.R
 import com.icetetik.page.authentication.signin.SignInActivity
-import com.icetetik.data.repository.QuestionnaireRepository
 import com.icetetik.databinding.ActivitySignUpBinding
 import com.icetetik.util.Extension.animateChangeVisibility
 import com.icetetik.util.Extension.showSnackBar
@@ -45,7 +42,7 @@ class SignUpActivity : AppCompatActivity() {
 
                 is UiState.Success -> {
                     showLoading(isLoading = false)
-                    binding.showSnackBar("Sign Up Succesfully")
+                    binding.showSnackBar(getString(R.string.msg_sign_up_success))
                     val intent = Intent(this, SignInActivity::class.java)
                     startActivity(intent)
                     finish()
@@ -57,7 +54,7 @@ class SignUpActivity : AppCompatActivity() {
     private fun setItemListener(){
         binding.edtRetypePassword.addTextChangedListener {
             if(it.toString() != binding.edtPassword.text.toString()){
-                binding.edtRetypePassword.error = "Password not match"
+                binding.edtRetypePassword.error = getString(R.string.error_password_not_same)
             }
         }
     }
@@ -92,7 +89,7 @@ class SignUpActivity : AppCompatActivity() {
             if (isAllFieldValid){
                 viewModel.signUpUser(name = fullname, email = email, password = password)
             } else {
-                showSnackBar("All field must be valid and filled, please try again")
+                showSnackBar(getString(R.string.error_all_field_must_be_valid))
             }
         }
     }

@@ -74,4 +74,6 @@
     <string name="error_all_field_must_be_valid">All field must be valid and filled, please try again</string>
     <string name="error_cannot_retrieve_user_data">Error occured because system cannot retrieve account data</string>
     <string name="error_cannot_sign_in">Error occured while sign in your account, please try again</string>
+    <string name="msg_sign_up_success">Sign Up Successfully</string>
+    <string name="error_password_not_same">Password not match</string>
 </resources>
