@@ -69,4 +69,9 @@
     <string name="txt_email_invalid">Email tidak valid</string>
     <string name="txt_minimum_two_character_fullname">Nama lengkap minimal 2 karakter</string>
     <string name="txt_password_minimum_eight_character">Kata sandi minimum 8 karakter</string>
+    <string name="error_cannot_save_account_data">Error occured because system cannot save account data</string>
+    <string name="msg_login_success">Login Successfully</string>
+    <string name="error_all_field_must_be_valid">All field must be valid and filled, please try again</string>
+    <string name="error_cannot_retrieve_user_data">Error occured because system cannot retrieve account data</string>
+    <string name="error_cannot_sign_in">Error occured while sign in your account, please try again</string>
 </resources>

@@ -80,7 +80,7 @@ class SignInActivity : AppCompatActivity() {
 
                 is UiState.Failure -> {
                     showLoading(isLoading = false)
-                    binding.showSnackBar("Error occured because system cannot save account data")
+                    binding.showSnackBar(getString(R.string.error_cannot_save_account_data))
                 }
 
                 is UiState.Success -> {
@@ -102,7 +102,7 @@ class SignInActivity : AppCompatActivity() {
                 }
 
                 is UiState.Success -> {
-                    showShortToast("Login Successfully")
+                    showShortToast(getString(R.string.msg_login_success))
                     navigateToMainView()
                 }
             }
@@ -149,14 +149,14 @@ class SignInActivity : AppCompatActivity() {
             if (isAllFieldValid) {
                 viewModel.signIn(email = email, password = password)
             } else {
-                showSnackBar("All field must be valid and filled, please try again")
+                showSnackBar(getString(R.string.error_all_field_must_be_valid))
             }
         }
     }
 
     private fun saveUserInfo() {
         if (googleUser == null) {
-            binding.showSnackBar("Error occured because system cannot retrieve account data")
+            binding.showSnackBar(getString(R.string.error_cannot_retrieve_user_data))
         } else {
             viewModel.saveUserInfo(googleUser!!)
         }
@@ -168,10 +168,10 @@ class SignInActivity : AppCompatActivity() {
         val credential = GoogleAuthProvider.getCredential(googleIdToken, null)
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful) {
-                showShortToast("Login Successfully")
+                showShortToast(getString(R.string.msg_login_success))
                 navigateToMainView()
             } else {
-                binding.showSnackBar("Error occured while sign in your account, please try again")
+                binding.showSnackBar(getString(R.string.error_cannot_sign_in))
             }
             showLoading(isLoading = false)
         }
@@ -194,7 +194,7 @@ class SignInActivity : AppCompatActivity() {
             val account: GoogleSignInAccount? = task.result
             if (account == null) {
                 showLoading(isLoading = false)
-                binding.showSnackBar("Error occured because system cannot retrieve account data")
+                binding.showSnackBar(getString(R.string.error_cannot_retrieve_user_data))
             } else {
                 val email = account.email
                 val name = account.displayName
@@ -204,22 +204,22 @@ class SignInActivity : AppCompatActivity() {
                     googleUser = User(email = email, name = name)
                     loadUserInfo()
                 } else {
-                    binding.showSnackBar("Error occured because system cannot retrieve account data")
+                    binding.showSnackBar(getString(R.string.error_cannot_retrieve_user_data))
                 }
             }
         } else {
             showLoading(isLoading = false)
-            binding.showSnackBar("Error occured because system cannot retrieve account data")
+            binding.showSnackBar(getString(R.string.error_cannot_retrieve_user_data))
         }
     }
 
     private fun loadUserInfo() {
         if (googleUser == null) {
-            binding.showSnackBar("Error occured because system cannot retrieve account data")
+            binding.showSnackBar(getString(R.string.error_cannot_retrieve_user_data))
         } else {
             val email = googleUser!!.email
             if (email.isEmpty()) {
-                binding.showSnackBar("Error occured because system cannot retrieve account data")
+                binding.showSnackBar(getString(R.string.error_cannot_retrieve_user_data))
             } else {
                 viewModel.getUserInfo(email)
             }
