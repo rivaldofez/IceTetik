@@ -39,15 +39,16 @@
         app:layout_constraintTop_toBottomOf="@id/tv_title_current_feeling_emotion"
         />
     
-    <LinearLayout
-        android:id="@+id/ll_positive_emotion"
-        android:layout_width="match_parent"
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/cg_positive_emotion"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title_positive_emotion"
-        />
+        >
+    </com.google.android.material.chip.ChipGroup>
 
     <TextView
         android:id="@+id/tv_title_negative_emotion"
@@ -61,11 +62,11 @@
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ll_positive_emotion"
+        app:layout_constraintTop_toBottomOf="@id/cg_positive_emotion"
         />
 
     <LinearLayout
-        android:id="@+id/ll_negative_emotion"
+        android:id="@+id/cg_negative_emotion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
