@@ -77,4 +77,9 @@
     <string name="msg_sign_up_success">Sign Up Successfully</string>
     <string name="error_password_not_same">Password not match</string>
     <string name="error_note_cannot_be_empty">Note tidak boleh kosong</string>
+    <string name="txt_edit_note">Edit Catatan</string>
+    <string name="txt_edit_mood">Edit Mood</string>
+    <string name="error_process_request">There\'s error occured while process your request</string>
+    <string name="error_mood_or_note_not_added_yet">Mood atau Jurnal belum ditambahkan</string>
+    <string name="error_session_expired">Session Expired</string>
 </resources>
