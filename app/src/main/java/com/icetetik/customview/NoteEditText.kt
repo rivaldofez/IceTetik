@@ -6,7 +6,6 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
-import com.github.mikephil.charting.utils.Utils.init
 import com.icetetik.R
 
 class NoteEditText: AppCompatEditText {
@@ -36,14 +35,14 @@ class NoteEditText: AppCompatEditText {
         mRect = Rect()
         mPaint = Paint()
         mPaint.style = Paint.Style.FILL_AND_STROKE
-        mPaint.setColor(resources.getColor(R.color.primaryBackgroundColor))
+        mPaint.color = resources.getColor(R.color.primaryBackgroundColor)
         mPaint.strokeWidth = 4F
     }
 
     override fun onDraw(canvas: Canvas?) {
         val height = height
-        val line_height = lineHeight
-        var count = height / line_height
+        val lineHeight = lineHeight
+        var count = height / lineHeight
 
         if (lineCount > count){
             count = lineCount
@@ -53,7 +52,7 @@ class NoteEditText: AppCompatEditText {
         val paint = mPaint
         var baseline =getLineBounds(0, r) //first line
 
-        for (i in 0..count-1) {
+        for (i in 0 until count) {
             canvas?.drawLine(r.left.toFloat(), (baseline + 16).toFloat(), r.right.toFloat(), (baseline + 16).toFloat(), paint)
             baseline += lineHeight
         }
