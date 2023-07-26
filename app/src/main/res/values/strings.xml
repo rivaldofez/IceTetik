@@ -82,4 +82,6 @@
     <string name="error_process_request">There\'s error occured while process your request</string>
     <string name="error_mood_or_note_not_added_yet">Mood atau Jurnal belum ditambahkan</string>
     <string name="error_session_expired">Session Expired</string>
+    <string name="error_when_load_mood_status">There\'s error occured while load mood status</string>
+    <string name="error_today_mood_not_set_yet">Hari ini kamu belum set mood kamu</string>
 </resources>
