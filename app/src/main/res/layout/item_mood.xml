@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="8dp"
-    >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="8dp">
 
     <ImageView
         android:id="@+id/iv_mood"
@@ -14,6 +14,7 @@
         android:scaleType="fitCenter"
         android:padding="16dp"
         android:background="@drawable/fr_image_mood_activity"
+        android:contentDescription="@string/cd_icon_mood_related"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,13 +25,13 @@
         android:id="@+id/tv_mood"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Happy"
         android:textAlignment="center"
         android:textSize="20sp"
         android:fontFamily="@font/league_spartan_bold"
         app:layout_constraintTop_toBottomOf="@id/iv_mood"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        tools:text="Happy"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

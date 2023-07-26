@@ -2,7 +2,6 @@ package com.icetetik.di
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 import com.icetetik.data.repository.AuthRepository
 import com.icetetik.data.repository.MoodRepository
 import com.icetetik.data.repository.QuestionnaireRepository

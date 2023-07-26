@@ -13,6 +13,7 @@ import com.icetetik.R
 import com.icetetik.data.model.MoodCondition
 import com.icetetik.databinding.ActivityStatisticsBinding
 import com.icetetik.util.Extension.animateChangeVisibility
+import com.icetetik.util.Extension.showSnackBar
 import com.icetetik.util.Extension.toSp
 import com.icetetik.util.Helper
 import com.icetetik.util.UiState
@@ -35,7 +36,7 @@ class StatisticsActivity : AppCompatActivity() {
 
         viewModel.getUserSession { email ->
             if (email == null) {
-
+                binding.showSnackBar(getString(R.string.error_session_expired))
             } else {
                 userEmail = email
                 setMonthView()

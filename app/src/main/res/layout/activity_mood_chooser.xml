@@ -20,7 +20,7 @@
             android:textSize="24sp"
             android:textStyle="bold"
             android:transitionName="name"
-            android:text="Choose Feeling"
+            android:text="@string/title_choose_mood"
             />
     </androidx.appcompat.widget.Toolbar>
 

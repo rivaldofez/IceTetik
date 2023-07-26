@@ -10,8 +10,8 @@ import com.icetetik.util.FireStoreCollection
 import com.icetetik.util.UiState
 
 class AuthRepository(
-    val auth: FirebaseAuth,
-    val database: FirebaseFirestore
+    private val auth: FirebaseAuth,
+    private val database: FirebaseFirestore
 ) {
 
     fun signUpUser(user: User, result: (UiState<String>) -> Unit) {
@@ -91,7 +91,7 @@ class AuthRepository(
     }
 
     fun getUserInfo(userEmail: String, result: (UiState<User?>) -> Unit){
-        val document = database.collection((FireStoreCollection.USER)).document(userEmail)
+        database.collection((FireStoreCollection.USER)).document(userEmail)
             .get()
             .addOnSuccessListener { snapshot ->
                 val dataResult = snapshot.toObject(User::class.java)

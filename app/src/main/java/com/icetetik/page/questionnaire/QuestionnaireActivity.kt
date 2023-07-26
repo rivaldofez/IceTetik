@@ -4,11 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
-import com.icetetik.R
 import com.icetetik.data.model.Option
 import com.icetetik.data.model.Question
 import com.icetetik.databinding.ActivityQuestionnaireBinding
-import com.icetetik.util.DummyQuestion
 import com.icetetik.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
 

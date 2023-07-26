@@ -5,8 +5,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
-import com.icetetik.R
-import com.icetetik.data.model.MoodCondition
 import com.icetetik.data.model.MoodItemView
 import com.icetetik.databinding.ActivityMoodChooserBinding
 import com.icetetik.util.KeyParcelable

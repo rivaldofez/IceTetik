@@ -1,12 +1,9 @@
 package com.icetetik.data.repository
 
-import android.util.Log
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.icetetik.data.model.Mood
 import com.icetetik.data.model.MoodCondition
-import com.icetetik.data.model.OptionResponse
-import com.icetetik.data.model.User
 import com.icetetik.util.FireStoreCollection
 import com.icetetik.util.FirestoreDocumentField
 import com.icetetik.util.UiState
@@ -16,7 +13,7 @@ import java.time.temporal.TemporalAdjusters
 import java.util.Date
 
 class MoodRepository(
-    val database: FirebaseFirestore
+    private val database: FirebaseFirestore
 ) {
     fun addMood(
         userEmail: String,
@@ -128,53 +125,6 @@ class MoodRepository(
                             )
                         )
                     )
-                }
-            }
-            .addOnFailureListener {
-                result.invoke(
-                    UiState.Failure(
-                        it.localizedMessage
-                    )
-                )
-            }
-    }
-
-    fun fetchMonthlyMood(
-        userEmail: String,
-        baseDate: LocalDate,
-        result: (UiState<List<Mood>>) -> Unit
-    ) {
-        val start = Timestamp(
-            Date.from(
-                baseDate.with(TemporalAdjusters.firstDayOfMonth()).atStartOfDay().toInstant(
-                    ZoneOffset.UTC
-                )
-            )
-        )
-        val end = Timestamp(
-            Date.from(
-                baseDate.with(TemporalAdjusters.lastDayOfMonth()).atStartOfDay().toInstant(
-                    ZoneOffset.UTC
-                )
-            )
-        )
-
-        database.collection(FireStoreCollection.USER).document(userEmail)
-            .collection(FireStoreCollection.MOODS)
-            .whereGreaterThanOrEqualTo("posted", start)
-            .whereLessThanOrEqualTo("posted", end)
-            .get()
-            .addOnSuccessListener { snapshot ->
-                if (snapshot.isEmpty) {
-                    result.invoke(UiState.Success(emptyList()))
-                } else {
-                    val listMood = ArrayList<Mood>()
-
-                    for (document in snapshot.documents) {
-                        document.toObject(Mood::class.java)?.let { listMood.add(it) }
-                    }
-
-                    result.invoke(UiState.Success(listMood))
                 }
             }
             .addOnFailureListener {

@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import com.icetetik.R
 import com.icetetik.data.model.Mood
 import com.icetetik.databinding.ActivityMoodBinding
 import com.icetetik.page.journal.JournalActivity
@@ -50,7 +51,7 @@ class MoodActivity : AppCompatActivity() {
 
     private fun loadTodayMood(){
         if (userEmail.isEmpty()) {
-            binding.showSnackBar("Session Expired")
+            binding.showSnackBar(getString(R.string.error_session_expired))
         } else {
             viewModel.getMood(userEmail, currentDate)
         }
@@ -65,7 +66,7 @@ class MoodActivity : AppCompatActivity() {
 
                 is UiState.Failure -> {
                     showLoading(isLoading = false)
-                    binding.showSnackBar("There's error occured while load mood status")
+                    binding.showSnackBar(getString(R.string.error_when_load_mood_status))
                 }
 
                 is UiState.Success -> {
@@ -73,7 +74,7 @@ class MoodActivity : AppCompatActivity() {
 
                     val result = state.data
                     if (result == null) {
-                        binding.showSnackBar("Hari ini kamu belum set mood kamu")
+                        binding.showSnackBar(getString(R.string.error_today_mood_not_set_yet))
                     } else {
                         setTodayMoodView(state.data)
                     }

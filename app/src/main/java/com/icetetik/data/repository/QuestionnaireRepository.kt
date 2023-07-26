@@ -8,11 +8,10 @@ import com.icetetik.data.model.QuestionResponse
 import com.icetetik.util.DummyQuestion
 import com.icetetik.util.FireStoreCollection
 import com.icetetik.util.FireStoreDocument
-import com.icetetik.util.FirestoreDocumentField
 import com.icetetik.util.UiState
 
 class QuestionnaireRepository(
-    val database: FirebaseFirestore
+    private val database: FirebaseFirestore
 ) {
 
 

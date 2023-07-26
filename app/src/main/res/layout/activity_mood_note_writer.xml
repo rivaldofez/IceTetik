@@ -20,7 +20,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:transitionName="name"
-        android:text="Add Note"
+        android:text="@string/title_add_note"
         />
     </androidx.appcompat.widget.Toolbar>
 
@@ -36,6 +36,7 @@
         android:layout_marginBottom="24dp"
         android:inputType="textMultiLine"
         android:lineSpacingMultiplier="2"
+        android:hint="@string/hint_note_edit_text"
         app:layout_constraintBottom_toTopOf="@+id/btn_save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +52,7 @@
         android:drawableTint="@color/white"
         android:paddingHorizontal="8dp"
         android:layout_marginBottom="24dp"
-        android:text="Save"
+        android:text="@string/txt_save"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

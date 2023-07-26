@@ -133,14 +133,14 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
             binding.llParentCard.animateChangeVisibility(false)
 
 
-            binding.btnAddMood.text = "Tambah Mood"
-            binding.btnAddNote.text = "Tambah Catatan"
+            binding.btnAddMood.text = getString(R.string.txt_add_mood)
+            binding.btnAddNote.text = getString(R.string.txt_add_note)
         } else {
             binding.llParentCard.animateChangeVisibility(true)
 
             //check mood condition
             if (moodCondition.isEmpty()) {
-                binding.btnAddMood.text = "Tambah Mood"
+                binding.btnAddMood.text = getString(R.string.txt_add_mood)
 
                 binding.llMoodConditionCard.animateChangeVisibility(false)
             } else {
@@ -151,17 +151,17 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
                         moodCondition
                     )
                 )
-                binding.btnAddMood.text = "Edit Mood"
+                binding.btnAddMood.text = getString(R.string.txt_edit_mood)
             }
 
             //check mood note
             if (moodNote.isEmpty()) {
-                binding.btnAddNote.setText("Tambah Catatan")
+                binding.btnAddNote.text = getString(R.string.txt_add_note)
                 binding.llMoodNoteCard.animateChangeVisibility(false)
             } else {
                 binding.llMoodNoteCard.animateChangeVisibility(true)
                 binding.tvMoodNote.text = moodNote
-                binding.btnAddNote.setText("Edit Catatan")
+                binding.btnAddNote.text = getString(R.string.txt_edit_note)
             }
         }
     }
@@ -175,7 +175,7 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
 
                 is UiState.Failure -> {
                     showLoading(isLoading = false)
-                    binding.showSnackBar("There's error occured while process your request")
+                    binding.showSnackBar(getString(R.string.error_process_request))
                     moodNote = ""
                     moodCondition = ""
                     updateCard()
@@ -190,7 +190,7 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
                         moodCondition = ""
                         updateCard()
 
-                        binding.showSnackBar("Mood atau Jurnal belum ditambahkan")
+                        binding.showSnackBar(getString(R.string.error_mood_or_note_not_added_yet))
                     } else {
                         moodNote = result.note
                         moodCondition = result.condition
@@ -208,7 +208,7 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
 
                 is UiState.Failure -> {
                     showLoading(isLoading = false)
-                    binding.showSnackBar("There's error occured while process your request")
+                    binding.showSnackBar(getString(R.string.error_process_request))
                 }
 
                 is UiState.Success -> {
@@ -221,7 +221,7 @@ class JournalActivity : AppCompatActivity(), CalendarItemCallback {
 
     private fun addMoodData() {
         if (userEmail.isEmpty()) {
-            binding.showSnackBar("Session Expired")
+            binding.showSnackBar(getString(R.string.error_session_expired))
         } else {
             val mood = Mood(
                 posted = Timestamp(
