@@ -16,12 +16,12 @@ import com.icetetik.databinding.ActivityEmotionBinding
 class EmotionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEmotionBinding
 
-    private val titleButton = listOf(
-        "Test1", "Test2", "Test3", "Test4", "Test5", "Test6", "Test7"
-    )
-
     private val positiveEmotionTitleList = listOf(
         "Antusias", "Gembira", "Takjub", "Semangat", "Bangga", "Penuh Cinta", "Santai", "Tenang", "Puas", "Lega", "Senang"
+    )
+
+    private val negativeEmotionTitleList = listOf(
+        "Marah","Takut", "Stres", "Waspada", "Kewalahan", "Patah Hati", "Bingung", "Kesal", "Malu", "Cemas", "Lesu", "Sedih", "Duka", "Bosan", "Apatis", "Kesepian", "Gelisah", "Murung", "Kecewa", "Hiperaktif"
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,8 +33,27 @@ class EmotionActivity : AppCompatActivity() {
             binding.cgPositiveEmotion.addView(generateChipItem(it, this@EmotionActivity))
         }
 
+        negativeEmotionTitleList.forEach {
+            binding.cgNegativeEmotion.addView(generateChipItem(it, this@EmotionActivity))
+        }
+
         for(i in 0 until binding.cgPositiveEmotion.childCount){
             val chip = binding.cgPositiveEmotion.getChildAt(i) as Chip
+            chip.setOnClickListener {
+                if(chip.isCheckable){
+                    chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(this@EmotionActivity, R.color.white))
+                    Log.d("Teston", "called in white")
+                } else {
+                    chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(this@EmotionActivity, R.color.cream_100))
+                    Log.d("Teston", "called in cream")
+                }
+                Log.d("Teston", "called in loop cg emotion")
+                chip.isCheckable = !chip.isCheckable
+            }
+        }
+
+        for(i in 0 until binding.cgNegativeEmotion.childCount){
+            val chip = binding.cgNegativeEmotion.getChildAt(i) as Chip
             chip.setOnClickListener {
                 if(chip.isCheckable){
                     chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(this@EmotionActivity, R.color.white))
