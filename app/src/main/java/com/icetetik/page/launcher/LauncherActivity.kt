@@ -9,7 +9,7 @@ import androidx.activity.viewModels
 import com.icetetik.page.mainmood.MoodActivity
 import com.icetetik.page.authentication.AuthenticationActivity
 import com.icetetik.databinding.ActivityLauncherBinding
-import com.icetetik.relaxation.EmotionActivity
+import com.icetetik.relaxation.RelaxationActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,7 +32,7 @@ class LauncherActivity : AppCompatActivity() {
 //                    finish()
 //                }
 //            }
-            startActivity(Intent(this@LauncherActivity, EmotionActivity::class.java))
+            startActivity(Intent(this@LauncherActivity, RelaxationActivity::class.java))
             finish()
         }, SPLASH_TIME )
     }
