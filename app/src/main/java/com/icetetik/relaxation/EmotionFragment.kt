@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.setPadding
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
 import com.icetetik.R
 import com.icetetik.databinding.FragmentEmotionBinding
@@ -38,6 +39,12 @@ class EmotionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.btnNext.setOnClickListener {
+            val goToSourceEmotion = EmotionFragmentDirections.actionEmotionFragmentToSourceEmotionFragment()
+            findNavController().navigate(goToSourceEmotion)
+        }
+
 
         positiveEmotionTitleList.forEach {
             binding.cgPositiveEmotion.addView(generateChipItem(it, requireContext()))
