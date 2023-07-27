@@ -31,12 +31,12 @@
         android:adjustViewBounds="true"
         android:src="@drawable/img_mascot"
         app:layout_constraintWidth_percent="0.60"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toTopOf="@+id/tv_title_start_next_relaxation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title_message_mascot" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tv_title_start_next_relaxation"
         style="@style/HeaderEmotionTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,12 +44,12 @@
         android:text="Mulai\nRelaksasi"
         android:textAlignment="viewEnd"
         android:textAllCaps="false"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintBottom_toTopOf="@+id/btn_next"
         app:layout_constraintEnd_toEndOf="parent" />
 
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/btn_next"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_margin="16dp"
