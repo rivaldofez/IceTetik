@@ -41,11 +41,12 @@
     
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/cg_positive_emotion"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:chipSpacingVertical="0dp"
+        app:chipSpacingVertical="8dp"
         app:chipSpacingHorizontal="8dp"
+        app:flow_horizontalAlign="start"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title_positive_emotion"
