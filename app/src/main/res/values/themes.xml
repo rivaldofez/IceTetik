@@ -62,4 +62,29 @@
         <item name="android:textAlignment">viewEnd</item>
         <item name="android:maxLines">1</item>
     </style>
+
+    <style name="Widget.App.Chip" parent="Widget.Material3.Chip.Suggestion">
+        <item name="chipIconTint">@color/black</item>
+        <item name="chipBackgroundColor">@color/primaryBackgroundColor</item>
+        <item name="chipStrokeWidth">0.5dp</item>
+        <item name="chipMinHeight">32dp</item>
+        <item name="closeIconVisible">false</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="chipStrokeColor">@color/white</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="android:textAppearance">@style/chipTextAppearance</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.App.SmallComponent</item>
+    </style>
+
+    <style name="chipTextAppearance" parent="TextAppearance.Material3.BodyMedium">
+        <item name="fontFamily">@font/league_spartan_regular</item>
+        <item name="android:fontFamily">@font/league_spartan_regular</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">6dp</item>
+    </style>
 </resources>
