@@ -5,6 +5,7 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
+    id 'androidx.navigation.safeargs'
 }
 
 android {
@@ -67,4 +68,9 @@ dependencies {
 
     def lottie_version = "3.4.0"
     implementation "com.airbnb.android:lottie:$lottie_version"
+
+    // Navigation
+    implementation "androidx.navigation:navigation-runtime-ktx:2.5.3"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
+    implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
 }
