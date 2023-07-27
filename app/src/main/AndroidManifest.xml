@@ -17,9 +17,6 @@
             android:name=".relaxation.RelaxationActivity"
             android:exported="false" />
         <activity
-            android:name=".relaxation.EmotionActivity"
-            android:exported="false" />
-        <activity
             android:name=".page.journal.note.MoodNoteWriterActivity"
             android:exported="false" />
         <activity
