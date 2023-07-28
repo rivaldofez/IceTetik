@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relaxation_navigation"
+    app:startDestination="@id/onboardRelaxationFragment">
+
+    <fragment
+        android:id="@+id/onboardRelaxationFragment"
+        android:name="com.icetetik.relaxation.OnboardRelaxationFragment"
+        android:label="fragment_onboard_relaxation"
+        tools:layout="@layout/fragment_onboard_relaxation" >
+        <action
+            android:id="@+id/action_onboardRelaxationFragment_to_emotionFragment"
+            app:destination="@id/emotionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/emotionFragment"
+        android:name="com.icetetik.relaxation.EmotionFragment"
+        android:label="fragment_emotion"
+        tools:layout="@layout/fragment_emotion" >
+        <action
+            android:id="@+id/action_emotionFragment_to_sourceEmotionFragment"
+            app:destination="@id/sourceEmotionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sourceEmotionFragment"
+        android:name="com.icetetik.relaxation.SourceEmotionFragment"
+        android:label="fragment_source_emotion"
+        tools:layout="@layout/fragment_source_emotion" >
+        <action
+            android:id="@+id/action_sourceEmotionFragment_to_onboardVideoFragment"
+            app:destination="@id/onboardVideoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onboardVideoFragment"
+        android:name="com.icetetik.relaxation.OnboardVideoFragment"
+        android:label="fragment_onboard_video"
+        tools:layout="@layout/fragment_onboard_video" >
+        <action
+            android:id="@+id/action_onboardVideoFragment_to_videoFragment"
+            app:destination="@id/videoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/videoFragment"
+        android:name="com.icetetik.relaxation.VideoFragment"
+        android:label="fragment_video"
+        tools:layout="@layout/fragment_video" >
+        <action
+            android:id="@+id/action_videoFragment_to_closingVideoFragment"
+            app:destination="@id/closingVideoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/closingVideoFragment"
+        android:name="com.icetetik.relaxation.ClosingVideoFragment"
+        android:label="fragment_closing_video"
+        tools:layout="@layout/fragment_closing_video" />
+</navigation>

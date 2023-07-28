@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import com.icetetik.page.mainmood.MoodActivity
 import com.icetetik.page.authentication.AuthenticationActivity
 import com.icetetik.databinding.ActivityLauncherBinding
+import com.icetetik.relaxation.RelaxationActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,15 +23,17 @@ class LauncherActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            viewModel.getUserSession { email ->
-                if (email == null){
-                    startActivity(Intent(this@LauncherActivity, AuthenticationActivity::class.java))
-                    finish()
-                } else {
-                    startActivity(Intent(this@LauncherActivity, MoodActivity::class.java))
-                    finish()
-                }
-            }
+//            viewModel.getUserSession { email ->
+//                if (email == null){
+//                    startActivity(Intent(this@LauncherActivity, AuthenticationActivity::class.java))
+//                    finish()
+//                } else {
+//                    startActivity(Intent(this@LauncherActivity, MoodActivity::class.java))
+//                    finish()
+//                }
+//            }
+            startActivity(Intent(this@LauncherActivity, RelaxationActivity::class.java))
+            finish()
         }, SPLASH_TIME )
     }
 

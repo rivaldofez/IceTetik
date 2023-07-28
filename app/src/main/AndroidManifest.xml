@@ -14,6 +14,9 @@
         android:theme="@style/Theme.IceTetik"
         tools:targetApi="31">
         <activity
+            android:name=".relaxation.RelaxationActivity"
+            android:exported="false" />
+        <activity
             android:name=".page.journal.note.MoodNoteWriterActivity"
             android:exported="false" />
         <activity

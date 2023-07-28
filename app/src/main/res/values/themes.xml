@@ -48,6 +48,22 @@
         <item name="android:textColor">@color/primaryBackgroundColor</item>
     </style>
 
+    <style name="HeaderEmotionTextStyle">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/cream_100</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:fontFamily">@font/league_spartan_bold</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="SecondHeaderEmotionTextStyle">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:fontFamily">@font/league_spartan_bold</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
     <style name="ItemCalendarTextStyle">
         <item name="android:fontFamily">@font/kolka_regular</item>
         <item name="android:textAllCaps">true</item>
@@ -62,4 +78,5 @@
         <item name="android:textAlignment">viewEnd</item>
         <item name="android:maxLines">1</item>
     </style>
+
 </resources>
