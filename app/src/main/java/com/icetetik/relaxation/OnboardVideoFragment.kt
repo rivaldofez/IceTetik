@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.icetetik.R
 import com.icetetik.databinding.FragmentOnboardVideoBinding
 
@@ -25,6 +26,8 @@ class OnboardVideoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnStartExercise.setOnClickListener {
+            val goToVideo = OnboardVideoFragmentDirections.actionOnboardVideoFragmentToVideoFragment()
+            findNavController().navigate(goToVideo)
         }
     }
 

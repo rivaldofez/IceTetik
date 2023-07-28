@@ -36,5 +36,23 @@
         android:id="@+id/onboardVideoFragment"
         android:name="com.icetetik.relaxation.OnboardVideoFragment"
         android:label="fragment_onboard_video"
-        tools:layout="@layout/fragment_onboard_video" />
+        tools:layout="@layout/fragment_onboard_video" >
+        <action
+            android:id="@+id/action_onboardVideoFragment_to_videoFragment"
+            app:destination="@id/videoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/videoFragment"
+        android:name="com.icetetik.relaxation.VideoFragment"
+        android:label="fragment_video"
+        tools:layout="@layout/fragment_video" >
+        <action
+            android:id="@+id/action_videoFragment_to_closingVideoFragment"
+            app:destination="@id/closingVideoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/closingVideoFragment"
+        android:name="com.icetetik.relaxation.ClosingVideoFragment"
+        android:label="fragment_closing_video"
+        tools:layout="@layout/fragment_closing_video" />
 </navigation>

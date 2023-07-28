@@ -25,6 +25,10 @@ class ClosingVideoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+        binding.btnBackMainMenu.setOnClickListener {
+            requireActivity().finish()
+        }
+
 
     }
 
