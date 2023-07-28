@@ -1,7 +1,7 @@
 package com.icetetik.data.model
 
 data class Option(
-    val id: Int = 0,
+    val value: Int = 0,
     val text: String = ""
 )
 

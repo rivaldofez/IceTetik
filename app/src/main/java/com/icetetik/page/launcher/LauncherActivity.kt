@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.activity.viewModels
+import com.google.firebase.firestore.FirebaseFirestore
+import com.icetetik.data.model.Question
+import com.icetetik.data.repository.QuestionnaireRepository
 import com.icetetik.page.mainmood.MoodActivity
 import com.icetetik.page.authentication.AuthenticationActivity
 import com.icetetik.databinding.ActivityLauncherBinding
@@ -22,18 +25,18 @@ class LauncherActivity : AppCompatActivity() {
         binding = ActivityLauncherBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         Handler(Looper.getMainLooper()).postDelayed({
-//            viewModel.getUserSession { email ->
-//                if (email == null){
-//                    startActivity(Intent(this@LauncherActivity, AuthenticationActivity::class.java))
-//                    finish()
-//                } else {
-//                    startActivity(Intent(this@LauncherActivity, MoodActivity::class.java))
-//                    finish()
-//                }
-//            }
-            startActivity(Intent(this@LauncherActivity, RelaxationActivity::class.java))
-            finish()
+            viewModel.getUserSession { email ->
+                if (email == null){
+                    startActivity(Intent(this@LauncherActivity, AuthenticationActivity::class.java))
+                    finish()
+                } else {
+                    startActivity(Intent(this@LauncherActivity, MoodActivity::class.java))
+                    finish()
+                }
+            }
+
         }, SPLASH_TIME )
     }
 

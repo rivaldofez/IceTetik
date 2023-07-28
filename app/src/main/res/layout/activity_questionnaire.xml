@@ -34,6 +34,8 @@
             android:gravity="center"
             android:textStyle="bold"
             android:text="Saya merasa bibir saya sering kering"
+            android:textAlignment="center"
+            android:layout_gravity="center"
             android:textSize="16sp" />
 
 
@@ -124,6 +126,30 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/ll_questionnaire"
         />
+
+    <ImageButton
+        android:id="@+id/btn_prev"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_previous_24"
+        android:layout_marginBottom="24dp"
+        app:tint="@color/cream_100"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/ll_questionnaire"
+        />
+
+    <include
+        layout="@layout/sublayout_loading"
+        android:id="@+id/sbl_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
