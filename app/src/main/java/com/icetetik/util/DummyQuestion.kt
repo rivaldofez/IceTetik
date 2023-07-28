@@ -32,175 +32,214 @@ object DummyQuestion {
     fun generateQuestions() : List<Question> {
         val a = listOf(
             Question(
-                id = 0,
-                text = "Menjadi marah karena hal-hal kecil/sepele"
-            ),
-            Question(
                 id = 1,
-                text = "Mulut terasa kering"
+                text = "Menjadi marah karena hal-hal kecil/sepele",
+                category = "Stress"
             ),
             Question(
                 id = 2,
-                text = "Tidak dapat melihat hal yang positif dari suatu kejadian\n"
+                text = "Mulut terasa kering",
+                category = "Kecemasan"
             ),
             Question(
                 id = 3,
-                text = "Merasakan gangguan dalam bernapas (napas cepat, sulit bernapas)"
+                text = "Tidak dapat melihat hal yang positif dari suatu kejadian\n",
+                category = "Depresi"
             ),
             Question(
                 id = 4,
-                text = "Merasa sepertinya tidak kuat lagi untuk melakukan suatu kegiatan"
+                text = "Merasakan gangguan dalam bernapas (napas cepat, sulit bernapas)",
+                category = "Kecemasan"
             ),
             Question(
                 id = 5,
-                text = "Cenderung bereaksi berlebihan pada situasi"
+                text = "Merasa sepertinya tidak kuat lagi untuk melakukan suatu kegiatan",
+                category = "Depresi"
             ),
             Question(
                 id = 6,
-                text = "Kelemahan pada anggota tubuh"
+                text = "Cenderung bereaksi berlebihan pada situasi",
+                category = "Stress"
             ),
             Question(
                 id = 7,
-                text = "Kesulitan untuk relaksasi/bersantai"
+                text = "Kelemahan pada anggota tubuh",
+                category = "Kecemasan"
             ),
             Question(
                 id = 8,
-                text = "Cemas yang berlebihan dalam suatu situasi namun bisa lega jika hal/situasi itu berakhir"
+                text = "Kesulitan untuk relaksasi/bersantai",
+                category = "Stress"
             ),
             Question(
                 id = 9,
-                text = "Pesimis"
+                text = "Cemas yang berlebihan dalam suatu situasi namun bisa lega jika hal/situasi itu berakhir",
+                category = "Kecemasan"
             ),
             Question(
                 id = 10,
-                text = "Mudah merasa kesal"
+                text = "Pesimis",
+                category = "Depresi"
             ),
             Question(
                 id = 11,
-                text = "Merasa banyak menghabiskan energi karena cemas"
+                text = "Mudah merasa kesal",
+                category = "Stress"
             ),
             Question(
                 id = 12,
-                text = "Merasa sedih dan depresi"
+                text = "Merasa banyak menghabiskan energi karena cemas",
+                category = "Stress"
             ),
             Question(
                 id = 13,
-                text = "Tidak sabaran"
+                text = "Merasa sedih dan depresi",
+                category = "Depresi"
             ),
             Question(
                 id = 14,
-                text = "Kelelahan"
+                text = "Tidak sabaran",
+                category = "Stress"
             ),
             Question(
                 id = 15,
-                text = "Kehilangan minat pada banyak hal (misal: makan, ambulasi, sosialisasi)"
+                text = "Kelelahan",
+                category = "Kecemasan"
             ),
             Question(
                 id = 16,
-                text = "Merasa diri tidak layak"
+                text = "Kehilangan minat pada banyak hal (misal: makan, ambulasi, sosialisasi)",
+                category = "Depresi"
             ),
             Question(
                 id = 17,
-                text = "Mudah tersinggung"
+                text = "Merasa diri tidak layak",
+                category = "Depresi"
             ),
             Question(
                 id = 18,
-                text = "Berkeringat (misal: tangan berkeringat) tanpa stimulasi oleh cuaca maupun latihan fisik"
+                text = "Mudah tersinggung",
+                category = "Stress"
             ),
             Question(
                 id = 19,
-                text = "Ketakutan tanpa alasan yang jelas"
-            ),Question(
-                id = 20,
-                text = "Merasa hidup tidak berharga"
-            ),Question(
-                id = 21,
-                text = "Sulit untuk beristirahat"
+                text = "Berkeringat (misal: tangan berkeringat) tanpa stimulasi oleh cuaca maupun latihan fisik",
+                category = "Kecemasan"
             ),
             Question(
+                id = 20,
+                text = "Ketakutan tanpa alasan yang jelas",
+                category = "Kecemasan"
+            ),Question(
+                id = 21,
+                text = "Merasa hidup tidak berharga",
+                category = "Depresi"
+            ),Question(
                 id = 22,
-                text = "Kesulitan dalam menelan"
+                text = "Sulit untuk beristirahat",
+                category = "Stress"
             ),
             Question(
                 id = 23,
-                text = "Tidak dapat menikmati hal-hal yang saya lakukan"
+                text = "Kesulitan dalam menelan",
+                category = "Kecemasan"
             ),
             Question(
                 id = 24,
-                text = "Perubahan kegiatan jantung dan denyut nadi tanpa stimulasi oleh latihan fisik\n"
+                text = "Tidak dapat menikmati hal-hal yang saya lakukan",
+                category = "Depresi"
             ),
             Question(
                 id = 25,
-                text = "Merasa hilang harapan dan putus asa"
+                text = "Perubahan kegiatan jantung dan denyut nadi tanpa stimulasi oleh latihan fisik\n",
+                category = "Kecemasan"
             ),
             Question(
                 id = 26,
-                text = "Mudah marah"
+                text = "Merasa hilang harapan dan putus asa",
+                category = "Depresi"
             ),
             Question(
                 id = 27,
-                text = "Mudah panik"
+                text = "Mudah marah",
+                category = "Stress"
             ),
             Question(
                 id = 28,
-                text = "Kesulitan untuk tenang setelah sesuatu yang mengganggu"
+                text = "Mudah panik",
+                category = "Kecemasan"
             ),
             Question(
                 id = 29,
-                text = "Takut diri terhambat oleh tugas-tugas yang tidak biasa dilakukan"
+                text = "Kesulitan untuk tenang setelah sesuatu yang mengganggu",
+                category = "Stress"
             ),
             Question(
                 id = 30,
-                text = "Sulit untuk antusias pada banyak hal"
+                text = "Takut diri terhambat oleh tugas-tugas yang tidak biasa dilakukan",
+                category = "Kecemasan"
             ),
             Question(
                 id = 31,
-                text = "Sulit mentoleransi gangguan-gangguan terhadap hal yang sedang dilakukan"
+                text = "Sulit untuk antusias pada banyak hal",
+                category = "Depresi"
             ),
             Question(
                 id = 32,
-                text = "Berada pada keadaan tegang"
+                text = "Sulit mentoleransi gangguan-gangguan terhadap hal yang sedang dilakukan",
+                category = "Stress"
             ),
             Question(
                 id = 33,
-                text = "Merasa tidak berharga"
+                text = "Berada pada keadaan tegang",
+                category = "Stress"
             ),
             Question(
                 id = 34,
-                text = "Tidak dapat memaklumi hal apapun yang menghalangi anda untuk menyelesaikan hal yang sedang Anda lakukan"
+                text = "Merasa tidak berharga",
+                category = "Depresi"
             ),
             Question(
                 id = 35,
-                text = "Ketakutan"
+                text = "Tidak dapat memaklumi hal apapun yang menghalangi anda untuk menyelesaikan hal yang sedang Anda lakukan",
+                category = "Stress"
             ),
             Question(
                 id = 36,
-                text = "Tidak ada harapan untuk masa depan"
+                text = "Ketakutan",
+                category = "Kecemasan"
             ),
             Question(
                 id = 37,
-                text = "Merasa hidup tidak berarti"
+                text = "Tidak ada harapan untuk masa depan",
+                category = "Depresi"
             ),
             Question(
                 id = 38,
-                text = "Mudah gelisah"
+                text = "Merasa hidup tidak berarti",
+                category = "Depresi"
             ),
             Question(
                 id = 39,
-                text = "Khawatir dengan situasi saat diri Anda mungkin menjadi panik dan mempermalukan diri sendiri"
+                text = "Mudah gelisah",
+                category = "Stress"
             ),
             Question(
                 id = 40,
-                text = "Gemetar"
+                text = "Khawatir dengan situasi saat diri Anda mungkin menjadi panik dan mempermalukan diri sendiri",
+                category = "Kecemasan"
             ),
             Question(
                 id = 41,
-                text = "Sulit untuk meningkatkan inisiatif dalam melakukan sesuatu"
+                text = "Gemetar",
+                category = "Kecemasan"
+            ),
+            Question(
+                id = 42,
+                text = "Sulit untuk meningkatkan inisiatif dalam melakukan sesuatu",
+                category = "Depresi"
             ),
         )
-
-
-
         return a
     }
 
