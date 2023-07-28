@@ -1,7 +1,11 @@
 package com.icetetik.page.questionnaire
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Window
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -9,6 +13,7 @@ import com.icetetik.R
 import com.icetetik.data.model.Option
 import com.icetetik.data.model.Question
 import com.icetetik.databinding.ActivityQuestionnaireBinding
+import com.icetetik.databinding.SublayoutDialogConfirmationBinding
 import com.icetetik.util.Extension.animateChangeVisibility
 import com.icetetik.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,6 +45,8 @@ class QuestionnaireActivity : AppCompatActivity() {
                 if(currentQuestion < questions.size - 1){
                     currentQuestion++
                     changeCurrentQuestion()
+                } else {
+                    showConfirmationDialog("Apakah kamu sudah yakin mengisi setiap pertanyaan?")
                 }
 
             }
@@ -195,6 +202,29 @@ class QuestionnaireActivity : AppCompatActivity() {
             sblLoading.root.animateChangeVisibility(isLoading)
             if (isLoading) sblLoading.lottieLoading.playAnimation() else sblLoading.lottieLoading.pauseAnimation()
         }
+    }
+
+    private fun showConfirmationDialog(message: String){
+        val dialogBinding = SublayoutDialogConfirmationBinding.inflate(layoutInflater)
+
+        val dialog = Dialog(this@QuestionnaireActivity)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(dialogBinding.root)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        dialogBinding.apply {
+            tvDialogMessage.text = message
+
+            btnYes.setOnClickListener {
+                //intent to next page
+            }
+
+            btnNo.setOnClickListener {
+                dialog.dismiss()
+            }
+        }
+        dialog.show()
     }
 
     override fun onStart() {
