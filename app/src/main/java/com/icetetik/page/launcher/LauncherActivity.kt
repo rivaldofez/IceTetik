@@ -25,28 +25,17 @@ class LauncherActivity : AppCompatActivity() {
         binding = ActivityLauncherBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val firebase = FirebaseFirestore.getInstance()
-        val questionnaireRepository = QuestionnaireRepository(firebase)
-
-        questionnaireRepository.setAppQuestions {
-
-        }
-
-        questionnaireRepository.setAppQuestionOptions {
-
-        }
-
 
         Handler(Looper.getMainLooper()).postDelayed({
-//            viewModel.getUserSession { email ->
-//                if (email == null){
-//                    startActivity(Intent(this@LauncherActivity, AuthenticationActivity::class.java))
-//                    finish()
-//                } else {
-//                    startActivity(Intent(this@LauncherActivity, MoodActivity::class.java))
-//                    finish()
-//                }
-//            }
+            viewModel.getUserSession { email ->
+                if (email == null){
+                    startActivity(Intent(this@LauncherActivity, AuthenticationActivity::class.java))
+                    finish()
+                } else {
+                    startActivity(Intent(this@LauncherActivity, MoodActivity::class.java))
+                    finish()
+                }
+            }
 
         }, SPLASH_TIME )
     }
