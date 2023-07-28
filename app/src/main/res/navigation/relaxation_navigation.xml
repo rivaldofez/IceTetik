@@ -27,5 +27,14 @@
         android:id="@+id/sourceEmotionFragment"
         android:name="com.icetetik.relaxation.SourceEmotionFragment"
         android:label="fragment_source_emotion"
-        tools:layout="@layout/fragment_source_emotion" />
+        tools:layout="@layout/fragment_source_emotion" >
+        <action
+            android:id="@+id/action_sourceEmotionFragment_to_onboardVideoFragment"
+            app:destination="@id/onboardVideoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onboardVideoFragment"
+        android:name="com.icetetik.relaxation.OnboardVideoFragment"
+        android:label="fragment_onboard_video"
+        tools:layout="@layout/fragment_onboard_video" />
 </navigation>
