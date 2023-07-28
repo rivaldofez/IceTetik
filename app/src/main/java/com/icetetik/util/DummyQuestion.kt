@@ -8,24 +8,23 @@ object DummyQuestion {
     fun generateOptions(): List<Option> {
         val a = listOf(
             Option(
-                id = 0,
+                value = 0,
                 text = "Tidak Pernah"
             ),
             Option(
-                id = 1,
+                value = 1,
                 text = "Kadang-kadang"
             ),
             Option(
-                id = 2,
+                value = 2,
                 text = "Lumayan Sering"
             ),
             Option(
-                id = 3,
+                value = 3,
                 text = "Sering sekali"
             ),
 
         )
-
         return a
     }
 
