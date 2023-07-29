@@ -9,6 +9,7 @@ object FireStoreCollection{
     val USER = "user"
     val APPS = "apps"
     val MOODS = "moods"
+    val QUESTIONNAIRE = "questionnaire"
 }
 
 object FireStoreDocument {

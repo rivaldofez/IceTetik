@@ -1,6 +1,7 @@
 package com.icetetik.page.questionnaire
 
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,7 @@ import com.icetetik.R
 import com.icetetik.data.model.Option
 import com.icetetik.data.model.Question
 import com.icetetik.databinding.ActivityQuestionnaireBinding
+import com.icetetik.databinding.SublayoutAlertDialogBinding
 import com.icetetik.databinding.SublayoutDialogConfirmationBinding
 import com.icetetik.util.Extension.animateChangeVisibility
 import com.icetetik.util.UiState
@@ -39,16 +41,20 @@ class QuestionnaireActivity : AppCompatActivity() {
     }
 
     private fun setButtonActions() {
-
         binding.apply {
             btnNext.setOnClickListener {
                 if(currentQuestion < questions.size - 1){
-                    currentQuestion++
-                    changeCurrentQuestion()
+                    val currAnswer = answers.get(currentQuestion)
+
+                    if (currAnswer == null) {
+                        showAlertDialog("Kamu harus memilih salah satu dari opsi yang ada")
+                    } else {
+                        currentQuestion++
+                        changeCurrentQuestion()
+                    }
                 } else {
                     showConfirmationDialog("Apakah kamu sudah yakin mengisi setiap pertanyaan?")
                 }
-
             }
 
             btnPrev.setOnClickListener {
@@ -204,6 +210,26 @@ class QuestionnaireActivity : AppCompatActivity() {
         }
     }
 
+
+    private fun showAlertDialog(message: String){
+        val dialogBinding = SublayoutAlertDialogBinding.inflate(layoutInflater)
+
+        val dialog = Dialog(this@QuestionnaireActivity)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(dialogBinding.root)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        dialogBinding.apply {
+            tvDialogMessage.text = message
+
+            btnOk.setOnClickListener {
+                dialog.dismiss()
+            }
+        }
+        dialog.show()
+    }
+
     private fun showConfirmationDialog(message: String){
         val dialogBinding = SublayoutDialogConfirmationBinding.inflate(layoutInflater)
 
@@ -217,7 +243,9 @@ class QuestionnaireActivity : AppCompatActivity() {
             tvDialogMessage.text = message
 
             btnYes.setOnClickListener {
-                //intent to next page
+                val intent = Intent(this@QuestionnaireActivity, ResultQuestionnaireActivity::class.java)
+                startActivity(intent)
+                finish()
             }
 
             btnNo.setOnClickListener {
