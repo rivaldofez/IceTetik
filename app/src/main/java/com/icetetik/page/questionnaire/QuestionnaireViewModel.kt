@@ -5,9 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.icetetik.data.model.Option
 import com.icetetik.data.model.Question
+import com.icetetik.data.model.QuestionnaireResult
 import com.icetetik.data.repository.QuestionnaireRepository
 import com.icetetik.util.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,10 +25,21 @@ class QuestionnaireViewModel @Inject constructor(
     val options: LiveData<UiState<List<Option>>>
         get() = _options
 
+    private val _addQuestionnaireResult = MutableLiveData<UiState<String>>()
+    val addQuestionnaireResult: LiveData<UiState<String>>
+        get() = _addQuestionnaireResult
+
 
     fun getQuestions(){
         _questions.value = UiState.Loading
         repository.getQuestions { _questions.value = it }
+    }
+
+    fun addQuestionnaireResult(userEmail: String, questionnaireResult: QuestionnaireResult, uploadDate: LocalDate){
+        _addQuestionnaireResult.value = UiState.Loading
+        repository.addQuestionnaireResult(userEmail = userEmail, questionnaireResult = questionnaireResult, uploadDate = uploadDate){
+            _addQuestionnaireResult.value = it
+        }
     }
 
     fun getOptions(){
