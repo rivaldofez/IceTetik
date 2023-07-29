@@ -1,18 +1,73 @@
 package com.icetetik.data.repository
 
 import com.google.firebase.firestore.FirebaseFirestore
+import com.icetetik.data.model.Mood
 import com.icetetik.data.model.Option
 import com.icetetik.data.model.OptionResponse
 import com.icetetik.data.model.Question
 import com.icetetik.data.model.QuestionResponse
+import com.icetetik.data.model.QuestionnaireResult
 import com.icetetik.util.DummyQuestion
 import com.icetetik.util.FireStoreCollection
 import com.icetetik.util.FireStoreDocument
 import com.icetetik.util.UiState
+import java.time.LocalDate
 
 class QuestionnaireRepository(
     private val database: FirebaseFirestore
 ) {
+
+    fun addQuestionnaireResult(
+        userEmail: String,
+        questionnaireResult: QuestionnaireResult,
+        uploadDate: LocalDate,
+        result: (UiState<String>) -> Unit
+    ) {
+        val document = database.collection(FireStoreCollection.USER).document(userEmail)
+            .collection(FireStoreCollection.QUESTIONNAIRE)
+            .document(
+                "${uploadDate.year}-${uploadDate.monthValue}-${uploadDate.dayOfMonth}"
+            )
+
+        document.set(questionnaireResult)
+            .addOnSuccessListener {
+                result.invoke(
+                    UiState.Success("Success add questionnaire result data")
+                )
+            }
+            .addOnFailureListener {
+                result.invoke(
+                    UiState.Failure(
+                        it.localizedMessage
+                    )
+                )
+            }
+    }
+
+    fun loadQuestionnaireResult(userEmail: String, uploadDate: LocalDate, result: (UiState<QuestionnaireResult?>) -> Unit) {
+        database.collection(FireStoreCollection.USER).document(userEmail)
+            .collection(FireStoreCollection.QUESTIONNAIRE)
+            .document(
+                "${uploadDate.year}-${uploadDate.monthValue}-${uploadDate.dayOfMonth}"
+            )
+            .get()
+            .addOnSuccessListener { snapshot ->
+                val dataResult = snapshot.toObject(QuestionnaireResult::class.java)
+
+                if (dataResult == null) {
+                    result.invoke(UiState.Success(null))
+                } else {
+                    result.invoke(UiState.Success(dataResult))
+                }
+            }
+            .addOnFailureListener {
+                result.invoke(
+                    UiState.Failure(
+                        it.localizedMessage
+                    )
+                )
+            }
+    }
 
 
     fun setAppQuestions(result: (UiState<String>) -> Unit){
@@ -56,8 +111,6 @@ class QuestionnaireRepository(
                 )
             }
     }
-
-
 
     fun getQuestions(result: (UiState<List<Question>>) -> Unit){
         database.collection(FireStoreCollection.APPS)

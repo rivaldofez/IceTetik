@@ -9,6 +9,7 @@ object FireStoreCollection{
     val USER = "user"
     val APPS = "apps"
     val MOODS = "moods"
+    val QUESTIONNAIRE = "questionnaire"
 }
 
 object FireStoreDocument {
@@ -26,6 +27,7 @@ object FirestoreDocumentField {
 object KeyParcelable {
     val MOOD_CONDITION = "mood_condition"
     val MOOD_NOTE = "mood_note"
+    val QUESTIONNAIRE_RESULT = "questionnaire_result"
 
 }
 
