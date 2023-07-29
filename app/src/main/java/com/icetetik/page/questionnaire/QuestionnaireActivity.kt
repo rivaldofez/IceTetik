@@ -20,6 +20,7 @@ import com.icetetik.databinding.SublayoutAlertDialogBinding
 import com.icetetik.databinding.SublayoutDialogConfirmationBinding
 import com.icetetik.util.Extension.animateChangeVisibility
 import com.icetetik.util.Extension.showSnackBar
+import com.icetetik.util.KeyParcelable
 import com.icetetik.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
@@ -34,6 +35,7 @@ class QuestionnaireActivity : AppCompatActivity() {
     private val answers = HashMap<Int, Int>()
     private var currentQuestion = 1
     private var userEmail: String = ""
+    private var questionnaireResult: QuestionnaireResult? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -114,9 +116,17 @@ class QuestionnaireActivity : AppCompatActivity() {
 
                 is UiState.Success -> {
                     showLoading(isLoading = false)
-                    val intent = Intent(this@QuestionnaireActivity, ResultQuestionnaireActivity::class.java)
-                    startActivity(intent)
-                    finish()
+
+                    if (questionnaireResult == null){
+                        //handle null result
+                    } else {
+                        val intent = Intent(this@QuestionnaireActivity, ResultQuestionnaireActivity::class.java)
+                        intent.putExtra(KeyParcelable.QUESTIONNAIRE_RESULT, questionnaireResult)
+                        startActivity(intent)
+                        finish()
+                    }
+
+
                 }
             }
         }
@@ -277,12 +287,10 @@ class QuestionnaireActivity : AppCompatActivity() {
             tvDialogMessage.text = message
 
             btnYes.setOnClickListener {
-                val questionnaireResult = calculateResult()
-                viewModel.addQuestionnaireResult(userEmail = userEmail, questionnaireResult = questionnaireResult, uploadDate = LocalDate.now())
-
-//                val intent = Intent(this@QuestionnaireActivity, ResultQuestionnaireActivity::class.java)
-//                startActivity(intent)
-//                finish()
+                questionnaireResult = calculateResult()
+                    questionnaireResult?.let {
+                        viewModel.addQuestionnaireResult(userEmail = userEmail, questionnaireResult = it, uploadDate = LocalDate.now())
+                    }
             }
 
             btnNo.setOnClickListener {
@@ -321,6 +329,7 @@ class QuestionnaireActivity : AppCompatActivity() {
                     LocalDate.now().atStartOfDay().toInstant(ZoneOffset.UTC)
                 )
             ),
+            rawData = answers.mapKeys { it.key.toString() } as HashMap<String, Int>
         )
     }
 

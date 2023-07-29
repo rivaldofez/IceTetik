@@ -112,8 +112,6 @@ class QuestionnaireRepository(
             }
     }
 
-
-
     fun getQuestions(result: (UiState<List<Question>>) -> Unit){
         database.collection(FireStoreCollection.APPS)
             .document(FireStoreDocument.QUESTIONS)

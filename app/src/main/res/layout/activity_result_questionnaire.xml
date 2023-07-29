@@ -74,7 +74,6 @@
             android:background="@drawable/fr_button_option_questionnaire"
             android:fontFamily="@font/league_spartan_medium"
             android:gravity="center"
-            android:text="Normal"
             android:textAllCaps="true"
             android:textColor="@color/primaryBackgroundColor"
             android:textSize="16sp"
@@ -82,6 +81,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_title_stress"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Normal"
             />
 
         <TextView
@@ -107,7 +107,6 @@
             android:background="@drawable/fr_button_option_questionnaire"
             android:fontFamily="@font/league_spartan_medium"
             android:gravity="center"
-            android:text="Normal"
             android:textAllCaps="true"
             android:textColor="@color/primaryBackgroundColor"
             android:textSize="16sp"
@@ -115,6 +114,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_title_worry"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Normal"
             />
 
         <TextView
@@ -140,7 +140,6 @@
             android:background="@drawable/fr_button_option_questionnaire"
             android:fontFamily="@font/league_spartan_medium"
             android:gravity="center"
-            android:text="Normal"
             android:textAllCaps="true"
             android:textColor="@color/primaryBackgroundColor"
             android:textSize="16sp"
@@ -148,6 +147,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_title_depression"
+            tools:text="Normal"
             />
 
         <ImageView
