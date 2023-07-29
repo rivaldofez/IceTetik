@@ -10,24 +10,30 @@ import android.view.Window
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.viewModels
+import com.google.firebase.Timestamp
 import com.icetetik.R
 import com.icetetik.data.model.Option
 import com.icetetik.data.model.Question
+import com.icetetik.data.model.QuestionnaireResult
 import com.icetetik.databinding.ActivityQuestionnaireBinding
 import com.icetetik.databinding.SublayoutAlertDialogBinding
 import com.icetetik.databinding.SublayoutDialogConfirmationBinding
 import com.icetetik.util.Extension.animateChangeVisibility
+import com.icetetik.util.Extension.showSnackBar
 import com.icetetik.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDate
+import java.time.ZoneOffset
+import java.util.Date
 
 @AndroidEntryPoint
 class QuestionnaireActivity : AppCompatActivity() {
     private lateinit var binding: ActivityQuestionnaireBinding
     private val viewModel: QuestionnaireViewModel by viewModels()
-
     private val questions = ArrayList<Question>()
     private val answers = HashMap<Int, Int>()
     private var currentQuestion = 1
+    private var userEmail: String = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,14 +42,21 @@ class QuestionnaireActivity : AppCompatActivity() {
         binding = ActivityQuestionnaireBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setObserverData()
-        setButtonActions()
+        viewModel.getUserSession { email ->
+            if (email == null) {
+                binding.showSnackBar("Session Expired")
+            } else {
+                userEmail = email
+                setObserverData()
+                setButtonActions()
+            }
+        }
     }
 
     private fun setButtonActions() {
         binding.apply {
             btnNext.setOnClickListener {
-                if(currentQuestion < questions.size - 1){
+                if (currentQuestion-1 < questions.size-1) {
                     val currAnswer = answers.get(currentQuestion)
 
                     if (currAnswer == null) {
@@ -88,6 +101,27 @@ class QuestionnaireActivity : AppCompatActivity() {
 
 
     private fun setObserverData() {
+        viewModel.addQuestionnaireResult.observe(this){ state ->
+            when (state) {
+                is UiState.Loading -> {
+                    showLoading(isLoading = true)
+                }
+
+                is UiState.Failure -> {
+                    showLoading(isLoading = false)
+                    binding.showSnackBar(getString(R.string.error_process_request))
+                }
+
+                is UiState.Success -> {
+                    showLoading(isLoading = false)
+                    val intent = Intent(this@QuestionnaireActivity, ResultQuestionnaireActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            }
+        }
+
+
         viewModel.questions.observe(this) { state ->
             when (state) {
                 is UiState.Loading -> {
@@ -133,7 +167,7 @@ class QuestionnaireActivity : AppCompatActivity() {
     }
 
     private fun changeCurrentQuestion() {
-        binding.titleQuestion.text = questions[currentQuestion].text
+        binding.titleQuestion.text = questions[currentQuestion-1].text
         val currAnswer = answers.get(currentQuestion)
 
         if (currAnswer == null) {
@@ -211,7 +245,7 @@ class QuestionnaireActivity : AppCompatActivity() {
     }
 
 
-    private fun showAlertDialog(message: String){
+    private fun showAlertDialog(message: String) {
         val dialogBinding = SublayoutAlertDialogBinding.inflate(layoutInflater)
 
         val dialog = Dialog(this@QuestionnaireActivity)
@@ -230,7 +264,7 @@ class QuestionnaireActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun showConfirmationDialog(message: String){
+    private fun showConfirmationDialog(message: String) {
         val dialogBinding = SublayoutDialogConfirmationBinding.inflate(layoutInflater)
 
         val dialog = Dialog(this@QuestionnaireActivity)
@@ -243,9 +277,12 @@ class QuestionnaireActivity : AppCompatActivity() {
             tvDialogMessage.text = message
 
             btnYes.setOnClickListener {
-                val intent = Intent(this@QuestionnaireActivity, ResultQuestionnaireActivity::class.java)
-                startActivity(intent)
-                finish()
+                val questionnaireResult = calculateResult()
+                viewModel.addQuestionnaireResult(userEmail = userEmail, questionnaireResult = questionnaireResult, uploadDate = LocalDate.now())
+
+//                val intent = Intent(this@QuestionnaireActivity, ResultQuestionnaireActivity::class.java)
+//                startActivity(intent)
+//                finish()
             }
 
             btnNo.setOnClickListener {
@@ -254,6 +291,81 @@ class QuestionnaireActivity : AppCompatActivity() {
         }
         dialog.show()
     }
+
+    private fun calculateResult(): QuestionnaireResult {
+        var totalStress = 0
+        var totalWorry = 0
+        var totalDepression = 0
+
+        questions.forEach { question ->
+            val answer = answers.get(question.id)
+            if (answer == null) {
+                //handle null
+            } else {
+                if (question.category == "Stress") {
+                    totalStress += answer
+                } else if (question.category == "Kecemasan") {
+                    totalWorry += answer
+                } else if (question.category == "Depresi") {
+                    totalDepression += answer
+                }
+            }
+        }
+
+        return QuestionnaireResult(
+            stress = stressScale(totalStress),
+            depression = depressionScale(totalDepression),
+            worry = worryScale(totalWorry),
+            posted = Timestamp(
+                Date.from(
+                    LocalDate.now().atStartOfDay().toInstant(ZoneOffset.UTC)
+                )
+            ),
+        )
+    }
+
+    private fun stressScale(totalStress: Int): String {
+        if (totalStress > 34) {
+            return "Sangat Parah"
+        } else if (totalStress > 25) {
+            return "Parah"
+        } else if (totalStress > 18) {
+            return "Sedang"
+        } else if (totalStress > 14) {
+            return "Ringan"
+        } else {
+            return "Normal"
+        }
+    }
+
+    private fun depressionScale(totalDepression: Int): String {
+        if (totalDepression > 28) {
+            return "Sangat Parah"
+        } else if (totalDepression > 20) {
+            return "Parah"
+        } else if (totalDepression > 13) {
+            return "Sedang"
+        } else if (totalDepression > 9) {
+            return "Ringan"
+        } else {
+            return "Normal"
+        }
+    }
+
+    private fun worryScale(totalWorry: Int): String {
+        if (totalWorry > 20) {
+            return "Sangat Parah"
+        } else if (totalWorry > 14) {
+            return "Parah"
+        } else if (totalWorry > 9) {
+            return "Sedang"
+        } else if (totalWorry > 7) {
+            return "Ringan"
+        } else {
+            return "Normal"
+        }
+    }
+
 
     override fun onStart() {
         super.onStart()
