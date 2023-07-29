@@ -17,6 +17,6 @@ data class QuestionnaireResult(
     val worry: String = "",
     val depression: String = "",
     val posted: Timestamp = Timestamp.now(),
-    val rawData: HashMap<Int, Int> = HashMap()
+//    val rawData: HashMap<Int, Int> = HashMap()
 )
 
