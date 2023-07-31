@@ -79,4 +79,14 @@
         <item name="android:maxLines">1</item>
     </style>
 
+    <style name="ItemButtonFaq">
+        <item name="android:layout_height">40dp</item>
+        <item name="android:background">@drawable/fr_item_faq</item>
+        <item name="android:fontFamily">@font/league_spartan_medium</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/primaryBackgroundColor</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
 </resources>

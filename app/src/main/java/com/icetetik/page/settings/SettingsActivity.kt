@@ -130,7 +130,8 @@ class SettingsActivity : AppCompatActivity() {
             }
 
             rowFaq.root.setOnClickListener {
-
+                val intent = Intent(this@SettingsActivity, FaqActivity::class.java)
+                startActivity(intent)
             }
 
             btnLogout.setOnClickListener {
