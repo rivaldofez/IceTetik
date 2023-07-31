@@ -58,7 +58,7 @@ class QuestionnaireActivity : AppCompatActivity() {
     private fun setButtonActions() {
         binding.apply {
             btnNext.setOnClickListener {
-                if (currentQuestion-1 < questions.size-1) {
+                if (currentQuestion - 1 < questions.size - 1) {
                     val currAnswer = answers.get(currentQuestion)
 
                     if (currAnswer == null) {
@@ -73,7 +73,7 @@ class QuestionnaireActivity : AppCompatActivity() {
             }
 
             btnPrev.setOnClickListener {
-                if (currentQuestion > 0) {
+                if (currentQuestion > 1) {
                     currentQuestion--
                     changeCurrentQuestion()
                 }
@@ -103,7 +103,7 @@ class QuestionnaireActivity : AppCompatActivity() {
 
 
     private fun setObserverData() {
-        viewModel.addQuestionnaireResult.observe(this){ state ->
+        viewModel.addQuestionnaireResult.observe(this) { state ->
             when (state) {
                 is UiState.Loading -> {
                     showLoading(isLoading = true)
@@ -117,10 +117,13 @@ class QuestionnaireActivity : AppCompatActivity() {
                 is UiState.Success -> {
                     showLoading(isLoading = false)
 
-                    if (questionnaireResult == null){
+                    if (questionnaireResult == null) {
                         //handle null result
                     } else {
-                        val intent = Intent(this@QuestionnaireActivity, ResultQuestionnaireActivity::class.java)
+                        val intent = Intent(
+                            this@QuestionnaireActivity,
+                            ResultQuestionnaireActivity::class.java
+                        )
                         intent.putExtra(KeyParcelable.QUESTIONNAIRE_RESULT, questionnaireResult)
                         startActivity(intent)
                         finish()
@@ -177,7 +180,7 @@ class QuestionnaireActivity : AppCompatActivity() {
     }
 
     private fun changeCurrentQuestion() {
-        binding.titleQuestion.text = questions[currentQuestion-1].text
+        binding.titleQuestion.text = questions[currentQuestion - 1].text
         val currAnswer = answers.get(currentQuestion)
 
         if (currAnswer == null) {
@@ -288,9 +291,13 @@ class QuestionnaireActivity : AppCompatActivity() {
 
             btnYes.setOnClickListener {
                 questionnaireResult = calculateResult()
-                    questionnaireResult?.let {
-                        viewModel.addQuestionnaireResult(userEmail = userEmail, questionnaireResult = it, uploadDate = LocalDate.now())
-                    }
+                questionnaireResult?.let {
+                    viewModel.addQuestionnaireResult(
+                        userEmail = userEmail,
+                        questionnaireResult = it,
+                        uploadDate = LocalDate.now()
+                    )
+                }
             }
 
             btnNo.setOnClickListener {
