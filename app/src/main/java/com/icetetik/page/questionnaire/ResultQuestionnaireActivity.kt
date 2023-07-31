@@ -1,5 +1,6 @@
 package com.icetetik.page.questionnaire
 
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -30,6 +31,11 @@ class ResultQuestionnaireActivity : AppCompatActivity() {
                 tvResultDepression.text = questionnaireResult.depression
                 tvResultStress.text = questionnaireResult.stress
                 tvResultWorry.text = questionnaireResult.worry
+
+                btnNext.setOnClickListener {
+                    val intent = Intent(this@ResultQuestionnaireActivity, OnboardVideoInfoActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }
     }
