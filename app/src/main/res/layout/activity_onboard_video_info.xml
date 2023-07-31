@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30dp"
+    tools:context=".page.questionnaire.OnboardVideoInfoActivity"
+    android:background="@color/primaryBackgroundColor"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/fr_container_questionnaire"
+        android:padding="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+        <LinearLayout
+            android:id="@+id/ll_difference"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Apa perbedaan stress, kecemasan dan depresi dan apa dampaknya bagi tubuh saya?"
+                android:textAlignment="center"
+                android:padding="16dp"
+                android:background="@drawable/fr_chat_user"/>
+
+            <ImageView
+                android:layout_marginTop="-4.5dp"
+                android:layout_marginRight="4.5dp"
+                android:layout_width="8dp"
+                android:layout_height="16dp"
+                android:layout_gravity="end"
+                android:rotation="90"
+                android:background="@drawable/fr_corner_chat"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_what_can_i_do"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ll_difference"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Apa yang bisa saya lakukan untuk mengelola stress, kecemasan dan depresi"
+                android:textAlignment="center"
+                android:padding="16dp"
+                android:background="@drawable/fr_chat_user"/>
+
+            <ImageView
+                android:layout_marginTop="-4.5dp"
+                android:layout_marginRight="4.5dp"
+                android:layout_width="8dp"
+                android:layout_height="16dp"
+                android:layout_gravity="end"
+                android:rotation="90"
+                android:background="@drawable/fr_corner_chat"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_need_expert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ll_what_can_i_do"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Apakah saya membutuhkan ahli?"
+                android:textAlignment="center"
+                android:padding="16dp"
+                android:background="@drawable/fr_chat_user"/>
+
+            <ImageView
+                android:layout_marginTop="-4.5dp"
+                android:layout_marginRight="4.5dp"
+                android:layout_width="8dp"
+                android:layout_height="16dp"
+                android:layout_gravity="end"
+                android:rotation="90"
+                android:background="@drawable/fr_corner_chat"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_title_feature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/league_spartan_medium"
+            android:text="Cari tahu lebih dalam mengenai stress, kecemasan, depresi, ataupun gangguan mental emosional lainnya, melalu firut berikut:"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ll_need_expert" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_video"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginVertical="16dp"
+            android:background="@drawable/fr_button_option_questionnaire"
+            android:fontFamily="@font/league_spartan_medium"
+            android:gravity="center"
+            android:text="Video Pilihan"
+            android:textAllCaps="true"
+            android:textColor="@color/primaryBackgroundColor"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_feature"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_infographic"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginVertical="16dp"
+            android:background="@drawable/fr_button_option_questionnaire"
+            android:fontFamily="@font/league_spartan_medium"
+            android:gravity="center"
+            android:text="Infografis"
+            android:textAllCaps="true"
+            android:textColor="@color/primaryBackgroundColor"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/btn_video"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <ImageButton
+            android:id="@+id/btn_next"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@android:color/transparent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_home"
+            android:layout_marginBottom="24dp"
+            app:tint="@color/cream_100"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
