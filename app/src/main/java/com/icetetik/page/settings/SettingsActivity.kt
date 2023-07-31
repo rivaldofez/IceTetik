@@ -117,7 +117,7 @@ class SettingsActivity : AppCompatActivity() {
 
             }
 
-            rowLanguage.root.setOnClickListener {
+            rowFeedback.root.setOnClickListener {
                 startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
             }
 
