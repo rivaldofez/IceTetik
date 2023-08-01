@@ -53,6 +53,4 @@ class SettingsViewModel @Inject constructor(
             appDataRepository.saveThemeSetting(themeId = themeId)
         }
     }
-
-
 }
