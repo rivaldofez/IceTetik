@@ -118,7 +118,8 @@ class SettingsActivity : AppCompatActivity() {
             }
 
             rowFeedback.root.setOnClickListener {
-                startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+                val intent = Intent(this@SettingsActivity, FeedbackActivity::class.java)
+                startActivity(intent)
             }
 
             rowDateTime.root.setOnClickListener {
@@ -126,7 +127,8 @@ class SettingsActivity : AppCompatActivity() {
             }
 
             rowHelp.root.setOnClickListener {
-
+                val intent = Intent(this@SettingsActivity, HelpActivity::class.java)
+                startActivity(intent)
             }
 
             rowFaq.root.setOnClickListener {
