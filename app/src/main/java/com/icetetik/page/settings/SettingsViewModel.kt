@@ -5,14 +5,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.icetetik.data.model.User
+import com.icetetik.data.repository.AppDataRepository
 import com.icetetik.data.repository.AuthRepository
 import com.icetetik.util.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
+    private val appDataRepository: AppDataRepository
 ): ViewModel() {
 
     private val _userInfo = MutableLiveData<UiState<User?>>()
@@ -42,5 +46,11 @@ class SettingsViewModel @Inject constructor(
         authRepository.getUserSession(result)
     }
 
+    fun getThemeSetting(): Flow<String?> = appDataRepository.getThemeSetting()
 
+    fun saveThemeSetting(themeId: Int) {
+        viewModelScope.launch {
+            appDataRepository.saveThemeSetting(themeId = themeId)
+        }
+    }
 }

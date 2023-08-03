@@ -28,6 +28,7 @@
         android:textAlignment="center"
         android:textSize="20sp"
         android:fontFamily="@font/league_spartan_bold"
+        android:textColor="@color/reverseSystemBackground"
         app:layout_constraintTop_toBottomOf="@id/iv_mood"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.lifecycleScope
 import com.google.firebase.firestore.FirebaseFirestore
 import com.icetetik.data.model.Question
 import com.icetetik.data.repository.QuestionnaireRepository
@@ -14,6 +16,8 @@ import com.icetetik.page.authentication.AuthenticationActivity
 import com.icetetik.databinding.ActivityLauncherBinding
 import com.icetetik.relaxation.RelaxationActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LauncherActivity : AppCompatActivity() {
@@ -25,19 +29,38 @@ class LauncherActivity : AppCompatActivity() {
         binding = ActivityLauncherBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        checkTheme()
+    }
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            viewModel.getUserSession { email ->
-                if (email == null){
-                    startActivity(Intent(this@LauncherActivity, AuthenticationActivity::class.java))
-                    finish()
-                } else {
-                    startActivity(Intent(this@LauncherActivity, MoodActivity::class.java))
-                    finish()
+    private fun checkTheme(){
+        lifecycleScope.launchWhenCreated {
+            launch {
+                viewModel.getThemeSetting().collect { theme ->
+                    if (theme.isNullOrEmpty()) {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                        viewModel.saveThemeSetting(themeId = 0)
+                    } else {
+                        when(theme.toInt()){
+                            0 -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                            1 -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                            else ->  AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                        }
+                    }
+
+                    delay(SPLASH_TIME)
+                    viewModel.getUserSession { email ->
+                        if (email == null){
+                            startActivity(Intent(this@LauncherActivity, AuthenticationActivity::class.java))
+                            finish()
+                        } else {
+                            startActivity(Intent(this@LauncherActivity, MoodActivity::class.java))
+                            finish()
+                        }
+                    }
                 }
             }
 
-        }, SPLASH_TIME )
+        }
     }
 
     companion object {

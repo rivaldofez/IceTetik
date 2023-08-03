@@ -84,6 +84,12 @@
     <string name="error_session_expired">Session Expired</string>
     <string name="error_when_load_mood_status">There\'s error occured while load mood status</string>
     <string name="error_today_mood_not_set_yet">Hari ini kamu belum set mood kamu</string>
+
+    <string-array name="themes">
+        <item>Default Sistem</item>
+        <item>Mode Terang</item>
+        <item>Mode Gelap</item>
+    </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="txt_ok">OK</string>

@@ -73,6 +73,7 @@ class SourceEmotionFragment : Fragment() {
         chip.id = ViewCompat.generateViewId()
         chip.text = text
         chip.setEnsureMinTouchTargetSize(false)
+        chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.white))
         chip.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18F)
         chip.setTextColor(context.getColor(R.color.primaryBackgroundColor))
         chip.setPadding(paddingDp)

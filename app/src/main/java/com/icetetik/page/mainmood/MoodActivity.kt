@@ -11,6 +11,7 @@ import com.icetetik.page.journal.JournalActivity
 import com.icetetik.page.questionnaire.QuestionnaireActivity
 import com.icetetik.page.settings.SettingsActivity
 import com.icetetik.page.statistics.StatisticsActivity
+import com.icetetik.relaxation.RelaxationActivity
 import com.icetetik.util.Extension.animateChangeVisibility
 import com.icetetik.util.Extension.showSnackBar
 import com.icetetik.util.Helper
@@ -115,6 +116,12 @@ class MoodActivity : AppCompatActivity() {
                 startActivity(
                     Intent(this@MoodActivity, StatisticsActivity::class.java)
                 )
+            }
+
+            lyRelaxation.setOnClickListener {
+               startActivity(
+                   Intent(this@MoodActivity, RelaxationActivity::class.java)
+               )
             }
 
 

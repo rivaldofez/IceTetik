@@ -1,5 +1,6 @@
 package com.icetetik.util
 
+import androidx.datastore.preferences.core.stringPreferencesKey
 import com.icetetik.R
 import com.icetetik.data.model.MoodCondition
 import com.icetetik.data.model.MoodItemView
@@ -29,6 +30,10 @@ object KeyParcelable {
     val MOOD_NOTE = "mood_note"
     val QUESTIONNAIRE_RESULT = "questionnaire_result"
 
+}
+
+object KeyPreferences {
+    val THEME_KEY = stringPreferencesKey("theme_key")
 }
 
 object MoodConstants {
