@@ -80,6 +80,7 @@
                 android:fontFamily="@font/league_spartan_bold"
                 android:layout_marginTop="16dp"
                 android:text="@string/title_your_healing_partner"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -104,7 +105,9 @@
                 android:background="@drawable/fr_button_white"
                 android:drawableStart="@drawable/ic_login_24"
                 android:paddingHorizontal="8dp"
-                android:text="@string/txt_sign_in" />
+                android:text="@string/txt_sign_in"
+                android:textColor="@color/black"
+                />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_signup"
