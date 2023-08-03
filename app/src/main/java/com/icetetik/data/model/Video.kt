@@ -1,9 +1,7 @@
 package com.icetetik.data.model
 
-import com.google.firebase.Timestamp
-
 data class Video(
-    val id: String = "",
+    val id: Int = 0,
     val title: String = "",
     val url: String = ""
 )
