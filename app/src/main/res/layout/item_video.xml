@@ -19,6 +19,7 @@
         />
 
     <TextView
+        android:id="@+id/tv_title"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="Lorem ipsum dolor sit amet quel mo tauaq mol ahno meht sit muil ono"
