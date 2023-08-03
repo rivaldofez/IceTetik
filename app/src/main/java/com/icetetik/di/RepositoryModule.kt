@@ -5,6 +5,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.icetetik.data.repository.AuthRepository
 import com.icetetik.data.repository.MoodRepository
 import com.icetetik.data.repository.QuestionnaireRepository
+import com.icetetik.data.repository.VideoRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,6 +39,14 @@ class RepositoryModule {
         database: FirebaseFirestore,
     ): MoodRepository {
         return MoodRepository(database)
+    }
+
+    @Provides
+    @Singleton
+    fun provideVideoRepository(
+        database: FirebaseFirestore,
+    ): VideoRepository {
+        return VideoRepository(database)
     }
 
 }
