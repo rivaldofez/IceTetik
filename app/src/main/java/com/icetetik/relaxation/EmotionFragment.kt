@@ -101,6 +101,7 @@ class EmotionFragment : Fragment() {
         chip.setEnsureMinTouchTargetSize(false)
         chip.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18F)
         chip.setTextColor(context.getColor(R.color.primaryBackgroundColor))
+        chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.white))
         chip.setPadding(paddingDp)
         chip.minHeight = 30
         chip.isAllCaps = true
