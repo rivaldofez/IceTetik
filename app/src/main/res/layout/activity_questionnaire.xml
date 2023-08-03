@@ -33,6 +33,7 @@
             android:fontFamily="@font/league_spartan_regular"
             android:gravity="center"
             android:textStyle="bold"
+            android:textColor="@color/black"
             android:text="Saya merasa bibir saya sering kering"
             android:textAlignment="center"
             android:layout_gravity="center"

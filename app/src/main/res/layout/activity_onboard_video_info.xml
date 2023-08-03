@@ -37,6 +37,7 @@
                 android:layout_height="match_parent"
                 android:text="Apa perbedaan stress, kecemasan dan depresi dan apa dampaknya bagi tubuh saya?"
                 android:textAlignment="center"
+                android:textColor="@color/black"
                 android:padding="16dp"
                 android:background="@drawable/fr_chat_user"/>
 
@@ -69,6 +70,7 @@
                 android:layout_height="match_parent"
                 android:text="Apa yang bisa saya lakukan untuk mengelola stress, kecemasan dan depresi"
                 android:textAlignment="center"
+                android:textColor="@color/black"
                 android:padding="16dp"
                 android:background="@drawable/fr_chat_user"/>
 
@@ -100,6 +102,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Apakah saya membutuhkan ahli?"
+                android:textColor="@color/black"
                 android:textAlignment="center"
                 android:padding="16dp"
                 android:background="@drawable/fr_chat_user"/>
@@ -124,6 +127,7 @@
             android:text="Cari tahu lebih dalam mengenai stress, kecemasan, depresi, ataupun gangguan mental emosional lainnya, melalu firut berikut:"
             android:textAlignment="center"
             android:textSize="16dp"
+            android:textColor="@color/black"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
