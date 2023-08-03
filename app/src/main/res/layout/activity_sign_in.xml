@@ -31,12 +31,11 @@
                 app:lottie_rawRes="@raw/lottie_login" />
 
             <TextView
+                style="@style/AuthHeadingTextStyle"
                 android:id="@+id/tv_head_sign_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/league_spartan_bold"
                 android:text="@string/title_sign_in_user"
-                android:textSize="28sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lottie_login_animation" />
@@ -91,12 +90,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/edt_password" />
 
             <TextView
+                style="@style/AuthHeadingTextStyle"
                 android:id="@+id/tv_or"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/title_or"
                 android:layout_margin="8dp"
-                android:fontFamily="@font/league_spartan_bold"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

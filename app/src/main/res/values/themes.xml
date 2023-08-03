@@ -12,6 +12,12 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <style name="AuthHeadingTextStyle">
+        <item name="android:fontFamily">@font/league_spartan_bold</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="MoodCardTextStyle">
         <item name="android:fontFamily">@font/league_spartan_bold</item>
         <item name="android:textSize">20sp</item>
