@@ -16,6 +16,7 @@ object FireStoreCollection{
 object FireStoreDocument {
     val QUESTIONS = "questions"
     val OPTIONS = "options"
+    val VIDEOS = "videos"
 }
 
 object FirestoreDocumentField {

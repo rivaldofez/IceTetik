@@ -5,3 +5,7 @@ data class Video(
     val title: String = "",
     val url: String = ""
 )
+
+data class VideoResponse(
+    val videos: ArrayList<Video> = ArrayList()
+)
