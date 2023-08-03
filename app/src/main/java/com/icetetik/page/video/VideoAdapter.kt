@@ -32,7 +32,7 @@ class VideoAdapter(val context: Context, val callback: VideoItemCallback): Recyc
         fun bind(video: Video) {
             binding.apply {
                 tvTitle.text = video.title
-                root.setOnClickListener { callback }
+                root.setOnClickListener { callback.onItemVideoClick(video) }
             }
         }
     }

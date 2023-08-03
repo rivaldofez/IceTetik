@@ -1,5 +1,6 @@
 package com.icetetik.page.video
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -63,7 +64,9 @@ class VideoActivity : AppCompatActivity(), VideoItemCallback {
     }
 
     override fun onItemVideoClick(video: Video) {
-
+        startActivity(
+            Intent(this@VideoActivity, VideoPlayerActivity::class.java)
+        )
     }
 
     private fun showLoading(isLoading: Boolean) {
