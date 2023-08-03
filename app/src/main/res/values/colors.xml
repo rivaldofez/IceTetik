@@ -13,5 +13,6 @@
     <color name="drop_transparent_50">#80FFFFFF</color>
     <color name="green_50">#486E33</color>
     <color name="gray_50">#D3D3D3</color>
+    <color name="gray_100">#989898</color>
 
 </resources>

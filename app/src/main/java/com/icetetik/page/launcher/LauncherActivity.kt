@@ -16,6 +16,7 @@ import com.icetetik.page.authentication.AuthenticationActivity
 import com.icetetik.databinding.ActivityLauncherBinding
 import com.icetetik.relaxation.RelaxationActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -29,19 +30,6 @@ class LauncherActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         checkTheme()
-
-        Handler(Looper.getMainLooper()).postDelayed({
-            viewModel.getUserSession { email ->
-                if (email == null){
-                    startActivity(Intent(this@LauncherActivity, AuthenticationActivity::class.java))
-                    finish()
-                } else {
-                    startActivity(Intent(this@LauncherActivity, MoodActivity::class.java))
-                    finish()
-                }
-            }
-
-        }, SPLASH_TIME )
     }
 
     private fun checkTheme(){
@@ -58,8 +46,20 @@ class LauncherActivity : AppCompatActivity() {
                             else ->  AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                         }
                     }
+
+                    delay(SPLASH_TIME)
+                    viewModel.getUserSession { email ->
+                        if (email == null){
+                            startActivity(Intent(this@LauncherActivity, AuthenticationActivity::class.java))
+                            finish()
+                        } else {
+                            startActivity(Intent(this@LauncherActivity, MoodActivity::class.java))
+                            finish()
+                        }
+                    }
                 }
             }
+
         }
     }
 
