@@ -24,6 +24,7 @@
                android:textSize="24sp"
                android:fontFamily="@font/league_spartan_bold"
                android:layout_marginTop="16dp"
+               android:textColor="@color/black"
                app:layout_constraintTop_toTopOf="parent"
                app:layout_constraintStart_toStartOf="parent"
                app:layout_constraintEnd_toEndOf="parent"

@@ -69,6 +69,7 @@
                             android:src="@drawable/ic_previous_24"
                             android:textColor="@color/black"
                             android:contentDescription="@string/icon_previous_month"
+                            app:tint="@color/primaryBackgroundColor"
                             />
 
                         <ImageView
@@ -80,7 +81,9 @@
                             android:background="@android:color/transparent"
                             android:src="@drawable/ic_next_24"
                             android:textColor="@color/black"
-                            android:contentDescription="@string/icon_next_month"/>
+                            android:contentDescription="@string/icon_next_month"
+                            app:tint="@color/primaryBackgroundColor"
+                            />
                     </LinearLayout>
 
                     <LinearLayout
@@ -266,6 +269,7 @@
                             android:fontFamily="@font/league_spartan_regular"
                             android:maxLines="3"
                             android:textSize="13sp"
+                            android:textColor="@color/black"
                             app:layout_constraintBottom_toTopOf="@+id/tv_read_more_card"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"
@@ -285,6 +289,7 @@
                             android:text="@string/txt_read_more"
                             android:textSize="13sp"
                             android:textStyle="bold"
+                            android:textColor="@color/black"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@id/iv_read_more_arrow"
                             app:layout_constraintTop_toBottomOf="@+id/tv_mood_note" />
@@ -295,6 +300,7 @@
                             android:layout_height="20dp"
                             android:layout_marginEnd="16dp"
                             android:src="@drawable/ic_next_24"
+                            android:padding="4dp"
                             android:contentDescription="@string/cd_icon_read_more"
                             app:layout_constraintBottom_toBottomOf="@+id/tv_read_more_card"
                             app:layout_constraintEnd_toEndOf="parent"
