@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/systemBackground"
     tools:context=".page.journal.note.MoodNoteWriterActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -15,11 +16,9 @@
         app:layout_constraintTop_toTopOf="parent">
 
     <TextView
+        style="@style/ToolbarTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:transitionName="name"
         android:text="@string/title_add_note"
         />
     </androidx.appcompat.widget.Toolbar>
@@ -37,6 +36,7 @@
         android:inputType="textMultiLine"
         android:lineSpacingMultiplier="2"
         android:hint="@string/hint_note_edit_text"
+        android:textColor="@color/reverseSystemBackground"
         app:layout_constraintBottom_toTopOf="@+id/btn_save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

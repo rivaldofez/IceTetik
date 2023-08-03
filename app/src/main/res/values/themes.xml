@@ -18,6 +18,12 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="ToolbarTextStyle">
+        <item name="android:fontFamily">@font/league_spartan_bold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/reverseSystemBackground</item>
+    </style>
+
     <style name="AuthEditTextStyle">
         <item name="android:fontFamily">@font/league_spartan_regular</item>
         <item name="android:textSize">16sp</item>
