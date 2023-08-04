@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import com.icetetik.R
 import com.icetetik.data.model.Mood
 import com.icetetik.databinding.ActivityMoodBinding
+import com.icetetik.page.infographic.InfographicActivity
 import com.icetetik.page.journal.JournalActivity
 import com.icetetik.page.questionnaire.QuestionnaireActivity
 import com.icetetik.page.settings.SettingsActivity
@@ -128,6 +129,12 @@ class MoodActivity : AppCompatActivity() {
             llVideo.setOnClickListener {
                 startActivity(
                     Intent(this@MoodActivity, VideoActivity::class.java)
+                )
+            }
+
+            lyInformation.setOnClickListener {
+                startActivity(
+                    Intent(this@MoodActivity, InfographicActivity::class.java)
                 )
             }
 

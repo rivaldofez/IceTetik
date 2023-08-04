@@ -5,13 +5,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.icetetik.data.model.Infographic
 import com.icetetik.data.model.Video
 import com.icetetik.databinding.ItemImageInfographicBinding
 
 class InfographicAdapter(private val context: Context) :
     RecyclerView.Adapter<InfographicAdapter.InfographicViewPagerHolder>() {
 
-    private val listImage: ArrayList<Int> = ArrayList()
+    private val listImage: ArrayList<Infographic> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InfographicViewPagerHolder {
         val binding = ItemImageInfographicBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -24,7 +25,7 @@ class InfographicAdapter(private val context: Context) :
         holder.bind(listImage[position])
     }
 
-    fun setData(data: List<Int>){
+    fun setData(data: List<Infographic>){
         listImage.clear()
         listImage.addAll(data)
         notifyDataSetChanged()
@@ -33,9 +34,9 @@ class InfographicAdapter(private val context: Context) :
     inner class InfographicViewPagerHolder(private val binding: ItemImageInfographicBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(image: Int) {
+        fun bind(infographic: Infographic) {
             Glide.with(context)
-                .load(image)
+                .load(infographic.url)
                 .into(binding.ivInfographic)
         }
 

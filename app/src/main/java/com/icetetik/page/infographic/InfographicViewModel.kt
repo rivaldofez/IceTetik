@@ -10,7 +10,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class InfographicViewModel @Inject private constructor(
+class InfographicViewModel @Inject constructor(
     private val mediaRepository: MediaRepository
 ): ViewModel() {
 
