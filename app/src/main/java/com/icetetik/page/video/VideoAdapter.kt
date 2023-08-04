@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.icetetik.data.model.Video
 import com.icetetik.databinding.ItemVideoBinding
 
@@ -33,6 +34,9 @@ class VideoAdapter(val context: Context, val callback: VideoItemCallback): Recyc
             binding.apply {
                 tvTitle.text = video.title
                 root.setOnClickListener { callback.onItemVideoClick(video) }
+                Glide.with(context)
+                    .load("https://i.ytimg.com/vi/${video.id}/mqdefault.jpg")
+                    .into(ivThumbnailVideo)
             }
         }
     }
