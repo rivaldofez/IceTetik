@@ -4,14 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.icetetik.data.model.Video
-import com.icetetik.data.repository.VideoRepository
+import com.icetetik.data.repository.MediaRepository
 import com.icetetik.util.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class VideoViewModel @Inject constructor(
-    private val videoRepository: VideoRepository
+    private val mediaRepository: MediaRepository
 ): ViewModel() {
 
     private val _videos = MutableLiveData<UiState<List<Video>>>()
@@ -25,12 +25,12 @@ class VideoViewModel @Inject constructor(
 
     fun getVideos(){
         _videos.value = UiState.Loading
-        videoRepository.getVideos { _videos.value = it }
+        mediaRepository.getVideos { _videos.value = it }
     }
 
     fun addVideos(){
         _addVideos.value = UiState.Loading
-        videoRepository.setVideos { _addVideos.value = it }
+        mediaRepository.setVideos { _addVideos.value = it }
     }
 
 

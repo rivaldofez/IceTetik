@@ -5,7 +5,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.icetetik.data.repository.AuthRepository
 import com.icetetik.data.repository.MoodRepository
 import com.icetetik.data.repository.QuestionnaireRepository
-import com.icetetik.data.repository.VideoRepository
+import com.icetetik.data.repository.MediaRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,8 +45,8 @@ class RepositoryModule {
     @Singleton
     fun provideVideoRepository(
         database: FirebaseFirestore,
-    ): VideoRepository {
-        return VideoRepository(database)
+    ): MediaRepository {
+        return MediaRepository(database)
     }
 
 }
