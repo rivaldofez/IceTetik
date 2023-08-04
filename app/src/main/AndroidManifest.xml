@@ -16,6 +16,9 @@
         android:theme="@style/Theme.IceTetik"
         tools:targetApi="31">
         <activity
+            android:name=".page.infographic.InfographicActivity"
+            android:exported="false" />
+        <activity
             android:name=".page.video.VideoPlayerActivity"
             android:exported="false" />
         <activity
