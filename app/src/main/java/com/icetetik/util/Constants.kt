@@ -17,6 +17,7 @@ object FireStoreDocument {
     val QUESTIONS = "questions"
     val OPTIONS = "options"
     val VIDEOS = "videos"
+    val INFOGRAPHICS = "infographics"
 }
 
 object FirestoreDocumentField {
