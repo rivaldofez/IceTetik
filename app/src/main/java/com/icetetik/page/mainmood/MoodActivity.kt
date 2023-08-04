@@ -11,6 +11,7 @@ import com.icetetik.page.journal.JournalActivity
 import com.icetetik.page.questionnaire.QuestionnaireActivity
 import com.icetetik.page.settings.SettingsActivity
 import com.icetetik.page.statistics.StatisticsActivity
+import com.icetetik.page.video.VideoActivity
 import com.icetetik.relaxation.RelaxationActivity
 import com.icetetik.util.Extension.animateChangeVisibility
 import com.icetetik.util.Extension.showSnackBar
@@ -123,6 +124,14 @@ class MoodActivity : AppCompatActivity() {
                    Intent(this@MoodActivity, RelaxationActivity::class.java)
                )
             }
+
+            llVideo.setOnClickListener {
+                startActivity(
+                    Intent(this@MoodActivity, VideoActivity::class.java)
+                )
+            }
+
+
 
 
         }
