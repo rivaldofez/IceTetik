@@ -9,49 +9,49 @@ object DummyQuestion {
     fun generateVideos(): List<Video> {
         return listOf(
             Video(
-                id = 1,
+                id = "Mn-rqGhNnSM",
                 title = "Good Food Good Mood: Makanan untuk Kesehatan Mentalmu",
                 url = "https://youtu.be/Mn-rqGhNnSM"
             ),
             Video(
-                id = 2,
+                id = "jiQ69d5guJA",
                 title = "Awas! Dampak Negatif Teknologi Bagi Kesehatan Mental",
                 url = "https://youtu.be/jiQ69d5guJA"
             ),
             Video(
-                id = 3,
+                id = "nZBrFyINjM0",
                 title = "Cara Mendukung Teman dan Keluarga yang Memiliki Masalah Kesehatan Mental\n",
                 url = "https://youtu.be/nZBrFyINjM0"
             ),
             Video(
-                id = 4,
+                id = "Y1vw5ByB41M",
                 title = "Tanda-tanda dan Gejala Gangguan Mental ",
                 url = "https://youtu.be/Y1vw5ByB41M"
             ),
             Video(
-                id = 5,
+                id = "nkkgImx8fN0",
                 title = "Mengenali perbedaan antara stress, Kecemasan, dan Depresi",
                 url = "https://youtu.be/nkkgImx8fN0"
             ),
             Video(
-                id = 6,
+                id = "XXqp0QswChU",
                 title = "Kenali Stres dan Tandanya Pada Diri Sendiri",
                 url = "https://youtu.be/XXqp0QswChU"
             ),
             Video(
-                id = 7,
+                id = "hQ9O2ubuUKk",
                 title = "Pemicu Stres, Dampaknya Bagi Tubuh dan Penanggulangannya.",
                 url = "https://youtu.be/hQ9O2ubuUKk"
             ),
             Video(
-                id = 8,
+                id = "Yt33Sj_a1u0",
                 title = "Kisah Inspiratif : Depresi Namun Bangkit Kembali.",
                 url = "https://youtu.be/Yt33Sj_a1u0"
             ),
             Video(
-                id = 9,
+                id = "kRNo28BJMas",
                 title = "Patah Hati? Cari Solusinya Di Video Ini",
-                url = "https://youtu.be/kRNo28BJMas\n"
+                url = "https://youtu.be/kRNo28BJMas"
             ),
         )
     }

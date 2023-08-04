@@ -10,6 +10,7 @@ import com.icetetik.data.model.Video
 import com.icetetik.databinding.ActivityVideoBinding
 import com.icetetik.util.Extension.animateChangeVisibility
 import com.icetetik.util.Extension.showSnackBar
+import com.icetetik.util.KeyParcelable
 import com.icetetik.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -64,9 +65,9 @@ class VideoActivity : AppCompatActivity(), VideoItemCallback {
     }
 
     override fun onItemVideoClick(video: Video) {
-        startActivity(
-            Intent(this@VideoActivity, VideoPlayerActivity::class.java)
-        )
+        val intent =  Intent(this@VideoActivity, VideoPlayerActivity::class.java)
+        intent.putExtra(KeyParcelable.VIDEO_DATA, video)
+        startActivity(intent)
     }
 
     private fun showLoading(isLoading: Boolean) {

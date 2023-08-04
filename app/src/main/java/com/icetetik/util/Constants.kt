@@ -30,6 +30,7 @@ object KeyParcelable {
     val MOOD_CONDITION = "mood_condition"
     val MOOD_NOTE = "mood_note"
     val QUESTIONNAIRE_RESULT = "questionnaire_result"
+    val VIDEO_DATA = "video_data"
 
 }
 
