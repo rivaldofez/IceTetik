@@ -30,6 +30,7 @@ class InfographicActivity : AppCompatActivity() {
         viewModel.getInfographics()
 
         setupViewPager()
+        setupToolbar()
 
 
     }
@@ -56,6 +57,17 @@ class InfographicActivity : AppCompatActivity() {
 
     private fun updateViewPagerData(infographics: List<Infographic>) {
         adapter.setData(infographics)
+    }
+
+    private fun setupToolbar() {
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
+        binding.toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun setupViewPager() {
