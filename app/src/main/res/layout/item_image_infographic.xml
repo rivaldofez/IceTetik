@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
+    <com.icetetik.customview.ZoomableImageView
         android:id="@+id/iv_infographic"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
