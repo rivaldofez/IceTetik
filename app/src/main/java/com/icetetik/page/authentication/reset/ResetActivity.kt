@@ -12,7 +12,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.icetetik.R
 import com.icetetik.databinding.ActivityResetBinding
 import com.icetetik.databinding.SublayoutDialogConfirmationBinding
+import com.icetetik.util.Extension.animateChangeVisibility
+import com.icetetik.util.Extension.showLongToast
 import com.icetetik.util.Extension.showShortToast
+import com.icetetik.util.Extension.showSnackBar
+import com.icetetik.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -30,7 +34,29 @@ class ResetActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setButtonActions()
+        setObservers()
 
+    }
+
+    private fun setObservers() {
+        viewModel.resetPasswordUser.observe(this) { state ->
+            when (state) {
+                is UiState.Loading -> {
+                    showLoading(isLoading = true)
+                }
+
+                is UiState.Failure -> {
+                    showLoading(isLoading = false)
+                    binding.showSnackBar(getString(R.string.error_cannot_save_account_data))
+                }
+
+                is UiState.Success -> {
+                    showLoading(isLoading = false)
+                    showLongToast("Success request reset password, please check your email to setup new password")
+                    finish()
+                }
+            }
+        }
     }
 
     private fun showResetConfirmationDialog(message: String, email: String) {
@@ -47,6 +73,7 @@ class ResetActivity : AppCompatActivity() {
 
             btnYes.setOnClickListener {
                 viewModel.resetPasswordUser(email)
+                dialog.dismiss()
             }
 
             btnNo.setOnClickListener {
@@ -66,6 +93,15 @@ class ResetActivity : AppCompatActivity() {
                     showShortToast(getString(R.string.error_all_field_must_be_valid))
                 }
             }
+        }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.apply {
+            edtEmail.isEnabled = !isLoading
+            sblLoading.root.animateChangeVisibility(isLoading)
+
+            if (isLoading) sblLoading.lottieLoading.playAnimation() else sblLoading.lottieLoading.pauseAnimation()
         }
     }
 }
