@@ -1,10 +1,76 @@
 package com.icetetik.util
 
+import com.icetetik.data.model.Infographic
 import com.icetetik.data.model.Option
 import com.icetetik.data.model.Question
 import com.icetetik.data.model.Video
 
 object DummyQuestion {
+
+    fun generateInfographics(): List<Infographic> {
+        return listOf(
+            Infographic(
+                title = "Awas! Dampak Negatif Teknologi Bagi Kesehatan Mental.PNG",
+                url = "https://firebasestorage.googleapis.com/v0/b/icetetik-d5929.appspot.com/o/apps%2Finfographics%2FAwas!%20Dampak%20Negatif%20Teknologi%20Bagi%20Kesehatan%20Mental.PNG?alt=media&token=61127fdc-6469-415e-8d23-a0616cb2c249"
+            ),
+            Infographic(
+                title = "Cara Mendukung Teman dan Keluarga yang Memiliki Masalah Kesehatan Mental.PNG",
+                url = "https://firebasestorage.googleapis.com/v0/b/icetetik-d5929.appspot.com/o/apps%2Finfographics%2FCara%20Mendukung%20Teman%20dan%20Keluarga%20yang%20Memiliki%20Masalah%20Kesehatan%20Mental.PNG?alt=media&token=9e64e371-ba0f-43ae-afaa-65a165729169"
+            ),
+            Infographic(
+                title = "Good Food Good Mood - Makanan untuk Kesehatan Mentalmu.PNG",
+                url = "https://firebasestorage.googleapis.com/v0/b/icetetik-d5929.appspot.com/o/apps%2Finfographics%2FGood%20Food%20Good%20Mood%20-%20Makanan%20untuk%20Kesehatan%20Mentalmu.PNG?alt=media&token=9c1010a1-dfb1-4959-8c6f-86d234718f0a"
+            ),
+            Infographic(
+                title = "Kenali Depresi dan Tandanya Pada Diri Sendiri.PNG",
+                url = "https://firebasestorage.googleapis.com/v0/b/icetetik-d5929.appspot.com/o/apps%2Finfographics%2FKenali%20Depresi%20dan%20Tandanya%20Pada%20Diri%20Sendiri.PNG?alt=media&token=f1adaea9-2744-4785-9b04-c1d7678ebc77"
+            ),
+            Infographic(
+                title = "Kenali Kecemasan dan Tandanya Pada Diri Sendiri.PNG",
+                url = "https://firebasestorage.googleapis.com/v0/b/icetetik-d5929.appspot.com/o/apps%2Finfographics%2FKenali%20Kecemasan%20dan%20Tandanya%20Pada%20Diri%20Sendiri.PNG?alt=media&token=a462a889-dc82-4a21-b84b-85bad18fa7c6"
+            ),
+            Infographic(
+                title = "Kenali Stres dan Tandanya Pada Diri Sendiri.PNG",
+                url = "https://firebasestorage.googleapis.com/v0/b/icetetik-d5929.appspot.com/o/apps%2Finfographics%2FKenali%20Stres%20dan%20Tandanya%20Pada%20Diri%20Sendiri.PNG?alt=media&token=da787038-b58d-4256-87f4-238b928e90ca"
+            ),
+            Infographic(
+                title = "Kisah Inspiratif - Depresi Namun Bangkit Kembali.PNG",
+                url = "https://firebasestorage.googleapis.com/v0/b/icetetik-d5929.appspot.com/o/apps%2Finfographics%2FKisah%20Inspiratif%20-%20Depresi%20Namun%20Bangkit%20Kembali.PNG?alt=media&token=b8f42dad-fcd3-4d6a-aae7-4dfe8846628c"
+            ),
+            Infographic(
+                title = "Kisah inspiratif - Bangkit dari Keterpurukan.PNG",
+                url = "https://firebasestorage.googleapis.com/v0/b/icetetik-d5929.appspot.com/o/apps%2Finfographics%2FKisah%20inspiratif%20-%20Bangkit%20dari%20Keterpurukan.PNG?alt=media&token=b9745937-9106-49d0-87ad-d02fcba372ed"
+            ),
+            Infographic(
+                title = "Mengenal Jenis-jenis Gangguan Mental yang Umum Diketahui.PNG",
+                url = "https://firebasestorage.googleapis.com/v0/b/icetetik-d5929.appspot.com/o/apps%2Finfographics%2FMengenal%20Jenis-jenis%20Gangguan%20Mental%20yang%20Umum%20Diketahui.PNG?alt=media&token=bc2ff6de-c2b6-491e-aced-10a88846a7d6"
+            ),
+            Infographic(
+                title = "Mengenali perbedaan antara stress, Kecemasan, dan Depresi.PNG",
+                url = "https://firebasestorage.googleapis.com/v0/b/icetetik-d5929.appspot.com/o/apps%2Finfographics%2FMengenali%20perbedaan%20antara%20stress%2C%20Kecemasan%2C%20dan%20Depresi.PNG?alt=media&token=3b0c3f28-dac7-4ec5-9216-dbf6eef6aed3"
+            ),
+            Infographic(
+                title = "Mengetahui Gejala Mayor dan Minor Depresi.PNG",
+                url = "https://firebasestorage.googleapis.com/v0/b/icetetik-d5929.appspot.com/o/apps%2Finfographics%2FMengetahui%20Gejala%20Mayor%20dan%20Minor%20Depresi.PNG?alt=media&token=6e755c63-801d-4e5c-8031-038a3e95111e"
+            ),
+            Infographic(
+                title = "Mitos dan Fakta tentang Kesehatan Mental.PNG",
+                url = "https://firebasestorage.googleapis.com/v0/b/icetetik-d5929.appspot.com/o/apps%2Finfographics%2FMitos%20dan%20Fakta%20tentang%20Kesehatan%20Mental.PNG?alt=media&token=478a1867-4180-49ed-aa9d-6ec89f9de401"
+            ),
+            Infographic(
+                title = "Pemicu Kecemasan, Dampaknya Bagi Tubuh dan Pengelolaannya.PNG",
+                url = "https://firebasestorage.googleapis.com/v0/b/icetetik-d5929.appspot.com/o/apps%2Finfographics%2FPemicu%20Kecemasan%2C%20Dampaknya%20Bagi%20Tubuh%20dan%20Pengelolaannya.PNG?alt=media&token=9bf4f1aa-a86d-43fc-8c15-fb508f3c4b34"
+            ),
+            Infographic(
+                title = "Pemicu Stres, Dampaknya Bagi Tubuh dan Pengelolaannya.PNG",
+                url = "https://firebasestorage.googleapis.com/v0/b/icetetik-d5929.appspot.com/o/apps%2Finfographics%2FPemicu%20Stres%2C%20Dampaknya%20Bagi%20Tubuh%20dan%20Pengelolaannya.PNG?alt=media&token=0bab7a6d-14e6-4caf-a519-d4a0e54926af"
+            ),
+            Infographic(
+                title = "Tanda-tanda dan Gejala Gangguan Mental.PNG",
+                url = "https://firebasestorage.googleapis.com/v0/b/icetetik-d5929.appspot.com/o/apps%2Finfographics%2FTanda-tanda%20dan%20Gejala%20Gangguan%20Mental.PNG?alt=media&token=f017e784-a6ff-4c05-954c-6e03d7d9ac08"
+            ),
+        )
+    }
 
     fun generateVideos(): List<Video> {
         return listOf(
