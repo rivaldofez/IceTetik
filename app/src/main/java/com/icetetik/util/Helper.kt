@@ -3,6 +3,7 @@ package com.icetetik.util
 import com.icetetik.R
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 object Helper {
     fun mapMoodConditionToDrawable(moodCondition: String) : Int {
@@ -18,7 +19,7 @@ object Helper {
     }
 
     fun monthYearFromDate(date: LocalDate): String {
-        val formatter = DateTimeFormatter.ofPattern("MMMM yyyy")
+        val formatter = DateTimeFormatter.ofPattern("MMMM yyyy", Locale("id", "ID"))
         return formatter.format(date)
     }
 }
