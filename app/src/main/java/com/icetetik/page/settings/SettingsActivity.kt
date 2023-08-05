@@ -43,10 +43,10 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,  R.layout.activity_settings)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_settings)
 
         viewModel.getUserSession { email ->
-            if(email == null) {
+            if (email == null) {
                 binding.showSnackBar("Session Expired")
             } else {
                 userEmail = email
@@ -57,8 +57,8 @@ class SettingsActivity : AppCompatActivity() {
         setButtonAction()
     }
 
-    private fun loadUserInfo(){
-        if(userEmail.isEmpty()){
+    private fun loadUserInfo() {
+        if (userEmail.isEmpty()) {
             binding.showSnackBar("Session Expired")
         } else {
             viewModel.getUserInfo(userEmail)
@@ -118,7 +118,7 @@ class SettingsActivity : AppCompatActivity() {
         binding.tvName.text = user.name
     }
 
-    private fun setButtonAction(){
+    private fun setButtonAction() {
         binding.apply {
             rowPassword.root.setOnClickListener {
                 startActivity(
@@ -159,7 +159,7 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
-    private fun showConfirmationDialog(message: String){
+    private fun showConfirmationDialog(message: String) {
         val dialogBinding = SublayoutDialogConfirmationBinding.inflate(layoutInflater)
 
         val dialog = Dialog(this@SettingsActivity)
@@ -205,9 +205,9 @@ class SettingsActivity : AppCompatActivity() {
             dialogBinding.spnTheme.isSelected = false
             var selectedTheme: Int? = null
 
-                lifecycleScope.launch {
+            lifecycleScope.launch {
                 viewModel.getThemeSetting().collect { theme ->
-                    if (!theme.isNullOrEmpty()){
+                    if (!theme.isNullOrEmpty()) {
                         selectedTheme = theme.toInt()
                         selectedTheme?.let {
                             dialogBinding.spnTheme.setSelection(it)
@@ -216,26 +216,27 @@ class SettingsActivity : AppCompatActivity() {
                 }
             }
 
-            dialogBinding.spnTheme.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    selectedTheme = position
-                }
+            dialogBinding.spnTheme.onItemSelectedListener =
+                object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(
+                        parent: AdapterView<*>?,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                    ) {
+                        selectedTheme = position
+                    }
 
-                override fun onNothingSelected(parent: AdapterView<*>?) {}
-            }
+                    override fun onNothingSelected(parent: AdapterView<*>?) {}
+                }
 
 
             btnClose.setOnClickListener {
                 selectedTheme?.let {
-                    when(it){
+                    when (it) {
                         0 -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
                         1 -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                        else ->  AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                        else -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                     }
                     viewModel.saveThemeSetting(themeId = it)
                     dialog.dismiss()
