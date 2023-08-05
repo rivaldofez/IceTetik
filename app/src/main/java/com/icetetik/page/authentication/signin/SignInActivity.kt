@@ -186,7 +186,7 @@ class SignInActivity : AppCompatActivity() {
     private fun navigateToMainView() {
         val intent = Intent(this@SignInActivity, MoodActivity::class.java)
         startActivity(intent)
-        finish()
+        finishAffinity()
     }
 
     private fun handleResultSignInGoogle(task: Task<GoogleSignInAccount>) {
