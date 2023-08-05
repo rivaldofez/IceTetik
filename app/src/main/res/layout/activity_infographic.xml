@@ -27,10 +27,50 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/indicator_images"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />
+
+    <ImageView
+        android:id="@+id/btn_prev_image"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_previous_24"
+        android:padding="8dp"
+        app:tint="@color/white"
+        android:background="@color/primaryBackgroundColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <me.relex.circleindicator.CircleIndicator3
+        android:id="@+id/indicator_images"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:background="@color/primaryBackgroundColor"
+        app:ci_width="5dp"
+        app:ci_height="5dp"
+        app:ci_margin="5dp"
+        app:ci_orientation="horizontal"
+        app:ci_gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_prev_image"
+        app:layout_constraintEnd_toStartOf="@id/btn_next_image"
+        />
+
+    <ImageView
+        android:id="@+id/btn_next_image"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_next_24"
+        android:padding="8dp"
+        app:tint="@color/white"
+        android:background="@color/primaryBackgroundColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
 
     <include
         layout="@layout/sublayout_loading"

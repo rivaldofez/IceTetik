@@ -2,7 +2,9 @@ package com.icetetik.page.infographic
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
+import androidx.core.view.get
 import androidx.viewpager2.widget.ViewPager2
 import com.google.firebase.storage.FirebaseStorage
 import com.icetetik.R
@@ -31,8 +33,27 @@ class InfographicActivity : AppCompatActivity() {
 
         setupViewPager()
         setupToolbar()
+        setupButtonActions()
 
 
+    }
+
+    private fun setupButtonActions() {
+        binding.apply {
+            btnNextImage.setOnClickListener {
+                val currentItem = binding.vpImages.currentItem
+                if(currentItem != adapter.itemCount - 1){
+                    vpImages.setCurrentItem(currentItem + 1, true)
+                }
+            }
+
+            btnPrevImage.setOnClickListener {
+                val currentItem = binding.vpImages.currentItem
+                if(currentItem != 0){
+                    vpImages.setCurrentItem(currentItem - 1, true)
+                }
+            }
+        }
     }
 
     private fun setObservers() {
@@ -50,6 +71,7 @@ class InfographicActivity : AppCompatActivity() {
                 is UiState.Success -> {
                     showLoading(isLoading = false)
                     updateViewPagerData(state.data)
+                    binding.indicatorImages.setViewPager(binding.vpImages)
                 }
             }
         }
@@ -74,6 +96,7 @@ class InfographicActivity : AppCompatActivity() {
         binding.apply {
             vpImages.adapter = adapter
             vpImages.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+            vpImages.isUserInputEnabled = false
 
             vpImages.currentItem = 1
         }
