@@ -6,37 +6,44 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.icetetik.data.model.Infographic
-import com.icetetik.databinding.ItemImageInfographicBinding
+import com.icetetik.databinding.ItemVideoBinding
 
-class InfographicAdapter(private val context: Context) :
-    RecyclerView.Adapter<InfographicAdapter.InfographicViewPagerHolder>() {
+class InfographicAdapter(private val context: Context, val callback: InfographicItemCallback) :
+    RecyclerView.Adapter<InfographicAdapter.InfographicViewHolder>() {
 
-    private val listImage: ArrayList<Infographic> = ArrayList()
+    private val listInfographic: ArrayList<Infographic> = ArrayList()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InfographicViewPagerHolder {
-        val binding = ItemImageInfographicBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return InfographicViewPagerHolder(binding)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InfographicViewHolder {
+        val binding = ItemVideoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return InfographicViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = listImage.size
+    override fun getItemCount(): Int = listInfographic.size
 
-    override fun onBindViewHolder(holder: InfographicViewPagerHolder, position: Int) {
-        holder.bind(listImage[position])
+    override fun onBindViewHolder(holder: InfographicViewHolder, position: Int) {
+        holder.bind(listInfographic[position])
     }
 
     fun setData(data: List<Infographic>){
-        listImage.clear()
-        listImage.addAll(data)
+        listInfographic.clear()
+        listInfographic.addAll(data)
         notifyDataSetChanged()
     }
 
-    inner class InfographicViewPagerHolder(private val binding: ItemImageInfographicBinding) :
+    inner class InfographicViewHolder(private val binding: ItemVideoBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(infographic: Infographic) {
-            Glide.with(context)
-                .load(infographic.url)
-                .into(binding.ivInfographic)
+            binding.apply {
+                tvTitle.text = infographic.title
+                root.setOnClickListener {
+                    callback.onItemInfographicClick(infographic)
+                }
+                Glide.with(context)
+                    .load(infographic.url)
+                    .into(ivThumbnailVideo)
+
+            }
         }
 
     }
