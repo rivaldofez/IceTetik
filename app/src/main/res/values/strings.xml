@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">IceTetik</string>
-    <string name="cd_logo_splash">Logo of Ice-Tetik</string>
+    <string name="cd_logo_splash">Logo Ice-Tetik</string>
     <string name="plc_today_mood">Kamu %s Hari Ini</string>
     <string name="title_your_mood_today">Mood Kamu Hari Ini:</string>
     <string name="title_relaxation_with_min_tik">yuk relaksasi bareng min-tik</string>
@@ -10,7 +10,7 @@
     <string name="txt_today_mood_null">-</string>
     <string name="cd_image_mascot">Maskot Ice-Tetik</string>
     <string name="cd_image_mascot_video">Image Maskot Video</string>
-    <string name="cd_icon_video_play">Icon video play</string>
+    <string name="cd_icon_video_play">Icon mulai video</string>
     <string name="cd_icon_calendar">Icon Kalender</string>
     <string name="cd_icon_recap_statistics">Icon Rekap</string>
     <string name="cd_icon_questionnaire">Icon Kuesioner</string>
@@ -69,20 +69,20 @@
     <string name="txt_email_invalid">Email tidak valid</string>
     <string name="txt_minimum_two_character_fullname">Nama lengkap minimal 2 karakter</string>
     <string name="txt_password_minimum_eight_character">Kata sandi minimum 8 karakter</string>
-    <string name="error_cannot_save_account_data">Error occured because system cannot save account data</string>
-    <string name="msg_login_success">Login Successfully</string>
-    <string name="error_all_field_must_be_valid">All field must be valid and filled, please try again</string>
-    <string name="error_cannot_retrieve_user_data">Error occured because system cannot retrieve account data</string>
-    <string name="error_cannot_sign_in">Error occured while sign in your account, please try again</string>
-    <string name="msg_sign_up_success">Sign Up Successfully</string>
-    <string name="error_password_not_same">Password not match</string>
+    <string name="error_cannot_save_account_data">Terjadi kesalahan karena sistem tidak dapat menyimpan data kamu</string>
+    <string name="msg_login_success">Sign In berhasil</string>
+    <string name="error_all_field_must_be_valid">Semua kolom isian harus terisi dan valid, silakan coba lagi</string>
+    <string name="error_cannot_retrieve_user_data">Terjadi kesalahan karena sistem tidak dapat menerima data akun kamu</string>
+    <string name="error_cannot_sign_in">Terjadi kesalahan saat sign in, silakan coba lagi</string>
+    <string name="msg_sign_up_success">Sign Up berhasil</string>
+    <string name="error_password_not_same">Password tidak sama</string>
     <string name="error_note_cannot_be_empty">Note tidak boleh kosong</string>
     <string name="txt_edit_note">Edit Catatan</string>
     <string name="txt_edit_mood">Edit Mood</string>
-    <string name="error_process_request">There\'s error occured while process your request</string>
+    <string name="error_process_request">Terjadi kesalahan saat memproses permintaan kamu</string>
     <string name="error_mood_or_note_not_added_yet">Mood atau Jurnal belum ditambahkan</string>
-    <string name="error_session_expired">Session Expired</string>
-    <string name="error_when_load_mood_status">There\'s error occured while load mood status</string>
+    <string name="error_session_expired">Sesi akun kamu sudah berakhir, silakan login kembali</string>
+    <string name="error_when_load_mood_status">Terjadi kesalahan saat memuat status mood kamu </string>
     <string name="error_today_mood_not_set_yet">Hari ini kamu belum set mood kamu</string>
 
     <string-array name="themes">
