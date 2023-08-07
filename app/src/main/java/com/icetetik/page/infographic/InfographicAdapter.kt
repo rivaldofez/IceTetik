@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.icetetik.data.model.Infographic
-import com.icetetik.data.model.Video
 import com.icetetik.databinding.ItemImageInfographicBinding
 
 class InfographicAdapter(private val context: Context) :

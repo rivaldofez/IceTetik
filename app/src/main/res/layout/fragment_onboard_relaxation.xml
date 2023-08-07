@@ -7,6 +7,20 @@
     android:background="@color/primaryBackgroundColor"
     tools:context=".relaxation.OnboardRelaxationFragment">
 
+
+    <ImageView
+        android:id="@+id/iv_bubble"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_bubble_mascot"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="16dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
     <TextView
         android:id="@+id/tv_title_message_mascot"
         android:layout_width="match_parent"
@@ -18,11 +32,13 @@
         android:textAlignment="center"
         android:layout_marginHorizontal="42dp"
         android:layout_marginTop="42dp"
-        android:background="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:padding="16dp"
+        app:layout_constraintStart_toStartOf="@id/iv_bubble"
+        app:layout_constraintEnd_toEndOf="@id/iv_bubble"
+        app:layout_constraintTop_toTopOf="@id/iv_bubble"
         />
+
+
 
     <ImageView
         android:layout_width="0dp"
@@ -33,7 +49,7 @@
         app:layout_constraintWidth_percent="0.60"
         app:layout_constraintBottom_toTopOf="@+id/tv_title_start_next_relaxation"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_message_mascot" />
+        app:layout_constraintTop_toBottomOf="@id/iv_bubble" />
 
     <TextView
         android:id="@+id/tv_title_start_next_relaxation"

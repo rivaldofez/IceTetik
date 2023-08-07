@@ -30,7 +30,7 @@ class MoodRepository(
         document.set(mood)
             .addOnSuccessListener {
                 result.invoke(
-                    UiState.Success("Success add mood data")
+                    UiState.Success("Berhasil menambahkan data mood")
                 )
             }
             .addOnFailureListener {

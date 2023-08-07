@@ -64,7 +64,7 @@ class MediaRepository(
                 val dataResult = snapshot.toObject(InfographicResponse::class.java)
 
                 if (dataResult == null) {
-                    result.invoke(UiState.Failure("data empty"))
+                    result.invoke(UiState.Failure("Data masih kosong"))
                 } else {
                     result.invoke(UiState.Success(dataResult.infographics))
                 }
@@ -86,7 +86,7 @@ class MediaRepository(
                 val dataResult = snapshot.toObject(VideoResponse::class.java)
 
                 if (dataResult == null) {
-                    result.invoke(UiState.Failure("data empty"))
+                    result.invoke(UiState.Failure("Data masih kosong"))
                 } else {
                     result.invoke(UiState.Success(dataResult.videos))
                 }

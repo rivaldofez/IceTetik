@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.icetetik.R
 import com.icetetik.databinding.FragmentOnboardVideoBinding
 
 class OnboardVideoFragment : Fragment() {
@@ -17,7 +16,7 @@ class OnboardVideoFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentOnboardVideoBinding.inflate(inflater, container, false)
         return binding.root
     }

@@ -6,31 +6,26 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
 import android.view.View
 import android.view.Window
-import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import com.icetetik.R
 import com.icetetik.page.authentication.AuthenticationActivity
 import com.icetetik.data.model.User
 import com.icetetik.databinding.ActivitySettingsBinding
-import com.icetetik.databinding.SublayoutAlertDialogBinding
 import com.icetetik.databinding.SublayoutDialogConfirmationBinding
 import com.icetetik.databinding.SublayoutDialogThemeBinding
+import com.icetetik.page.authentication.reset.ResetActivity
 import com.icetetik.util.Extension.animateChangeVisibility
 import com.icetetik.util.Extension.showShortToast
 import com.icetetik.util.Extension.showSnackBar
 import com.icetetik.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -42,11 +37,11 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,  R.layout.activity_settings)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_settings)
 
         viewModel.getUserSession { email ->
-            if(email == null) {
-                binding.showSnackBar("Session Expired")
+            if (email == null) {
+                binding.showSnackBar(getString(R.string.error_session_expired))
             } else {
                 userEmail = email
                 loadUserInfo()
@@ -56,9 +51,9 @@ class SettingsActivity : AppCompatActivity() {
         setButtonAction()
     }
 
-    private fun loadUserInfo(){
-        if(userEmail.isEmpty()){
-            binding.showSnackBar("Session Expired")
+    private fun loadUserInfo() {
+        if (userEmail.isEmpty()) {
+            binding.showSnackBar(getString(R.string.error_session_expired))
         } else {
             viewModel.getUserInfo(userEmail)
         }
@@ -73,7 +68,7 @@ class SettingsActivity : AppCompatActivity() {
 
                 is UiState.Failure -> {
                     showLoading(isLoading = false)
-                    binding.showSnackBar("There's error occured while process your request")
+                    binding.showSnackBar(getString(R.string.error_process_request))
                 }
 
                 is UiState.Success -> {
@@ -96,7 +91,7 @@ class SettingsActivity : AppCompatActivity() {
 
                 is UiState.Failure -> {
                     showLoading(isLoading = false)
-                    binding.showSnackBar("There's error occured while process your request")
+                    binding.showSnackBar(getString(R.string.error_process_request))
                 }
 
                 is UiState.Success -> {
@@ -104,7 +99,7 @@ class SettingsActivity : AppCompatActivity() {
 
                     val result = state.data
                     if (result == null) {
-                        binding.showSnackBar("User info not found")
+                        binding.showSnackBar(getString(R.string.error_user_info_not_found))
                     } else {
                         updateCard(state.data)
                     }
@@ -117,23 +112,21 @@ class SettingsActivity : AppCompatActivity() {
         binding.tvName.text = user.name
     }
 
-    private fun setButtonAction(){
+    private fun setButtonAction() {
         binding.apply {
             rowPassword.root.setOnClickListener {
-
+                startActivity(
+                    Intent(this@SettingsActivity, ResetActivity::class.java)
+                )
             }
 
             rowTheme.root.setOnClickListener {
-                showThemeDialog("Pilih tema favorit kamu")
+                showThemeDialog(getString(R.string.txt_select_theme))
             }
 
             rowFeedback.root.setOnClickListener {
                 val intent = Intent(this@SettingsActivity, FeedbackActivity::class.java)
                 startActivity(intent)
-            }
-
-            rowDateTime.root.setOnClickListener {
-
             }
 
             rowHelp.root.setOnClickListener {
@@ -147,7 +140,7 @@ class SettingsActivity : AppCompatActivity() {
             }
 
             btnLogout.setOnClickListener {
-                showConfirmationDialog("Are you sure want sign out?")
+                showConfirmationDialog(getString(R.string.msg_sign_out_dialog))
             }
 
             btnSync.setOnClickListener {
@@ -156,7 +149,7 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
-    private fun showConfirmationDialog(message: String){
+    private fun showConfirmationDialog(message: String) {
         val dialogBinding = SublayoutDialogConfirmationBinding.inflate(layoutInflater)
 
         val dialog = Dialog(this@SettingsActivity)
@@ -202,9 +195,9 @@ class SettingsActivity : AppCompatActivity() {
             dialogBinding.spnTheme.isSelected = false
             var selectedTheme: Int? = null
 
-                lifecycleScope.launch {
+            lifecycleScope.launch {
                 viewModel.getThemeSetting().collect { theme ->
-                    if (!theme.isNullOrEmpty()){
+                    if (!theme.isNullOrEmpty()) {
                         selectedTheme = theme.toInt()
                         selectedTheme?.let {
                             dialogBinding.spnTheme.setSelection(it)
@@ -213,26 +206,27 @@ class SettingsActivity : AppCompatActivity() {
                 }
             }
 
-            dialogBinding.spnTheme.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    selectedTheme = position
-                }
+            dialogBinding.spnTheme.onItemSelectedListener =
+                object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(
+                        parent: AdapterView<*>?,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                    ) {
+                        selectedTheme = position
+                    }
 
-                override fun onNothingSelected(parent: AdapterView<*>?) {}
-            }
+                    override fun onNothingSelected(parent: AdapterView<*>?) {}
+                }
 
 
             btnClose.setOnClickListener {
                 selectedTheme?.let {
-                    when(it){
+                    when (it) {
                         0 -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
                         1 -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                        else ->  AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                        else -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                     }
                     viewModel.saveThemeSetting(themeId = it)
                     dialog.dismiss()

@@ -1,13 +1,14 @@
 package com.icetetik.relaxation
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.icetetik.R
 import com.icetetik.databinding.FragmentVideoBinding
+import com.icetetik.page.mainmood.MoodActivity
 
 class VideoFragment : Fragment() {
     private var _binding: FragmentVideoBinding? = null
@@ -25,7 +26,9 @@ class VideoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnHome.setOnClickListener {
-
+            val intent = Intent(requireActivity(), MoodActivity::class.java)
+            startActivity(intent)
+            requireActivity().finishAffinity()
         }
 
         binding.ivStartVideo.setOnClickListener {

@@ -4,9 +4,9 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.icetetik.R
-import com.icetetik.data.model.QuestionnaireResult
 import com.icetetik.data.model.Video
 import com.icetetik.databinding.ActivityVideoPlayerBinding
+import com.icetetik.util.Extension.showSnackBar
 import com.icetetik.util.KeyParcelable
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
@@ -60,12 +60,11 @@ class VideoPlayerActivity : AppCompatActivity(), YouTubePlayerListener {
         val video = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent.getParcelableExtra(KeyParcelable.VIDEO_DATA, Video::class.java)
         } else {
-            intent.getParcelableExtra<Video>(KeyParcelable.VIDEO_DATA)
+            intent.getParcelableExtra(KeyParcelable.VIDEO_DATA)
         }
 
-
         if (video == null){
-
+            binding.showSnackBar(getString(R.string.error_video_null))
         } else {
             youTubePlayer.loadVideo(video.id, 0f)
         }
