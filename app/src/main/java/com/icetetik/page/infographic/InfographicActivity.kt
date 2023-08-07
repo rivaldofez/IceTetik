@@ -1,22 +1,25 @@
 package com.icetetik.page.infographic
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.viewpager2.widget.ViewPager2
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.icetetik.R
 import com.icetetik.data.model.Infographic
 import com.icetetik.databinding.ActivityInfographicBinding
+import com.icetetik.page.video.VideoPlayerActivity
 import com.icetetik.util.Extension.animateChangeVisibility
 import com.icetetik.util.Extension.showSnackBar
+import com.icetetik.util.KeyParcelable
 import com.icetetik.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class InfographicActivity : AppCompatActivity() {
+class InfographicActivity : AppCompatActivity(), InfographicItemCallback {
     private lateinit var binding: ActivityInfographicBinding
     private val viewModel: InfographicViewModel by viewModels()
-    private val adapter = InfographicAdapter(this@InfographicActivity)
+    private val adapter = InfographicAdapter(this@InfographicActivity, this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,31 +28,16 @@ class InfographicActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setObservers()
+        setupRecycler()
         viewModel.getInfographics()
-
-        setupViewPager()
-        setupToolbar()
-        setupButtonActions()
-
-
     }
 
-    private fun setupButtonActions() {
-        binding.apply {
-            btnNextImage.setOnClickListener {
-                val currentItem = binding.vpImages.currentItem
-                if(currentItem != adapter.itemCount - 1){
-                    vpImages.setCurrentItem(currentItem + 1, true)
-                }
-            }
+    private fun setupRecycler() {
+        val layoutManager = LinearLayoutManager(this@InfographicActivity)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
 
-            btnPrevImage.setOnClickListener {
-                val currentItem = binding.vpImages.currentItem
-                if(currentItem != 0){
-                    vpImages.setCurrentItem(currentItem - 1, true)
-                }
-            }
-        }
+        binding.rvInfographic.layoutManager = layoutManager
+        binding.rvInfographic.adapter = adapter
     }
 
     private fun setObservers() {
@@ -66,44 +54,28 @@ class InfographicActivity : AppCompatActivity() {
 
                 is UiState.Success -> {
                     showLoading(isLoading = false)
-                    updateViewPagerData(state.data)
-                    binding.indicatorImages.setViewPager(binding.vpImages)
+                    updateRecyclerData(state.data)
                 }
             }
         }
     }
 
-    private fun updateViewPagerData(infographics: List<Infographic>) {
+    private fun updateRecyclerData(infographics: List<Infographic>) {
         adapter.setData(infographics)
-    }
-
-    private fun setupToolbar() {
-        setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
-
-        binding.toolbar.setNavigationOnClickListener {
-            onBackPressed()
-        }
-    }
-
-    private fun setupViewPager() {
-        binding.apply {
-            vpImages.adapter = adapter
-            vpImages.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-            vpImages.isUserInputEnabled = false
-
-            vpImages.currentItem = 1
-        }
     }
 
     private fun showLoading(isLoading: Boolean) {
         binding.apply {
             sblLoading.root.animateChangeVisibility(isLoading)
-            vpImages.animateChangeVisibility(!isLoading)
+            rvInfographic.animateChangeVisibility(!isLoading)
 
             if (isLoading) sblLoading.lottieLoading.playAnimation() else sblLoading.lottieLoading.pauseAnimation()
         }
+    }
+
+    override fun onItemInfographicClick(infographic: Infographic) {
+        val intent =  Intent(this@InfographicActivity, DetailInfographicActivity::class.java)
+        intent.putExtra(KeyParcelable.INFOGRAPHIC_DATA, infographic)
+        startActivity(intent)
     }
 }
