@@ -33,6 +33,8 @@ object KeyParcelable {
     const val QUESTIONNAIRE_RESULT = "questionnaire_result"
     const val VIDEO_DATA = "video_data"
     const val INFOGRAPHIC_DATA = "infographic_data"
+    const val TITLE_FAQ = "title_faq"
+    const val ANSWER_FAQ = "answer_faq"
 
 }
 

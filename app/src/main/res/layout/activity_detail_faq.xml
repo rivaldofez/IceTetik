@@ -20,13 +20,14 @@
         />
 
     <TextView
+        android:id="@+id/tv_answer_faq"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:fontFamily="@font/league_spartan_medium"
         android:layout_margin="16dp"
-        android:textAlignment="center"
+        android:textAlignment="viewStart"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title_faq"
