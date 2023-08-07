@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Window
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.icetetik.R
 import com.icetetik.databinding.ActivityResetBinding
@@ -35,6 +36,15 @@ class ResetActivity : AppCompatActivity() {
 
         setButtonActions()
         setObservers()
+
+        viewModel.getUserSession { email ->
+            if (email == null) {
+                binding.edtEmail.isEnabled = true
+            } else {
+                binding.edtEmail.setText(email)
+                binding.edtEmail.isEnabled = false
+            }
+        }
 
     }
 

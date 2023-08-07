@@ -25,5 +25,9 @@ class ResetViewModel @Inject constructor(
         }
     }
 
+    fun getUserSession(result: (String?) -> Unit) {
+        authRepository.getUserSession(result)
+    }
+
 
 }
