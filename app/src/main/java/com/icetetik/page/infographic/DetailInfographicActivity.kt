@@ -4,6 +4,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
+import com.icetetik.R
 import com.icetetik.data.model.Infographic
 import com.icetetik.databinding.ActivityDetailInfographicBinding
 import com.icetetik.util.Extension.showSnackBar
@@ -28,7 +29,7 @@ class DetailInfographicActivity : AppCompatActivity() {
         }
 
         if (infographic == null){
-            binding.showSnackBar("Terjadi kesalahan saat memuat infographic, silakan coba lagi")
+            binding.showSnackBar(getString(R.string.error_infographic_null))
         } else {
             Glide.with(this)
                 .load(infographic.url)

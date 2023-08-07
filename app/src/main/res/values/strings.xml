@@ -101,4 +101,5 @@
     <string name="error_no_data_this_month">Belum ada data di bulan ini</string>
     <string name="txt_mood">Mood</string>
     <string name="error_video_null">Terjadi kesalahan saat memuat video, silakan coba lagi</string>
+    <string name="error_infographic_null">Terjadi kesalahan saat memuat infographic, silakan coba lagi</string>
 </resources>
