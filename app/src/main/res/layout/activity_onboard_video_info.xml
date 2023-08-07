@@ -39,7 +39,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:padding="16dp"
-                android:background="@drawable/fr_chat_user"/>
+                android:background="@drawable/fr_container_chat_right"/>
 
             <ImageView
                 android:layout_marginTop="-4.5dp"
@@ -68,19 +68,20 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/fr_container_chat_left"
+                android:padding="16dp"
                 android:text="Apa yang bisa saya lakukan untuk mengelola stress, kecemasan dan depresi"
                 android:textAlignment="center"
-                android:textColor="@color/black"
-                android:padding="16dp"
-                android:background="@drawable/fr_chat_user"/>
+                android:textColor="@color/black" />
 
             <ImageView
                 android:layout_marginTop="-4.5dp"
                 android:layout_marginRight="4.5dp"
                 android:layout_width="8dp"
                 android:layout_height="16dp"
-                android:layout_gravity="end"
+                android:layout_gravity="start"
                 android:rotation="90"
+                android:scaleY="-1"
                 android:background="@drawable/fr_corner_chat"
                 />
 
@@ -105,7 +106,7 @@
                 android:textColor="@color/black"
                 android:textAlignment="center"
                 android:padding="16dp"
-                android:background="@drawable/fr_chat_user"/>
+                android:background="@drawable/fr_container_chat_right"/>
 
             <ImageView
                 android:layout_marginTop="-4.5dp"

@@ -30,6 +30,14 @@ class HelpActivity : AppCompatActivity() {
                 intent.data = Uri.parse(url)
                 startActivity(intent)
             }
+
+            btnContactPerson.setOnClickListener {
+                val url = "https://wa.me/message/SOLC3GUTD6OVF1?src=qr"
+                val intent = Intent(Intent.ACTION_VIEW)
+
+                intent.data = Uri.parse(url)
+                startActivity(intent)
+            }
         }
     }
 }
