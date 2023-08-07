@@ -135,10 +135,6 @@ class SettingsActivity : AppCompatActivity() {
                 startActivity(intent)
             }
 
-            rowDateTime.root.setOnClickListener {
-
-            }
-
             rowHelp.root.setOnClickListener {
                 val intent = Intent(this@SettingsActivity, HelpActivity::class.java)
                 startActivity(intent)
