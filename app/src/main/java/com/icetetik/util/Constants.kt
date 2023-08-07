@@ -7,31 +7,31 @@ import com.icetetik.data.model.MoodItemView
 import com.icetetik.data.model.Question
 
 object FireStoreCollection{
-    val USER = "user"
-    val APPS = "apps"
-    val MOODS = "moods"
-    val QUESTIONNAIRE = "questionnaire"
+    const val USER = "user"
+    const val APPS = "apps"
+    const val MOODS = "moods"
+    const val QUESTIONNAIRE = "questionnaire"
 }
 
 object FireStoreDocument {
-    val QUESTIONS = "questions"
-    val OPTIONS = "options"
-    val VIDEOS = "videos"
-    val INFOGRAPHICS = "infographics"
+    const val QUESTIONS = "questions"
+    const val OPTIONS = "options"
+    const val VIDEOS = "videos"
+    const val INFOGRAPHICS = "infographics"
 }
 
 object FirestoreDocumentField {
-    val QUESTION_DATA = "question-data"
-    val OPTION_DATA = "option-data"
-    val CONDITION = "condition"
-    val POSTED = "posted"
+    const val QUESTION_DATA = "question-data"
+    const val OPTION_DATA = "option-data"
+    const val CONDITION = "condition"
+    const val POSTED = "posted"
 }
 
 object KeyParcelable {
-    val MOOD_CONDITION = "mood_condition"
-    val MOOD_NOTE = "mood_note"
-    val QUESTIONNAIRE_RESULT = "questionnaire_result"
-    val VIDEO_DATA = "video_data"
+    const val MOOD_CONDITION = "mood_condition"
+    const val MOOD_NOTE = "mood_note"
+    const val QUESTIONNAIRE_RESULT = "questionnaire_result"
+    const val VIDEO_DATA = "video_data"
 
 }
 
