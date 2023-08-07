@@ -34,23 +34,23 @@ class InfographicActivity : AppCompatActivity() {
 
     }
 
-    private fun setupButtonActions() {
-        binding.apply {
-            btnNextImage.setOnClickListener {
-                val currentItem = binding.vpImages.currentItem
-                if(currentItem != adapter.itemCount - 1){
-                    vpImages.setCurrentItem(currentItem + 1, true)
-                }
-            }
-
-            btnPrevImage.setOnClickListener {
-                val currentItem = binding.vpImages.currentItem
-                if(currentItem != 0){
-                    vpImages.setCurrentItem(currentItem - 1, true)
-                }
-            }
-        }
-    }
+//    private fun setupButtonActions() {
+//        binding.apply {
+//            btnNextImage.setOnClickListener {
+//                val currentItem = binding.vpImages.currentItem
+//                if(currentItem != adapter.itemCount - 1){
+//                    vpImages.setCurrentItem(currentItem + 1, true)
+//                }
+//            }
+//
+//            btnPrevImage.setOnClickListener {
+//                val currentItem = binding.vpImages.currentItem
+//                if(currentItem != 0){
+//                    vpImages.setCurrentItem(currentItem - 1, true)
+//                }
+//            }
+//        }
+//    }
 
     private fun setObservers() {
         viewModel.infographics.observe(this) { state ->
