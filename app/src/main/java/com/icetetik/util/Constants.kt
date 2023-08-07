@@ -32,6 +32,7 @@ object KeyParcelable {
     const val MOOD_NOTE = "mood_note"
     const val QUESTIONNAIRE_RESULT = "questionnaire_result"
     const val VIDEO_DATA = "video_data"
+    const val INFOGRAPHIC_DATA = "infographic_data"
 
 }
 

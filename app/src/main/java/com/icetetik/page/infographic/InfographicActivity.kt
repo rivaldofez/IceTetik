@@ -1,5 +1,6 @@
 package com.icetetik.page.infographic
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -7,8 +8,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.icetetik.R
 import com.icetetik.data.model.Infographic
 import com.icetetik.databinding.ActivityInfographicBinding
+import com.icetetik.page.video.VideoPlayerActivity
 import com.icetetik.util.Extension.animateChangeVisibility
 import com.icetetik.util.Extension.showSnackBar
+import com.icetetik.util.KeyParcelable
 import com.icetetik.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -71,6 +74,8 @@ class InfographicActivity : AppCompatActivity(), InfographicItemCallback {
     }
 
     override fun onItemInfographicClick(infographic: Infographic) {
-
+        val intent =  Intent(this@InfographicActivity, DetailInfographicActivity::class.java)
+        intent.putExtra(KeyParcelable.INFOGRAPHIC_DATA, infographic)
+        startActivity(intent)
     }
 }
