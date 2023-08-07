@@ -21,6 +21,7 @@ import com.icetetik.databinding.ActivitySettingsBinding
 import com.icetetik.databinding.SublayoutDialogConfirmationBinding
 import com.icetetik.databinding.SublayoutDialogThemeBinding
 import com.icetetik.page.authentication.reset.ResetActivity
+import com.icetetik.page.settings.faq.FaqActivity
 import com.icetetik.util.Extension.animateChangeVisibility
 import com.icetetik.util.Extension.showShortToast
 import com.icetetik.util.Extension.showSnackBar
