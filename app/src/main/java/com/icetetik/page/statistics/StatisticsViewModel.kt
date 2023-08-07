@@ -3,7 +3,6 @@ package com.icetetik.page.statistics
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.icetetik.data.model.Mood
 import com.icetetik.data.model.MoodCondition
 import com.icetetik.data.repository.AuthRepository
 import com.icetetik.data.repository.MoodRepository
@@ -14,8 +13,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class StatisticsViewModel @Inject constructor(
-    val moodRepository: MoodRepository,
-    val authRepository: AuthRepository
+    private val moodRepository: MoodRepository,
+    private val authRepository: AuthRepository
 ): ViewModel() {
 
 

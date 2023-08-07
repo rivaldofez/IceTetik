@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.icetetik.R
 import com.icetetik.data.model.QuestionnaireResult
 import com.icetetik.databinding.ActivityResultQuestionnaireBinding
 import com.icetetik.util.KeyParcelable

@@ -20,9 +20,9 @@ class AuthRepository(
         auth.sendPasswordResetEmail(email)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    result.invoke(UiState.Success("Successfully reset password, please check your email to setup new password"))
+                    result.invoke(UiState.Success("Berhasil reset password, silakan cek email kamu untuk mengatur password yang baru"))
                 } else {
-                    result.invoke(UiState.Failure("Reset password failed, please try again later"))
+                    result.invoke(UiState.Failure("Terjadi kesalahan saat memproses reset password, silakan coba lagi"))
                 }
             }
             .addOnFailureListener {
@@ -42,7 +42,7 @@ class AuthRepository(
                     saveUserInfo(user) { state ->
                         when (state) {
                             is UiState.Success -> {
-                                result.invoke(UiState.Success("User Successfully Registered!"))
+                                result.invoke(UiState.Success("User berhasil terdaftar"))
                             }
 
                             is UiState.Failure -> {
@@ -56,13 +56,13 @@ class AuthRepository(
                     }
                 } else {
                     try {
-                        throw it.exception ?: java.lang.Exception("Invalid authentication")
+                        throw it.exception ?: java.lang.Exception("Autentikasi tidak valid")
                     } catch (e: FirebaseAuthWeakPasswordException) {
-                        result.invoke(UiState.Failure("Authentication failed, Password should be at least 8 characters"))
+                        result.invoke(UiState.Failure("Autentikasi gagal, password minimal mengandung 8 karakter"))
                     } catch (e: FirebaseAuthInvalidCredentialsException) {
-                        result.invoke(UiState.Failure("Authentication failed, Invalid email entered"))
+                        result.invoke(UiState.Failure("Autentikasi gagal, email kamu tidak valid"))
                     } catch (e: FirebaseAuthUserCollisionException) {
-                        result.invoke(UiState.Failure("Authentication failed, Email already registered."))
+                        result.invoke(UiState.Failure("Autentikasi gagal, email sudah terdaftar."))
                     } catch (e: Exception) {
                         result.invoke(UiState.Failure(e.message))
                     }
@@ -75,13 +75,13 @@ class AuthRepository(
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    result.invoke(UiState.Success("Login successfully!"))
+                    result.invoke(UiState.Success("Sign in berhasil"))
                 } else {
-                    result.invoke(UiState.Failure("Authentication failed, Check email and password"))
+                    result.invoke(UiState.Failure("Autentikasi gagal, periksa kembali email dan password kamu"))
                 }
             }
             .addOnFailureListener {
-                result.invoke(UiState.Failure("Authentication failed, Check email and password"))
+                result.invoke(UiState.Failure("Autentikasi gagal, periksa kembali email dan password kamu"))
             }
     }
 
@@ -89,11 +89,11 @@ class AuthRepository(
         auth.signOut()
         val currentUser = auth.currentUser
         if (currentUser == null) {
-            result.invoke(UiState.Success("Successfully Sign Out"))
+            result.invoke(UiState.Success("Berhasl Sign Out"))
         } else {
             result.invoke(
                 UiState.Failure(
-                    "Cannot Sign Out, please try again."
+                    "Tidak dapat Sign Out, silakan coba lagi"
                 )
             )
         }
@@ -137,7 +137,7 @@ class AuthRepository(
         document.set(user)
             .addOnSuccessListener {
                 result.invoke(
-                    UiState.Success("User has been save successfully")
+                    UiState.Success("Data user berhasil disimpan")
                 )
             }
             .addOnFailureListener {

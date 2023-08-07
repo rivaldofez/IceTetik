@@ -6,22 +6,18 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
 import android.view.View
 import android.view.Window
-import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import com.icetetik.R
 import com.icetetik.page.authentication.AuthenticationActivity
 import com.icetetik.data.model.User
 import com.icetetik.databinding.ActivitySettingsBinding
-import com.icetetik.databinding.SublayoutAlertDialogBinding
 import com.icetetik.databinding.SublayoutDialogConfirmationBinding
 import com.icetetik.databinding.SublayoutDialogThemeBinding
 import com.icetetik.page.authentication.reset.ResetActivity
@@ -30,8 +26,6 @@ import com.icetetik.util.Extension.showShortToast
 import com.icetetik.util.Extension.showSnackBar
 import com.icetetik.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -47,7 +41,7 @@ class SettingsActivity : AppCompatActivity() {
 
         viewModel.getUserSession { email ->
             if (email == null) {
-                binding.showSnackBar("Session Expired")
+                binding.showSnackBar(getString(R.string.error_session_expired))
             } else {
                 userEmail = email
                 loadUserInfo()
@@ -59,7 +53,7 @@ class SettingsActivity : AppCompatActivity() {
 
     private fun loadUserInfo() {
         if (userEmail.isEmpty()) {
-            binding.showSnackBar("Session Expired")
+            binding.showSnackBar(getString(R.string.error_session_expired))
         } else {
             viewModel.getUserInfo(userEmail)
         }
@@ -74,7 +68,7 @@ class SettingsActivity : AppCompatActivity() {
 
                 is UiState.Failure -> {
                     showLoading(isLoading = false)
-                    binding.showSnackBar("There's error occured while process your request")
+                    binding.showSnackBar(getString(R.string.error_process_request))
                 }
 
                 is UiState.Success -> {
@@ -97,7 +91,7 @@ class SettingsActivity : AppCompatActivity() {
 
                 is UiState.Failure -> {
                     showLoading(isLoading = false)
-                    binding.showSnackBar("There's error occured while process your request")
+                    binding.showSnackBar(getString(R.string.error_process_request))
                 }
 
                 is UiState.Success -> {
@@ -105,7 +99,7 @@ class SettingsActivity : AppCompatActivity() {
 
                     val result = state.data
                     if (result == null) {
-                        binding.showSnackBar("User info not found")
+                        binding.showSnackBar(getString(R.string.error_user_info_not_found))
                     } else {
                         updateCard(state.data)
                     }
@@ -127,7 +121,7 @@ class SettingsActivity : AppCompatActivity() {
             }
 
             rowTheme.root.setOnClickListener {
-                showThemeDialog("Pilih tema favorit kamu")
+                showThemeDialog(getString(R.string.txt_select_theme))
             }
 
             rowFeedback.root.setOnClickListener {
@@ -146,7 +140,7 @@ class SettingsActivity : AppCompatActivity() {
             }
 
             btnLogout.setOnClickListener {
-                showConfirmationDialog("Are you sure want sign out?")
+                showConfirmationDialog(getString(R.string.msg_sign_out_dialog))
             }
 
             btnSync.setOnClickListener {

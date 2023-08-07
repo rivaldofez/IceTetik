@@ -97,7 +97,7 @@ class StatisticsActivity : AppCompatActivity() {
 
     private fun setupStyleBarChart() {
         binding.bcEmotions.apply {
-            setNoDataText("Belum ada data di bulan ini")
+            setNoDataText(context.getString(R.string.error_no_data_this_month))
             setNoDataTextTypeface(
                 ResourcesCompat.getFont(
                     this@StatisticsActivity,
@@ -168,7 +168,7 @@ class StatisticsActivity : AppCompatActivity() {
                 )
             )
 
-            val moodBarDataset = BarDataSet(listMoodDataEntry, "Mood")
+            val moodBarDataset = BarDataSet(listMoodDataEntry, getString(R.string.txt_mood))
             moodBarDataset.color = getColor(R.color.cream_75)
             moodBarDataset.valueTextColor = Color.BLACK
             moodBarDataset.setDrawValues(false)

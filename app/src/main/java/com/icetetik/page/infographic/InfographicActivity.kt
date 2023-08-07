@@ -2,14 +2,10 @@ package com.icetetik.page.infographic
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
-import androidx.core.view.get
 import androidx.viewpager2.widget.ViewPager2
-import com.google.firebase.storage.FirebaseStorage
 import com.icetetik.R
 import com.icetetik.data.model.Infographic
-import com.icetetik.data.model.Video
 import com.icetetik.databinding.ActivityInfographicBinding
 import com.icetetik.util.Extension.animateChangeVisibility
 import com.icetetik.util.Extension.showSnackBar

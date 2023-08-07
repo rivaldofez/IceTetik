@@ -32,7 +32,7 @@ class QuestionnaireRepository(
         document.set(questionnaireResult)
             .addOnSuccessListener {
                 result.invoke(
-                    UiState.Success("Success add questionnaire result data")
+                    UiState.Success("Berhasil menyimpan data kuesioner")
                 )
             }
             .addOnFailureListener {

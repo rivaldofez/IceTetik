@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.icetetik.R
 import com.icetetik.databinding.ActivityHelpBinding
 
 class HelpActivity : AppCompatActivity() {

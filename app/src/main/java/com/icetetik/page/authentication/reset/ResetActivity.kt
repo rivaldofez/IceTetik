@@ -5,11 +5,8 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Window
 import androidx.activity.viewModels
-import androidx.recyclerview.widget.GridLayoutManager
-import com.google.firebase.auth.FirebaseAuth
 import com.icetetik.R
 import com.icetetik.databinding.ActivityResetBinding
 import com.icetetik.databinding.SublayoutDialogConfirmationBinding
@@ -62,7 +59,7 @@ class ResetActivity : AppCompatActivity() {
 
                 is UiState.Success -> {
                     showLoading(isLoading = false)
-                    showLongToast("Success request reset password, please check your email to setup new password")
+                    showLongToast(getString(R.string.msg_success_reset_password))
                     finish()
                 }
             }
@@ -98,7 +95,7 @@ class ResetActivity : AppCompatActivity() {
             btnReset.setOnClickListener {
                 val email = edtEmail.text.toString()
                 if(edtEmail.error.isNullOrEmpty() && email.isNotEmpty()){
-                    showResetConfirmationDialog("Apakah kamu yakin untuk reset password?", email)
+                    showResetConfirmationDialog(getString(R.string.msg_reset_password_confirmation), email)
                 } else {
                     showShortToast(getString(R.string.error_all_field_must_be_valid))
                 }
