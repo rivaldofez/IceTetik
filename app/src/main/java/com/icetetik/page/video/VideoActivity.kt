@@ -29,8 +29,6 @@ class VideoActivity : AppCompatActivity(), VideoItemCallback {
         setObservers()
         setupRecycler()
         viewModel.getVideos()
-        viewModel.addVideos()
-
     }
 
     private fun setupRecycler() {
