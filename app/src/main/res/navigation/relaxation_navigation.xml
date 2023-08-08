@@ -49,10 +49,18 @@
         <action
             android:id="@+id/action_videoFragment_to_closingVideoFragment"
             app:destination="@id/closingVideoFragment" />
+        <action
+            android:id="@+id/action_videoFragment_to_relaxationPlayerFragment"
+            app:destination="@id/relaxationPlayerFragment" />
     </fragment>
     <fragment
         android:id="@+id/closingVideoFragment"
         android:name="com.icetetik.relaxation.ClosingVideoFragment"
         android:label="fragment_closing_video"
         tools:layout="@layout/fragment_closing_video" />
+    <fragment
+        android:id="@+id/relaxationPlayerFragment"
+        android:name="com.icetetik.relaxation.RelaxationPlayerFragment"
+        android:label="fragment_relaxation_player"
+        tools:layout="@layout/fragment_relaxation_player" />
 </navigation>
