@@ -88,4 +88,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.15.1'
 
     implementation "me.relex:circleindicator:2.1.6"
+
+    implementation "com.google.android.exoplayer:exoplayer:2.19.0"
+
 }
