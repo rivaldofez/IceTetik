@@ -26,7 +26,6 @@ class JournalViewModel @Inject constructor(
     val mood: LiveData<UiState<Mood?>>
         get() = _mood
 
-
     fun addMood(userEmail: String, mood: Mood, uploadDate: LocalDate){
         _addMood.value = UiState.Loading
         moodRepository.addMood(userEmail = userEmail, mood = mood, uploadDate = uploadDate){

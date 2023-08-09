@@ -235,6 +235,4 @@ class SignInActivity : AppCompatActivity() {
             if (isLoading) sblLoading.lottieLoading.playAnimation() else sblLoading.lottieLoading.pauseAnimation()
         }
     }
-
-
 }

@@ -28,7 +28,7 @@ class SignUpActivity : AppCompatActivity() {
         setObservers()
     }
 
-    private fun setObservers(){
+    private fun setObservers() {
         viewModel.signUpUser.observe(this) { state ->
             when (state) {
                 is UiState.Loading -> {
@@ -51,21 +51,21 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    private fun setItemListener(){
+    private fun setItemListener() {
         binding.edtRetypePassword.addTextChangedListener {
-            if(it.toString() != binding.edtPassword.text.toString()){
+            if (it.toString() != binding.edtPassword.text.toString()) {
                 binding.edtRetypePassword.error = getString(R.string.error_password_not_same)
             }
         }
     }
 
-    private fun setupButtonAction(){
+    private fun setupButtonAction() {
         binding.btnSignup.setOnClickListener {
             signUpUser()
         }
     }
 
-    private fun signUpUser(){
+    private fun signUpUser() {
         binding.apply {
             var isAllFieldValid = true
 
@@ -86,7 +86,7 @@ class SignUpActivity : AppCompatActivity() {
             if (retypePassword.isEmpty() || !edtRetypePassword.error.isNullOrEmpty())
                 isAllFieldValid = false
 
-            if (isAllFieldValid){
+            if (isAllFieldValid) {
                 viewModel.signUpUser(name = fullname, email = email, password = password)
             } else {
                 showSnackBar(getString(R.string.error_all_field_must_be_valid))
@@ -94,7 +94,7 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    private fun showLoading(isLoading: Boolean){
+    private fun showLoading(isLoading: Boolean) {
         binding.apply {
             edtFullname.isEnabled = !isLoading
             edtEmail.isEnabled = !isLoading
