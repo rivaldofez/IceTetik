@@ -9,8 +9,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LauncherViewModel @Inject constructor(
-    val authRepository: AuthRepository,
-    val appDataRepository: AppDataRepository
+    private val authRepository: AuthRepository,
+    private val appDataRepository: AppDataRepository
 
 ): ViewModel(){
     fun getThemeSetting(): Flow<String?> = appDataRepository.getThemeSetting()

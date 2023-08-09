@@ -26,7 +26,8 @@ class OnboardRelaxationFragment : Fragment() {
 
 
         binding.btnNext.setOnClickListener {
-            val goToEmotionFragment = OnboardRelaxationFragmentDirections.actionOnboardRelaxationFragmentToEmotionFragment()
+            val goToEmotionFragment =
+                OnboardRelaxationFragmentDirections.actionOnboardRelaxationFragmentToEmotionFragment()
             findNavController().navigate(goToEmotionFragment)
         }
     }

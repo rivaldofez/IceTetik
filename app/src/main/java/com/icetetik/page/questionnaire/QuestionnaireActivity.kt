@@ -10,6 +10,7 @@ import android.view.Window
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.content.res.AppCompatResources
 import com.google.firebase.Timestamp
 import com.icetetik.R
 import com.icetetik.data.model.Option
@@ -59,7 +60,7 @@ class QuestionnaireActivity : AppCompatActivity() {
         binding.apply {
             btnNext.setOnClickListener {
                 if (currentQuestion - 1 < questions.size - 1) {
-                    val currAnswer = answers.get(currentQuestion)
+                    val currAnswer = answers[currentQuestion]
 
                     if (currAnswer == null) {
                         showAlertDialog("Kamu harus memilih salah satu dari opsi yang ada")
@@ -80,22 +81,22 @@ class QuestionnaireActivity : AppCompatActivity() {
             }
 
             btnOption1.setOnClickListener {
-                answers.put(currentQuestion, 0)
+                answers[currentQuestion] = 0
                 setOptionButtonState(0)
             }
 
             btnOption2.setOnClickListener {
-                answers.put(currentQuestion, 1)
+                answers[currentQuestion] = 1
                 setOptionButtonState(1)
             }
 
             btnOption3.setOnClickListener {
-                answers.put(currentQuestion, 2)
+                answers[currentQuestion] = 2
                 setOptionButtonState(2)
             }
 
             btnOption4.setOnClickListener {
-                answers.put(currentQuestion, 3)
+                answers[currentQuestion] = 3
                 setOptionButtonState(3)
             }
         }
@@ -181,7 +182,7 @@ class QuestionnaireActivity : AppCompatActivity() {
 
     private fun changeCurrentQuestion() {
         binding.titleQuestion.text = questions[currentQuestion - 1].text
-        val currAnswer = answers.get(currentQuestion)
+        val currAnswer = answers[currentQuestion]
 
         if (currAnswer == null) {
             setOptionButtonState(null)
@@ -230,23 +231,22 @@ class QuestionnaireActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun changeButtonStatus(button: Button, state: Boolean) {
         if (state) {
             button.setTextColor(getColor(R.color.white))
-            button.background = getDrawable(R.drawable.fr_button_option_questionnaire_selected)
+            button.background = AppCompatResources.getDrawable(this@QuestionnaireActivity, R.drawable.fr_button_option_questionnaire_selected)
         } else {
             button.setTextColor(getColor(R.color.primaryBackgroundColor))
-            button.background = getDrawable(R.drawable.fr_button_option_questionnaire)
+            button.background = AppCompatResources.getDrawable(this@QuestionnaireActivity, R.drawable.fr_button_option_questionnaire)
         }
     }
 
     private fun setOptionsData(data: List<Option>) {
         binding.apply {
-            btnOption1.setText(data[0].text)
-            btnOption2.setText(data[1].text)
-            btnOption3.setText(data[2].text)
-            btnOption4.setText(data[3].text)
+            btnOption1.text = data[0].text
+            btnOption2.text = data[1].text
+            btnOption3.text = data[2].text
+            btnOption4.text = data[3].text
         }
     }
 
@@ -313,16 +313,20 @@ class QuestionnaireActivity : AppCompatActivity() {
         var totalDepression = 0
 
         questions.forEach { question ->
-            val answer = answers.get(question.id)
+            val answer = answers[question.id]
             if (answer == null) {
                 //handle null
             } else {
-                if (question.category == "Stress") {
-                    totalStress += answer
-                } else if (question.category == "Kecemasan") {
-                    totalWorry += answer
-                } else if (question.category == "Depresi") {
-                    totalDepression += answer
+                when (question.category) {
+                    "Stress" -> {
+                        totalStress += answer
+                    }
+                    "Kecemasan" -> {
+                        totalWorry += answer
+                    }
+                    "Depresi" -> {
+                        totalDepression += answer
+                    }
                 }
             }
         }
@@ -341,44 +345,44 @@ class QuestionnaireActivity : AppCompatActivity() {
     }
 
     private fun stressScale(totalStress: Int): String {
-        if (totalStress > 34) {
-            return "Sangat Parah"
+        return if (totalStress > 34) {
+            "Sangat Parah"
         } else if (totalStress > 25) {
-            return "Parah"
+            "Parah"
         } else if (totalStress > 18) {
-            return "Sedang"
+            "Sedang"
         } else if (totalStress > 14) {
-            return "Ringan"
+            "Ringan"
         } else {
-            return "Normal"
+            "Normal"
         }
     }
 
     private fun depressionScale(totalDepression: Int): String {
-        if (totalDepression > 28) {
-            return "Sangat Parah"
+        return if (totalDepression > 28) {
+            "Sangat Parah"
         } else if (totalDepression > 20) {
-            return "Parah"
+            "Parah"
         } else if (totalDepression > 13) {
-            return "Sedang"
+            "Sedang"
         } else if (totalDepression > 9) {
-            return "Ringan"
+            "Ringan"
         } else {
-            return "Normal"
+            "Normal"
         }
     }
 
     private fun worryScale(totalWorry: Int): String {
-        if (totalWorry > 20) {
-            return "Sangat Parah"
+        return if (totalWorry > 20) {
+            "Sangat Parah"
         } else if (totalWorry > 14) {
-            return "Parah"
+            "Parah"
         } else if (totalWorry > 9) {
-            return "Sedang"
+            "Sedang"
         } else if (totalWorry > 7) {
-            return "Ringan"
+            "Ringan"
         } else {
-            return "Normal"
+            "Normal"
         }
     }
 

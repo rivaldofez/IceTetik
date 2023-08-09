@@ -103,4 +103,5 @@
     <string name="error_video_null">Terjadi kesalahan saat memuat video, silakan coba lagi</string>
     <string name="error_infographic_null">Terjadi kesalahan saat memuat infographic, silakan coba lagi</string>
     <string name="error_faq_null">Terjadi kesalahan saat memuat data faq, silakan coba lagi</string>
+    <string name="error_questionnaire_null">Terjadi kesalahan saat memproses data kuesioner, silakan coba lagi</string>
 </resources>
