@@ -12,7 +12,12 @@
         tools:layout="@layout/fragment_onboard_relaxation" >
         <action
             android:id="@+id/action_onboardRelaxationFragment_to_emotionFragment"
-            app:destination="@id/emotionFragment" />
+            app:destination="@id/emotionFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            />
     </fragment>
     <fragment
         android:id="@+id/emotionFragment"
@@ -21,7 +26,11 @@
         tools:layout="@layout/fragment_emotion" >
         <action
             android:id="@+id/action_emotionFragment_to_sourceEmotionFragment"
-            app:destination="@id/sourceEmotionFragment" />
+            app:destination="@id/sourceEmotionFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
     </fragment>
     <fragment
         android:id="@+id/sourceEmotionFragment"
@@ -30,7 +39,11 @@
         tools:layout="@layout/fragment_source_emotion" >
         <action
             android:id="@+id/action_sourceEmotionFragment_to_onboardVideoFragment"
-            app:destination="@id/onboardVideoFragment" />
+            app:destination="@id/onboardVideoFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
     </fragment>
     <fragment
         android:id="@+id/onboardVideoFragment"
@@ -39,7 +52,11 @@
         tools:layout="@layout/fragment_onboard_video" >
         <action
             android:id="@+id/action_onboardVideoFragment_to_videoFragment"
-            app:destination="@id/videoFragment" />
+            app:destination="@id/videoFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
     </fragment>
     <fragment
         android:id="@+id/videoFragment"
@@ -48,10 +65,18 @@
         tools:layout="@layout/fragment_video" >
         <action
             android:id="@+id/action_videoFragment_to_closingVideoFragment"
-            app:destination="@id/closingVideoFragment" />
+            app:destination="@id/closingVideoFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
         <action
             android:id="@+id/action_videoFragment_to_relaxationPlayerFragment"
-            app:destination="@id/relaxationPlayerFragment" />
+            app:destination="@id/relaxationPlayerFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
     </fragment>
     <fragment
         android:id="@+id/closingVideoFragment"
@@ -65,6 +90,10 @@
         tools:layout="@layout/fragment_relaxation_player" >
         <action
             android:id="@+id/action_relaxationPlayerFragment_to_closingVideoFragment"
-            app:destination="@id/closingVideoFragment" />
+            app:destination="@id/closingVideoFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
     </fragment>
 </navigation>
