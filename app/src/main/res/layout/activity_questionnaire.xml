@@ -34,10 +34,11 @@
             android:gravity="center"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:text="Saya merasa bibir saya sering kering"
             android:textAlignment="center"
             android:layout_gravity="center"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:text="Saya merasa bibir saya sering kering"
+            />
 
 
         <androidx.appcompat.widget.AppCompatButton
@@ -48,11 +49,12 @@
             android:background="@drawable/fr_button_option_questionnaire"
             android:fontFamily="@font/kolka_regular"
             android:gravity="center"
-            android:text="Tidak Pernah"
             android:textAllCaps="false"
             android:textColor="@color/primaryBackgroundColor"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="Tidak Pernah"
+            />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_option_2"
@@ -62,11 +64,11 @@
             android:background="@drawable/fr_button_option_questionnaire"
             android:fontFamily="@font/kolka_regular"
             android:gravity="center"
-            android:text="Tidak Pernah"
             android:textAllCaps="false"
             android:textColor="@color/primaryBackgroundColor"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="Tidak Pernah"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_option_3"
@@ -76,11 +78,11 @@
             android:background="@drawable/fr_button_option_questionnaire"
             android:fontFamily="@font/kolka_regular"
             android:gravity="center"
-            android:text="Tidak Pernah"
             android:textAllCaps="false"
             android:textColor="@color/primaryBackgroundColor"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="Tidak Pernah"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_option_4"
@@ -90,11 +92,11 @@
             android:background="@drawable/fr_button_option_questionnaire"
             android:fontFamily="@font/kolka_regular"
             android:gravity="center"
-            android:text="Tidak Pernah"
             android:textAllCaps="false"
             android:textColor="@color/primaryBackgroundColor"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="Tidak Pernah"/>
 
     </LinearLayout>
 
@@ -107,7 +109,7 @@
         android:fontFamily="@font/league_spartan_bold"
         android:paddingHorizontal="30dp"
         android:paddingVertical="8dp"
-        android:text="DASS-42"
+        android:text="@string/title_dass_42"
         android:textColor="@color/primaryBackgroundColor"
         android:textSize="36sp"
         android:layout_marginBottom="-36dp"
@@ -123,6 +125,7 @@
         android:scaleType="centerCrop"
         android:src="@drawable/ic_next_24"
         android:layout_marginBottom="24dp"
+        android:contentDescription="@string/cd_icon_next"
         app:tint="@color/cream_100"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/ll_questionnaire"
@@ -136,6 +139,7 @@
         android:scaleType="centerCrop"
         android:src="@drawable/ic_previous_24"
         android:layout_marginBottom="24dp"
+        android:contentDescription="@string/cd_icon_prev"
         app:tint="@color/cream_100"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/ll_questionnaire"

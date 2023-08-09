@@ -35,11 +35,12 @@
             android:textSize="16sp"
             android:fontFamily="@font/league_spartan_regular"
             android:textAlignment="center"
-            android:text="Select your favorite theme mode"
             android:textColor="@color/reverseSystemBackground"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name_app" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_app"
+            tools:text="Select your favorite theme mode"
+            />
 
         <ImageView
             android:id="@+id/iv_icon_theme"
@@ -49,6 +50,7 @@
             android:padding="12dp"
             android:layout_marginTop="16dp"
             android:src="@drawable/ic_format_paint_24"
+            android:contentDescription="@string/cd_icon_theme"
             app:tint="@color/primaryBackgroundColor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_dialog_message"
@@ -70,7 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/primaryBackgroundColor"
-            android:text="Apply"
+            android:text="@string/txt_apply"
             android:textColor="@color/white"
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"

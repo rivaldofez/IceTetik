@@ -11,7 +11,7 @@
         android:id="@+id/tv_title_video"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Berikut pilihan video untukmu"
+        android:text="@string/title_video_recommendation"
         android:textAlignment="center"
         android:textSize="28sp"
         android:fontFamily="@font/league_spartan_bold"

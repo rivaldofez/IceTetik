@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:fontFamily="@font/league_spartan_bold"
-        android:text="Infografis Pilihan Untukmu"
+        android:text="@string/title_infographic_for_you"
         android:textAlignment="viewStart"
         android:textAllCaps="true"
         android:textColor="@color/cream_100"
