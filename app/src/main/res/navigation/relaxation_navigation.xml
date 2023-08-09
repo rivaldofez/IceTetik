@@ -62,5 +62,9 @@
         android:id="@+id/relaxationPlayerFragment"
         android:name="com.icetetik.relaxation.RelaxationPlayerFragment"
         android:label="fragment_relaxation_player"
-        tools:layout="@layout/fragment_relaxation_player" />
+        tools:layout="@layout/fragment_relaxation_player" >
+        <action
+            android:id="@+id/action_relaxationPlayerFragment_to_closingVideoFragment"
+            app:destination="@id/closingVideoFragment" />
+    </fragment>
 </navigation>

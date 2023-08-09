@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory
 import com.google.android.exoplayer2.source.dash.DashMediaSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
@@ -37,7 +39,23 @@ class RelaxationPlayerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupPlayer()
+        setupListener()
 
+    }
+
+    private fun setupListener() {
+        exoPlayer?.addListener(
+            object: Player.Listener {
+                override fun onPlaybackStateChanged(playbackState: Int) {
+                    super.onPlaybackStateChanged(playbackState)
+
+                    if (playbackState == ExoPlayer.STATE_ENDED){
+                        val gotoClosing = RelaxationPlayerFragmentDirections.actionRelaxationPlayerFragmentToClosingVideoFragment()
+                        findNavController().navigate(gotoClosing)
+                    }
+                }
+            }
+        )
     }
 
     private fun setupPlayer() {
