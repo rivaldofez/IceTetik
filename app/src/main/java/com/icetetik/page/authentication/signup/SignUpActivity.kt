@@ -8,6 +8,7 @@ import androidx.core.widget.addTextChangedListener
 import com.icetetik.R
 import com.icetetik.page.authentication.signin.SignInActivity
 import com.icetetik.databinding.ActivitySignUpBinding
+import com.icetetik.page.mainmood.MoodActivity
 import com.icetetik.util.Extension.animateChangeVisibility
 import com.icetetik.util.Extension.showSnackBar
 import com.icetetik.util.UiState
@@ -43,7 +44,7 @@ class SignUpActivity : AppCompatActivity() {
                 is UiState.Success -> {
                     showLoading(isLoading = false)
                     binding.showSnackBar(getString(R.string.msg_sign_up_success))
-                    val intent = Intent(this, SignInActivity::class.java)
+                    val intent = Intent(this, MoodActivity::class.java)
                     startActivity(intent)
                     finish()
                 }
