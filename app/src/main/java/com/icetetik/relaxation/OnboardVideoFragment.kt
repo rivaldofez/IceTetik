@@ -25,7 +25,8 @@ class OnboardVideoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnStartExercise.setOnClickListener {
-            val goToVideo = OnboardVideoFragmentDirections.actionOnboardVideoFragmentToVideoFragment()
+            val goToVideo =
+                OnboardVideoFragmentDirections.actionOnboardVideoFragmentToVideoFragment()
             findNavController().navigate(goToVideo)
         }
     }

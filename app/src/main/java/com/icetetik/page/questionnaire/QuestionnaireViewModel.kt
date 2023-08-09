@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class QuestionnaireViewModel @Inject constructor(
-    val questionnaireRepository: QuestionnaireRepository,
+    private val questionnaireRepository: QuestionnaireRepository,
     private val authRepository: AuthRepository
 ): ViewModel() {
 

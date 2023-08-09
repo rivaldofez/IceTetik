@@ -3,7 +3,6 @@ package com.icetetik.relaxation
 import android.content.Context
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.util.Log
 import android.util.TypedValue
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,12 +18,26 @@ import com.icetetik.databinding.FragmentSourceEmotionBinding
 
 
 class SourceEmotionFragment : Fragment() {
-    private var _binding : FragmentSourceEmotionBinding? = null
+    private var _binding: FragmentSourceEmotionBinding? = null
     private val binding get() = _binding!!
 
     private val sourceEmotionList = listOf(
-        "Keluarga", "Pekerjaan", "Percintaan", "Kesehatan", "Perjalanan", "Santai", "Cuaca", "Belanja", "Teman", "Tidur",
-        "Pendidikan", "Diri Sendiri", "Seni", "Hobi", "Keuangan", "Ibadah"
+        "Keluarga",
+        "Pekerjaan",
+        "Percintaan",
+        "Kesehatan",
+        "Perjalanan",
+        "Santai",
+        "Cuaca",
+        "Belanja",
+        "Teman",
+        "Tidur",
+        "Pendidikan",
+        "Diri Sendiri",
+        "Seni",
+        "Hobi",
+        "Keuangan",
+        "Ibadah"
     )
 
     override fun onCreateView(
@@ -39,7 +52,8 @@ class SourceEmotionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnNext.setOnClickListener {
-            val goToOnBoardVideo = SourceEmotionFragmentDirections.actionSourceEmotionFragmentToOnboardVideoFragment()
+            val goToOnBoardVideo =
+                SourceEmotionFragmentDirections.actionSourceEmotionFragmentToOnboardVideoFragment()
             findNavController().navigate(goToOnBoardVideo)
         }
 
@@ -47,17 +61,24 @@ class SourceEmotionFragment : Fragment() {
             binding.cgSourceEmotion.addView(generateChipItem(it, requireContext()))
         }
 
-        for(i in 0 until binding.cgSourceEmotion.childCount){
+        for (i in 0 until binding.cgSourceEmotion.childCount) {
             val chip = binding.cgSourceEmotion.getChildAt(i) as Chip
             chip.setOnClickListener {
-                if(chip.isCheckable){
-                    chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.white))
-                    Log.d("Teston", "called in white")
+                if (chip.isCheckable) {
+                    chip.chipBackgroundColor = ColorStateList.valueOf(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            R.color.white
+                        )
+                    )
                 } else {
-                    chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.cream_100))
-                    Log.d("Teston", "called in cream")
+                    chip.chipBackgroundColor = ColorStateList.valueOf(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            R.color.cream_100
+                        )
+                    )
                 }
-                Log.d("Teston", "called in loop cg emotion")
                 chip.isCheckable = !chip.isCheckable
             }
         }
@@ -73,7 +94,8 @@ class SourceEmotionFragment : Fragment() {
         chip.id = ViewCompat.generateViewId()
         chip.text = text
         chip.setEnsureMinTouchTargetSize(false)
-        chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.white))
+        chip.chipBackgroundColor =
+            ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.white))
         chip.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18F)
         chip.setTextColor(context.getColor(R.color.primaryBackgroundColor))
         chip.setPadding(paddingDp)

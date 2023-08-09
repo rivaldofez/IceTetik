@@ -31,7 +31,4 @@ class MoodViewModel @Inject constructor(
             _mood.value = it
         }
     }
-
-
-
 }

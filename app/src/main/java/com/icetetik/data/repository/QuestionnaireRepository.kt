@@ -1,7 +1,6 @@
 package com.icetetik.data.repository
 
 import com.google.firebase.firestore.FirebaseFirestore
-import com.icetetik.data.model.Mood
 import com.icetetik.data.model.Option
 import com.icetetik.data.model.OptionResponse
 import com.icetetik.data.model.Question

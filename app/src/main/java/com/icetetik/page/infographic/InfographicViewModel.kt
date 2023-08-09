@@ -22,7 +22,6 @@ class InfographicViewModel @Inject constructor(
     val addInfographics: LiveData<UiState<String>>
         get() = _addInfographics
 
-
     fun getInfographics(){
         _infographics.value = UiState.Loading
         mediaRepository.getInfographics { _infographics.value = it }

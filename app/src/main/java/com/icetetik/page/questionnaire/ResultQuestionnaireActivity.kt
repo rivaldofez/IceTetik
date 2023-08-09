@@ -4,8 +4,10 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.icetetik.R
 import com.icetetik.data.model.QuestionnaireResult
 import com.icetetik.databinding.ActivityResultQuestionnaireBinding
+import com.icetetik.util.Extension.showSnackBar
 import com.icetetik.util.KeyParcelable
 
 class ResultQuestionnaireActivity : AppCompatActivity() {
@@ -20,11 +22,11 @@ class ResultQuestionnaireActivity : AppCompatActivity() {
         val questionnaireResult = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent.getParcelableExtra(KeyParcelable.QUESTIONNAIRE_RESULT, QuestionnaireResult::class.java)
         } else {
-            intent.getParcelableExtra<QuestionnaireResult>(KeyParcelable.QUESTIONNAIRE_RESULT)
+            intent.getParcelableExtra(KeyParcelable.QUESTIONNAIRE_RESULT)
         }
 
         if(questionnaireResult == null){
-
+            binding.showSnackBar(getString(R.string.error_questionnaire_null))
         } else {
             binding.apply {
                 tvResultDepression.text = questionnaireResult.depression

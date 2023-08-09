@@ -24,7 +24,6 @@ class ResetActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResetBinding
     private val viewModel: ResetViewModel by viewModels()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

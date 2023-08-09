@@ -35,7 +35,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Apa perbedaan stress, kecemasan dan depresi dan apa dampaknya bagi tubuh saya?"
+                android:text="@string/txt_differences_all_level"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:padding="16dp"
@@ -43,12 +43,13 @@
 
             <ImageView
                 android:layout_marginTop="-4.5dp"
-                android:layout_marginRight="4.5dp"
+                android:layout_marginEnd="4.5dp"
                 android:layout_width="8dp"
                 android:layout_height="16dp"
                 android:layout_gravity="end"
                 android:rotation="90"
                 android:background="@drawable/fr_corner_chat"
+                android:contentDescription="@null"
                 />
 
         </LinearLayout>
@@ -70,19 +71,20 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/fr_container_chat_left"
                 android:padding="16dp"
-                android:text="Apa yang bisa saya lakukan untuk mengelola stress, kecemasan dan depresi"
+                android:text="@string/txt_what_can_i_do_for_you"
                 android:textAlignment="center"
                 android:textColor="@color/black" />
 
             <ImageView
                 android:layout_marginTop="-4.5dp"
-                android:layout_marginRight="4.5dp"
+                android:layout_marginEnd="4.5dp"
                 android:layout_width="8dp"
                 android:layout_height="16dp"
                 android:layout_gravity="start"
                 android:rotation="90"
                 android:scaleY="-1"
                 android:background="@drawable/fr_corner_chat"
+                android:contentDescription="@null"
                 />
 
         </LinearLayout>
@@ -102,7 +104,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Apakah saya membutuhkan ahli?"
+                android:text="@string/txt_do_you_need_expert"
                 android:textColor="@color/black"
                 android:textAlignment="center"
                 android:padding="16dp"
@@ -110,12 +112,13 @@
 
             <ImageView
                 android:layout_marginTop="-4.5dp"
-                android:layout_marginRight="4.5dp"
+                android:layout_marginEnd="4.5dp"
                 android:layout_width="8dp"
                 android:layout_height="16dp"
                 android:layout_gravity="end"
                 android:rotation="90"
                 android:background="@drawable/fr_corner_chat"
+                android:contentDescription="@null"
                 />
 
         </LinearLayout>
@@ -125,9 +128,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/league_spartan_medium"
-            android:text="Cari tahu lebih dalam mengenai stress, kecemasan, depresi, ataupun gangguan mental emosional lainnya, melalu firut berikut:"
+            android:text="@string/txt_find_more"
             android:textAlignment="center"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textColor="@color/black"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -143,7 +146,7 @@
             android:background="@drawable/fr_button_option_questionnaire"
             android:fontFamily="@font/league_spartan_medium"
             android:gravity="center"
-            android:text="Video Pilihan"
+            android:text="@string/txt_recommendation"
             android:textAllCaps="true"
             android:textColor="@color/primaryBackgroundColor"
             android:textSize="16sp"
@@ -161,7 +164,7 @@
             android:background="@drawable/fr_button_option_questionnaire"
             android:fontFamily="@font/league_spartan_medium"
             android:gravity="center"
-            android:text="Infografis"
+            android:text="@string/txt_infographic"
             android:textAllCaps="true"
             android:textColor="@color/primaryBackgroundColor"
             android:textSize="16sp"
@@ -178,6 +181,7 @@
             android:background="@android:color/transparent"
             android:scaleType="centerCrop"
             android:src="@drawable/img_home"
+            android:contentDescription="@string/cd_icon_home"
             app:tint="@color/cream_100"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

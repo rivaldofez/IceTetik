@@ -28,7 +28,6 @@ class MoodActivity : AppCompatActivity() {
     private val viewModel: MoodViewModel by viewModels()
     private var userEmail: String = ""
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -38,21 +37,18 @@ class MoodActivity : AppCompatActivity() {
         setActionItem()
         setObservers()
         loadUserSession()
-
-
     }
 
-    private fun loadUserSession(){
+    private fun loadUserSession() {
         viewModel.getUserSession { email ->
-            if (email != null){
-               userEmail = email
+            if (email != null) {
+                userEmail = email
                 loadTodayMood()
             }
         }
     }
 
-
-    private fun loadTodayMood(){
+    private fun loadTodayMood() {
         if (userEmail.isEmpty()) {
             binding.showSnackBar(getString(R.string.error_session_expired))
         } else {
@@ -60,7 +56,7 @@ class MoodActivity : AppCompatActivity() {
         }
     }
 
-    private fun setObservers(){
+    private fun setObservers() {
         viewModel.mood.observe(this) { state ->
             when (state) {
                 is UiState.Loading -> {
@@ -121,9 +117,9 @@ class MoodActivity : AppCompatActivity() {
             }
 
             lyRelaxation.setOnClickListener {
-               startActivity(
-                   Intent(this@MoodActivity, RelaxationActivity::class.java)
-               )
+                startActivity(
+                    Intent(this@MoodActivity, RelaxationActivity::class.java)
+                )
             }
 
             llVideo.setOnClickListener {
@@ -137,10 +133,6 @@ class MoodActivity : AppCompatActivity() {
                     Intent(this@MoodActivity, InfographicActivity::class.java)
                 )
             }
-
-
-
-
         }
     }
 

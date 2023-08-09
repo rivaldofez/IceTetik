@@ -16,7 +16,6 @@ class CalendarAdapter(val context: Context, val callback: CalendarItemCallback) 
     private val currentDate = LocalDate.now()
     private var selectedDate = LocalDate.now()
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarViewHolder {
         val binding =
             ItemCalendarBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -76,6 +75,4 @@ class CalendarAdapter(val context: Context, val callback: CalendarItemCallback) 
             }
         }
     }
-
-
 }

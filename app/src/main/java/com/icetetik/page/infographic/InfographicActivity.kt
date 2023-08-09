@@ -74,7 +74,7 @@ class InfographicActivity : AppCompatActivity(), InfographicItemCallback {
     }
 
     override fun onItemInfographicClick(infographic: Infographic) {
-        val intent =  Intent(this@InfographicActivity, DetailInfographicActivity::class.java)
+        val intent = Intent(this@InfographicActivity, DetailInfographicActivity::class.java)
         intent.putExtra(KeyParcelable.INFOGRAPHIC_DATA, infographic)
         startActivity(intent)
     }

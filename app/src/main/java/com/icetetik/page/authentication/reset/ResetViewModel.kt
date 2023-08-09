@@ -17,7 +17,6 @@ class ResetViewModel @Inject constructor(
     val resetPasswordUser: LiveData<UiState<String>>
         get() = _resetPasswordUser
 
-
     fun resetPasswordUser(email: String){
         _resetPasswordUser.value = UiState.Loading
         authRepository.resetPasswordUser(email) {

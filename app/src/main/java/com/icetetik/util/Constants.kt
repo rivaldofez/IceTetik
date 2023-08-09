@@ -4,9 +4,8 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import com.icetetik.R
 import com.icetetik.data.model.MoodCondition
 import com.icetetik.data.model.MoodItemView
-import com.icetetik.data.model.Question
 
-object FireStoreCollection{
+object FireStoreCollection {
     const val USER = "user"
     const val APPS = "apps"
     const val MOODS = "moods"
@@ -21,8 +20,6 @@ object FireStoreDocument {
 }
 
 object FirestoreDocumentField {
-    const val QUESTION_DATA = "question-data"
-    const val OPTION_DATA = "option-data"
     const val CONDITION = "condition"
     const val POSTED = "posted"
 }

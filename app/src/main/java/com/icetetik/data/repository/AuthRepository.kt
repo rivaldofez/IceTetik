@@ -6,7 +6,6 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.firestore.FirebaseFirestore
 import com.icetetik.data.model.User
-import com.icetetik.util.Extension.showShortToast
 import com.icetetik.util.FireStoreCollection
 import com.icetetik.util.UiState
 

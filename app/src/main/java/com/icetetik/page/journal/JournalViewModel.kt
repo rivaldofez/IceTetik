@@ -21,11 +21,9 @@ class JournalViewModel @Inject constructor(
     val addMood: LiveData<UiState<String>>
         get() = _addMood
 
-
     private val _mood = MutableLiveData<UiState<Mood?>>()
     val mood: LiveData<UiState<Mood?>>
         get() = _mood
-
 
     fun addMood(userEmail: String, mood: Mood, uploadDate: LocalDate){
         _addMood.value = UiState.Loading
@@ -44,7 +42,4 @@ class JournalViewModel @Inject constructor(
             _mood.value = it
         }
     }
-
-
-
 }

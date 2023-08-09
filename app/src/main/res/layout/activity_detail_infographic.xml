@@ -18,7 +18,7 @@
             style="@style/ToolbarTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Detail Infografis"
+            android:text="@string/title_detail_infographic"
             />
     </androidx.appcompat.widget.Toolbar>
 

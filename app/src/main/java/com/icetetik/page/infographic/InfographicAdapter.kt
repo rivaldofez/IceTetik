@@ -24,7 +24,7 @@ class InfographicAdapter(private val context: Context, val callback: Infographic
         holder.bind(listInfographic[position])
     }
 
-    fun setData(data: List<Infographic>){
+    fun setData(data: List<Infographic>) {
         listInfographic.clear()
         listInfographic.addAll(data)
         notifyDataSetChanged()

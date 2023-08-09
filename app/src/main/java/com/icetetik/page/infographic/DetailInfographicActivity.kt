@@ -28,7 +28,7 @@ class DetailInfographicActivity : AppCompatActivity() {
             intent.getParcelableExtra(KeyParcelable.INFOGRAPHIC_DATA)
         }
 
-        if (infographic == null){
+        if (infographic == null) {
             binding.showSnackBar(getString(R.string.error_infographic_null))
         } else {
             Glide.with(this)

@@ -24,7 +24,7 @@ class MediaRepository(
             .document(FireStoreDocument.VIDEOS)
             .set(VideoResponse(videos = listVideo))
             .addOnSuccessListener {
-                result.invoke(UiState.Success("Succes set data video"))
+                result.invoke(UiState.Success("Success set data video"))
             }
             .addOnFailureListener {
                 result.invoke(

@@ -12,7 +12,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SignInViewModel @Inject constructor(
     private val repository: AuthRepository
-): ViewModel(){
+) : ViewModel() {
 
     private val _signInUser = MutableLiveData<UiState<String>>()
     val signInUser: LiveData<UiState<String>>
@@ -26,27 +26,24 @@ class SignInViewModel @Inject constructor(
     val userInfo: LiveData<UiState<User?>>
         get() = _userInfo
 
-
-//    fun saveUserInfo(user: User, result: (UiState<String>) -> Unit) {
-
-    fun signIn(email: String, password: String){
+    fun signIn(email: String, password: String) {
         _signInUser.value = UiState.Loading
-        repository.signInUser(email = email, password = password){
+        repository.signInUser(email = email, password = password) {
             _signInUser.value = it
         }
     }
 
-    fun saveUserInfo(user: User){
+    fun saveUserInfo(user: User) {
         _saveUserInfo.value = UiState.Loading
-        repository.saveUserInfo(user){
+        repository.saveUserInfo(user) {
             _saveUserInfo.value = it
         }
     }
 
-    fun getUserInfo(userEmail: String){
+    fun getUserInfo(userEmail: String) {
         _userInfo.value = UiState.Loading
 
-        repository.getUserInfo(userEmail = userEmail){
+        repository.getUserInfo(userEmail = userEmail) {
             _userInfo.value = it
         }
     }
