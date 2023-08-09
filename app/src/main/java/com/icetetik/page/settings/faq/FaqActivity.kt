@@ -42,47 +42,46 @@ class FaqActivity : AppCompatActivity() {
             btnFeature.setOnClickListener {
                 title = btnFeature.text.toString()
                 answer = "Fitur aplikasi dalam ICETETiK HEALING terdiri dari \n" +
-                        "1.\tkalender mood : fungsinya memantau mood kita setiap hari sehingga kita bisa melihat dan menghargai hari-hari yang telah berlalu dan kenangan mood setiap hari, dalam kalender mood juga terdapat rekap mood untuk melihat jumlah mood kita dalam sebulan\n" +
-                        "2.\tKuesioner DASS 42 berfungsi melakukan self assessment sehingga kita bisa melihat pada skor berapa tingkat kecemasan kita saat ini\n" +
-                        "3.\tlatihan pernapasan bersama mintik\n" +
-                        "4.\tcurhat bersama mintik (journaling)\n" +
-                        "5.\tteman sebelum tidur\n" +
-                        "6.\tvideo dan infografis yang edukatif\n"
+                        "\n1.Kalender mood : fungsinya memantau mood kita setiap hari sehingga kita bisa melihat dan menghargai hari-hari yang telah berlalu dan kenangan mood setiap hari, dalam kalender mood juga terdapat rekap mood untuk melihat jumlah mood kita dalam sebulan\n" +
+                        "\n2.Kuesioner DASS 42 berfungsi melakukan self assessment sehingga kita bisa melihat pada skor berapa tingkat kecemasan kita saat ini\n" +
+                        "\n3.Latihan pernapasan bersama mintik\n" +
+                        "\n4.Curhat bersama mintik (journaling)\n" +
+                        "\n5.Teman sebelum tidur\n" +
+                        "\n6.Video dan infografis yang edukatif\n"
 
                 navigateToDetailFaq(title, answer)
             }
 
             btnCooperation.setOnClickListener {
                 title = btnCooperation.text.toString()
-                answer = "cara bekerja sama dengan kami bisa menghubungi kami melalui\n" +
-                        "CP berikut\n" +
-                        "email : icetetikhealing@gmail.com\n" +
-                        "WA  \n"
+                answer = "Cara bekerja sama dengan kami bisa menghubungi kami melalui: \n" +
+                        "\nCP berikut:\n" +
+                        "Email : icetetikhealing@gmail.com\n" +
+                        "WA : 0895-6221-10517\n"
 
                 navigateToDetailFaq(title, answer)
             }
 
             btnMarket.setOnClickListener {
                 title = btnMarket.text.toString()
-                answer = "tidak bisa. saat ini produk Ice-Tetik dapat dibeli dengan memesan secara langsung di wilayah Bandar Lampung atau melalui contact person kami. "
+                answer = "Tidak bisa. saat ini produk Ice-Tetik dapat dibeli dengan memesan secara langsung di wilayah Bandar Lampung atau melalui contact person kami. "
 
                 navigateToDetailFaq(title, answer)
             }
 
             btnSupport.setOnClickListener {
                 title = btnSupport.text.toString()
-                answer = "Cara mendukung ICETETIK cukup mudah hanya dengan mendownload aplikasi di playstore dan login, anda sudah menjadi bagian dari nICEtizen. Anda juga bisa follow di \n" +
-                        "ig @ICETETIK.co https://www.instagram.com/reel/CutJv13hb_J/?igshid=MzRlODBiNWFlZA==\n" +
-                        "\n" +
-                        "youtube https://youtu.be/kRNo28BJMas\n" +
-                        "tiktok \n"
+                answer = "Cara mendukung ICETETIK cukup mudah hanya dengan mendownload aplikasi di playstore dan login, anda sudah menjadi bagian dari nICEtizen. \n\n\n" +
+                        "Anda juga bisa follow di :\n\n" +
+                        "Instagram @ICETETIK \n" +
+                        "Youtube @IcetetikHealing\n"
 
                 navigateToDetailFaq(title, answer)
             }
 
             btnIosSupport.setOnClickListener {
                 title = btnIosSupport.text.toString()
-                answer = "tidak tersedia untuk sementara ini"
+                answer = "Tidak tersedia untuk sementara ini"
 
                 navigateToDetailFaq(title, answer)
             }
