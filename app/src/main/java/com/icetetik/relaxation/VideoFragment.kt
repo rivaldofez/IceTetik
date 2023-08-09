@@ -32,11 +32,10 @@ class VideoFragment : Fragment() {
         }
 
         binding.ivStartVideo.setOnClickListener {
-            val goToClosing = VideoFragmentDirections.actionVideoFragmentToClosingVideoFragment()
-            findNavController().navigate(goToClosing)
+            val gotoRelaxationPlayer = VideoFragmentDirections.actionVideoFragmentToRelaxationPlayerFragment()
+            findNavController().navigate(gotoRelaxationPlayer)
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
