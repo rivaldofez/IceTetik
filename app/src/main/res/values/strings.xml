@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">IceTetik</string>
+    <string name="app_name">Ice-Tetik</string>
     <string name="cd_logo_splash">Logo Ice-Tetik</string>
     <string name="plc_today_mood">Kamu %s Hari Ini</string>
     <string name="title_your_mood_today">Mood Kamu Hari Ini:</string>
-    <string name="title_relaxation_with_min_tik">yuk relaksasi bareng min-tik</string>
-    <string name="title_information_for_you">Informasi untuk kamu</string>
+    <string name="title_relaxation_with_min_tik">yuk\nrelaksasi\nbareng\nmin-tik</string>
+    <string name="title_information_for_you">Informasi\nuntuk\nkamu</string>
     <string name="title_recommendation_video">Video Pilihan</string>
     <string name="cd_image_today_mood">Image mood hari ini</string>
     <string name="txt_strip_null">-</string>
@@ -107,11 +107,11 @@
     <string name="title_detail_infographic">Detail Infografis</string>
     <string name="title_frequently_asked_question">Frequently\nAsked\nQuestion</string>
     <string name="cd_image_mascot_faq">Image maskot Faq</string>
-    <string name="txt_what_is_ice_tetik">Apa itu ice-tetik</string>
+    <string name="txt_what_is_ice_tetik">Apa itu Ice-Tetik</string>
     <string name="txt_what_are_feature_ice_tetik">Apa saja fitur aplikasi ini?</string>
-    <string name="txt_how_to_collab_with_ice_tetik">Cara bekerja sama dengan ice-tetik</string>
+    <string name="txt_how_to_collab_with_ice_tetik">Cara bekerja sama dengan Ice-Tetik</string>
     <string name="txt_how_can_i_buy_product_ice_tetik">Apakah saya bisa membeli product ice tetik melalui aplikasi ini?</string>
-    <string name="txt_how_to_support_ice_tetik">Bagaimana cara saya mendukung ice-tetik?</string>
+    <string name="txt_how_to_support_ice_tetik">Bagaimana cara saya mendukung Ice-Tetik?</string>
     <string name="txt_is_available_in_ios">Apakah aplikasi ini tersedia untuk IOS</string>
     <string name="cd_icon_theme">Icon tema</string>
     <string name="txt_apply">Terapkan</string>
@@ -147,7 +147,7 @@
     <string name="txt_differences_all_level">Apa perbedaan stress, kecemasan dan depresi dan apa dampaknya bagi tubuh saya?</string>
     <string name="txt_what_can_i_do_for_you">Apa yang bisa saya lakukan untuk mengelola stress, kecemasan dan depresi</string>
     <string name="txt_do_you_need_expert">Apakah saya membutuhkan ahli?</string>
-    <string name="txt_find_more">Cari tahu lebih dalam mengenai stress, kecemasan, depresi, ataupun gangguan mental emosional lainnya, melalu firut berikut:</string>
+    <string name="txt_find_more">Cari tahu lebih dalam mengenai stress, kecemasan, depresi, ataupun gangguan mental emosional lainnya, melalui fitur berikut:</string>
     <string name="txt_recommendation">Video Pilihan</string>
     <string name="txt_infographic">Infografis</string>
     <string name="title_infographic_for_you">Infografis Pilihan Untukmu</string>
@@ -161,7 +161,7 @@
     <string name="txt_gform_link">Link gform</string>
     <string name="txt_give_support_to_us">Beri support dengan melakukan rating penilaian sempurna pada playstore dan follow akun sosial media kami</string>
     <string name="txt_linktree">Linktree</string>
-    <string name="txt_support_by_pray">Support kami dengan jalur langit, berikan doa terbaik untuk kemajuan ice-tetik company, share aplikasi ini agar bisa menjangkau banyak orang</string>
+    <string name="txt_support_by_pray">Support kami dengan jalur langit, berikan doa terbaik untuk kemajuan Ice-Tetik company, share aplikasi ini agar bisa menjangkau banyak orang</string>
     <string name="txt_tagline">ice tetik\nicy delight, healthy inside!</string>
     <string name="txt_thank_for_the_support">Kami mengucapkan terima kasih yang sebesar besarnya untuk semua yang sudah mendukukng kami</string>
 </resources>
