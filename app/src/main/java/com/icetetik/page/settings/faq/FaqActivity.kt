@@ -34,7 +34,7 @@ class FaqActivity : AppCompatActivity() {
 
             btnAboutIcetetik.setOnClickListener {
                 title = btnAboutIcetetik.text.toString()
-                answer = "Ice-tetik merupakan inovasi produk berupa es krim probiotik dengan penambahan ekstrak pisang muli Lampung yang kaya vitamin B kompleks. Pengayaan vitamin B pada produk bertujuan untuk meredakan stres, kecemasan dan depresi."
+                answer = "Ice-tetik merupakan inovasi produk berupa es krim probiotik dari bahan susu sapi pilihan yang diperkaya dengam ekstrak buah pisang muli Lampung, membantu mencukupi kebutuhan vitamin B harian untuk mencegah salah satu dari faktor penyebab munculnya gejala berupa stres, kecemasan dan depresi. Diproses dengan teknologi probiotik yang memiliki manfaat baik untuk kesehatan Anda. \n\nIce-tetik hadir dengan aplikasi Healing dengan berbagai fitur menarik sebagai penunjang dan solusi untuk upaya peningkatan derajat kesehatan mental di Indonesia."
 
                 navigateToDetailFaq(title, answer)
             }
@@ -42,12 +42,11 @@ class FaqActivity : AppCompatActivity() {
             btnFeature.setOnClickListener {
                 title = btnFeature.text.toString()
                 answer = "Fitur aplikasi dalam ICETETiK HEALING terdiri dari \n" +
-                        "\n1.Kalender mood : fungsinya memantau mood kita setiap hari sehingga kita bisa melihat dan menghargai hari-hari yang telah berlalu dan kenangan mood setiap hari, dalam kalender mood juga terdapat rekap mood untuk melihat jumlah mood kita dalam sebulan\n" +
-                        "\n2.Kuesioner DASS 42 berfungsi melakukan self assessment sehingga kita bisa melihat pada skor berapa tingkat kecemasan kita saat ini\n" +
-                        "\n3.Latihan pernapasan bersama mintik\n" +
-                        "\n4.Curhat bersama mintik (journaling)\n" +
-                        "\n5.Teman sebelum tidur\n" +
-                        "\n6.Video dan infografis yang edukatif\n"
+                        "\n1.Kalender yang dilengkapi mood tracker dan jurnal harian\n" +
+                        "\n2.Rekap statistik mood bulanan\n" +
+                        "\n3.Kuesioner DASS-42 untuk mengukur tingkat stres, kecemasan, dan depresi ditambah saran/tips dari hasil kuesioner \n" +
+                        "\n4.Media infografik dan video edukasi\n" +
+                        "\n5.Fitur instruksi relaksasi bersama Mintik\n"
 
                 navigateToDetailFaq(title, answer)
             }
@@ -71,10 +70,7 @@ class FaqActivity : AppCompatActivity() {
 
             btnSupport.setOnClickListener {
                 title = btnSupport.text.toString()
-                answer = "Cara mendukung ICETETIK cukup mudah hanya dengan mendownload aplikasi di playstore dan login, anda sudah menjadi bagian dari nICEtizen. \n\n\n" +
-                        "Anda juga bisa follow di :\n\n" +
-                        "Instagram @ICETETIK \n" +
-                        "Youtube @IcetetikHealing\n"
+                answer = "Dukung kami dengan memberikan rating sempurna pada google playstore memfollow akun sosial media kami, menyebarluaskan informasi produk dan aplikasi kami. Anda juga membantu kami dengan membeli produk eskrim ice-tetik dan secara rutin menggunakan aplikasi ini. Kami akan sangat senang apabila produk dan aplikasi kami bermanfaat untuk Anda."
 
                 navigateToDetailFaq(title, answer)
             }
