@@ -19,11 +19,12 @@ import com.icetetik.page.authentication.AuthenticationActivity
 import com.icetetik.data.model.User
 import com.icetetik.databinding.ActivitySettingsBinding
 import com.icetetik.databinding.SublayoutDialogConfirmationBinding
+import com.icetetik.databinding.SublayoutDialogDeleteAccountBinding
 import com.icetetik.databinding.SublayoutDialogThemeBinding
 import com.icetetik.page.authentication.reset.ResetActivity
 import com.icetetik.page.settings.faq.FaqActivity
 import com.icetetik.util.Extension.animateChangeVisibility
-import com.icetetik.util.Extension.showShortToast
+import com.icetetik.util.Extension.showLongToast
 import com.icetetik.util.Extension.showSnackBar
 import com.icetetik.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
@@ -74,11 +75,9 @@ class SettingsActivity : AppCompatActivity() {
 
                 is UiState.Success -> {
                     showLoading(isLoading = false)
-                    showShortToast(state.data)
-
                     val intent = Intent(this@SettingsActivity, AuthenticationActivity::class.java)
                     startActivity(intent)
-                    finish()
+                    finishAffinity()
                 }
             }
         }
@@ -107,6 +106,27 @@ class SettingsActivity : AppCompatActivity() {
                 }
             }
         }
+
+        viewModel.deleteAccount.observe(this) { state ->
+            when(state) {
+                is UiState.Loading -> {
+                    showLoading(isLoading = true)
+                }
+
+                is UiState.Failure -> {
+                    showLoading(isLoading = false)
+                    showLongToast(getString(R.string.error_reauthenticate_delete_account))
+                }
+
+                is UiState.Success -> {
+                    showLoading(isLoading = false)
+                    showLongToast(state.data)
+                    val intent = Intent(this@SettingsActivity, AuthenticationActivity::class.java)
+                    startActivity(intent)
+                    finishAffinity()
+                }
+            }
+        }
     }
 
     private fun updateCard(user: User) {
@@ -119,6 +139,10 @@ class SettingsActivity : AppCompatActivity() {
                 startActivity(
                     Intent(this@SettingsActivity, ResetActivity::class.java)
                 )
+            }
+
+            rowDeleteAccount.root.setOnClickListener {
+                showDeleteAccountDialog(getString(R.string.msg_delete_account_cannot_undone))
             }
 
             rowTheme.root.setOnClickListener {
@@ -148,6 +172,29 @@ class SettingsActivity : AppCompatActivity() {
                 loadUserInfo()
             }
         }
+    }
+
+    private fun showDeleteAccountDialog(message: String) {
+        val dialogBinding = SublayoutDialogDeleteAccountBinding.inflate(layoutInflater)
+
+        val dialog = Dialog(this@SettingsActivity)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(dialogBinding.root)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        dialogBinding.apply {
+            tvDialogMessage.text = message
+
+            btnDelete.setOnClickListener {
+                viewModel.deleteAccountUser()
+            }
+
+            btnCancel.setOnClickListener {
+                dialog.dismiss()
+            }
+        }
+        dialog.show()
     }
 
     private fun showConfirmationDialog(message: String) {

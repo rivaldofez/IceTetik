@@ -1,5 +1,6 @@
 package com.icetetik.data.repository
 
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
@@ -19,11 +20,14 @@ class AuthRepository(
         currentUser?.delete()
             ?.addOnCompleteListener {
                 if (it.isSuccessful) {
+                    Log.d("Teston", "called successfull")
+
                     currentUser.email?.let { it1 ->
                         database.collection((FireStoreCollection.USER)).document(
                             it1
                         ).delete()
                             .addOnSuccessListener {
+                                auth.signOut()
                                 result.invoke(UiState.Success("Akun berhasil terhapus"))
                             }
                             .addOnFailureListener {
@@ -39,6 +43,7 @@ class AuthRepository(
                 }
             }
             ?.addOnFailureListener {
+                Log.d("Teston", "called failed because " + it.localizedMessage)
                 result.invoke(
                     UiState.Failure(
                         it.localizedMessage
