@@ -14,6 +14,24 @@ class AuthRepository(
     private val database: FirebaseFirestore
 ) {
 
+    fun deleteAccount(result: (UiState<String>) -> Unit) {
+        val currentUser = auth.currentUser
+        currentUser?.delete()
+            ?.addOnCompleteListener {
+                if (it.isSuccessful) {
+                    result.invoke(UiState.Success("Berhasil reset password, silakan cek email kamu untuk mengatur password yang baru"))
+                } else {
+                    result.invoke(UiState.Failure("Terjadi kesalahan saat memproses reset password, silakan coba lagi"))
+                }
+            }
+            ?.addOnFailureListener {
+                result.invoke(
+                    UiState.Failure(
+                        it.localizedMessage
+                    )
+                )
+            }
+    }
 
     fun resetPasswordUser(email: String, result: (UiState<String>) -> Unit) {
         auth.sendPasswordResetEmail(email)
