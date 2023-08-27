@@ -19,9 +19,23 @@ class AuthRepository(
         currentUser?.delete()
             ?.addOnCompleteListener {
                 if (it.isSuccessful) {
-                    result.invoke(UiState.Success("Berhasil reset password, silakan cek email kamu untuk mengatur password yang baru"))
+                    currentUser.email?.let { it1 ->
+                        database.collection((FireStoreCollection.USER)).document(
+                            it1
+                        ).delete()
+                            .addOnSuccessListener {
+                                result.invoke(UiState.Success("Akun berhasil terhapus"))
+                            }
+                            .addOnFailureListener {
+                                result.invoke(
+                                    UiState.Failure(
+                                        it.localizedMessage
+                                    )
+                                )
+                            }
+                    }
                 } else {
-                    result.invoke(UiState.Failure("Terjadi kesalahan saat memproses reset password, silakan coba lagi"))
+                    result.invoke(UiState.Failure("Terjadi kesalahan saat memproses hapus akun, silakan coba lagi"))
                 }
             }
             ?.addOnFailureListener {
