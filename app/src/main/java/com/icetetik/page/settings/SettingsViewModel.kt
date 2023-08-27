@@ -27,6 +27,18 @@ class SettingsViewModel @Inject constructor(
     val signOut: LiveData<UiState<String>>
         get() = _signOut
 
+    private val _deleteAccount = MutableLiveData<UiState<String>>()
+    val deleteAccount: LiveData<UiState<String>>
+        get() = _deleteAccount
+
+
+    fun deleteAccountUser() {
+        _deleteAccount.value = UiState.Loading
+        authRepository.deleteAccount {
+            _deleteAccount.value = it
+        }
+    }
+
     fun signOutUser(){
         _signOut.value = UiState.Loading
         authRepository.signOutUser {
