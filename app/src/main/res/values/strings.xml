@@ -164,4 +164,6 @@
     <string name="txt_support_by_pray">Support kami dengan jalur langit, berikan doa terbaik untuk kemajuan Ice-Tetik company, share aplikasi ini agar bisa menjangkau banyak orang</string>
     <string name="txt_tagline">ice tetik\nicy delight, healthy inside!</string>
     <string name="txt_thank_for_the_support">Kami mengucapkan terima kasih yang sebesar besarnya untuk semua yang sudah mendukukng kami</string>
+    <string name="msg_delete_account_cannot_undone">Akun dan data tidak dapat dikembalikan apabila sudah terhapus!</string>
+    <string name="error_reauthenticate_delete_account">Terjadi kesalahan saat menghapus, silakan login ulang dan coba lagi</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.icetetik.data.repository
 
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
@@ -14,6 +15,42 @@ class AuthRepository(
     private val database: FirebaseFirestore
 ) {
 
+    fun deleteAccount(result: (UiState<String>) -> Unit) {
+        val currentUser = auth.currentUser
+        currentUser?.delete()
+            ?.addOnCompleteListener {
+                if (it.isSuccessful) {
+                    Log.d("Teston", "called successfull")
+
+                    currentUser.email?.let { it1 ->
+                        database.collection((FireStoreCollection.USER)).document(
+                            it1
+                        ).delete()
+                            .addOnSuccessListener {
+                                auth.signOut()
+                                result.invoke(UiState.Success("Akun berhasil terhapus"))
+                            }
+                            .addOnFailureListener {
+                                result.invoke(
+                                    UiState.Failure(
+                                        it.localizedMessage
+                                    )
+                                )
+                            }
+                    }
+                } else {
+                    result.invoke(UiState.Failure("Terjadi kesalahan saat memproses hapus akun, silakan coba lagi"))
+                }
+            }
+            ?.addOnFailureListener {
+                Log.d("Teston", "called failed because " + it.localizedMessage)
+                result.invoke(
+                    UiState.Failure(
+                        it.localizedMessage
+                    )
+                )
+            }
+    }
 
     fun resetPasswordUser(email: String, result: (UiState<String>) -> Unit) {
         auth.sendPasswordResetEmail(email)
