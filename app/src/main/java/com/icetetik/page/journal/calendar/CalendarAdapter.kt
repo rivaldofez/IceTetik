@@ -2,6 +2,7 @@ package com.icetetik.page.journal.calendar
 
 import android.content.Context
 import android.graphics.Typeface
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -47,21 +48,25 @@ class CalendarAdapter(val context: Context, val callback: CalendarItemCallback) 
                 }
 
                 if (
-                    dayOfMonth == currentDate.dayOfMonth.toString() &&
-                    currentAdapterDate.year == currentDate.year &&
-                    currentAdapterDate.month.value == currentDate.month.value
-                ) {
-                    clItemDay.setBackgroundColor(context.getColor(R.color.green_50))
-                    tvItemDay.setTextColor(context.getColor(R.color.white))
-                    tvItemDay.setTypeface(null, Typeface.BOLD)
-                }
-
-                if (
                     dayOfMonth == selectedDate.dayOfMonth.toString() &&
                     currentAdapterDate.year == selectedDate.year &&
                     currentAdapterDate.month.value == selectedDate.month.value
                 ) {
                     clItemDay.setBackgroundColor(context.getColor(R.color.primaryBackgroundColor))
+                    tvItemDay.setTextColor(context.getColor(R.color.white))
+                    tvItemDay.setTypeface(null, Typeface.BOLD)
+                } else {
+                    clItemDay.setBackgroundColor(context.getColor(R.color.white))
+                    tvItemDay.setTextColor(context.getColor(R.color.primaryBackgroundColor))
+                    tvItemDay.setTypeface(null, Typeface.NORMAL)
+                }
+
+                if (
+                    dayOfMonth == currentDate.dayOfMonth.toString() &&
+                    currentAdapterDate.year == currentDate.year &&
+                    currentAdapterDate.month.value == currentDate.month.value
+                ) {
+                    clItemDay.setBackgroundColor(context.getColor(R.color.green_50))
                     tvItemDay.setTextColor(context.getColor(R.color.white))
                     tvItemDay.setTypeface(null, Typeface.BOLD)
                 }

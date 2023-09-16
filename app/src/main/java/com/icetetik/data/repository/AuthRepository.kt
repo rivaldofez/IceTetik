@@ -15,20 +15,86 @@ class AuthRepository(
     private val database: FirebaseFirestore
 ) {
 
+    fun deleteUserMood(email: String, result: (UiState<String>) -> Unit) {
+        database.collection(FireStoreCollection.USER).document(email)
+            .collection(FireStoreCollection.MOODS)
+            .get()
+            .addOnSuccessListener { snapshot ->
+                if (snapshot.isEmpty){
+                    result.invoke(UiState.Success("Already Empty"))
+                } else {
+                    try {
+                        snapshot.documents.forEach {
+                            it.reference.delete()
+                        }
+                        result.invoke(UiState.Success("Mood Berhasil terhapus"))
+                    } catch (e: Exception) {
+                        result.invoke(
+                            UiState.Failure(
+                                e.localizedMessage
+                            )
+                        )
+                    }
+                }
+            }
+    }
+
+    fun deleteUserQuestionnaire(email: String, result: (UiState<String>) -> Unit) {
+        database.collection(FireStoreCollection.USER).document(email)
+            .collection(FireStoreCollection.QUESTIONNAIRE)
+            .get()
+            .addOnSuccessListener { snapshot ->
+                if (snapshot.isEmpty){
+                    result.invoke(UiState.Success("Already Empty"))
+                } else {
+                    try {
+                        snapshot.documents.forEach {
+                            it.reference.delete()
+                        }
+                        result.invoke(UiState.Success("Questionnaire Berhasil terhapus"))
+                    } catch (e: Exception) {
+                        result.invoke(
+                            UiState.Failure(
+                                e.localizedMessage
+                            )
+                        )
+                    }
+                }
+            }
+    }
+
     fun deleteAccount(result: (UiState<String>) -> Unit) {
         val currentUser = auth.currentUser
         currentUser?.delete()
             ?.addOnCompleteListener {
                 if (it.isSuccessful) {
-                    Log.d("Teston", "called successfull")
-
                     currentUser.email?.let { it1 ->
                         database.collection((FireStoreCollection.USER)).document(
                             it1
                         ).delete()
                             .addOnSuccessListener {
-                                auth.signOut()
-                                result.invoke(UiState.Success("Akun berhasil terhapus"))
+
+                                deleteUserMood(email = it1) { moodState ->
+                                    when(moodState){
+                                        is UiState.Success -> {
+                                           deleteUserQuestionnaire(it1) { questionnaireState ->
+                                               when (questionnaireState) {
+                                                   is UiState.Success -> {
+                                                       auth.signOut()
+                                                       result.invoke(UiState.Success("Akun berhasil terhapus"))
+                                                   }
+
+                                                   is UiState.Failure -> {
+                                                       result.invoke(moodState)
+                                                   }
+                                               }
+                                           }
+                                        }
+                                        is UiState.Failure -> {
+                                            result.invoke(moodState)
+                                        }
+                                    }
+                                }
                             }
                             .addOnFailureListener {
                                 result.invoke(

@@ -116,6 +116,7 @@ class SettingsActivity : AppCompatActivity() {
                 is UiState.Failure -> {
                     showLoading(isLoading = false)
                     showLongToast(getString(R.string.error_reauthenticate_delete_account))
+                    viewModel.signOutUser()
                 }
 
                 is UiState.Success -> {
@@ -188,6 +189,7 @@ class SettingsActivity : AppCompatActivity() {
 
             btnDelete.setOnClickListener {
                 viewModel.deleteAccountUser()
+                dialog.dismiss()
             }
 
             btnCancel.setOnClickListener {
